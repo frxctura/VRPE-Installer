@@ -1,6 +1,6 @@
 ﻿namespace VRPE_Installer
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -33,13 +33,15 @@
             this.minimizeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.downloadProgress = new System.Windows.Forms.ProgressBar();
+            this.firewallCheckbox = new System.Windows.Forms.CheckBox();
             this.resilioButton = new System.Windows.Forms.Button();
             this.vrpguiButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.rookieButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
             this.welcomeLabel = new System.Windows.Forms.Label();
-            this.firewallCheckbox = new System.Windows.Forms.CheckBox();
+            this.rookieFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -102,6 +104,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.downloadProgress);
             this.panel2.Controls.Add(this.firewallCheckbox);
             this.panel2.Controls.Add(this.resilioButton);
             this.panel2.Controls.Add(this.vrpguiButton);
@@ -113,6 +116,29 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(844, 359);
             this.panel2.TabIndex = 2;
+            // 
+            // downloadProgress
+            // 
+            this.downloadProgress.Location = new System.Drawing.Point(81, 326);
+            this.downloadProgress.Name = "downloadProgress";
+            this.downloadProgress.Size = new System.Drawing.Size(680, 28);
+            this.downloadProgress.TabIndex = 8;
+            this.downloadProgress.Visible = false;
+            // 
+            // firewallCheckbox
+            // 
+            this.firewallCheckbox.AutoSize = true;
+            this.firewallCheckbox.BackColor = System.Drawing.Color.Transparent;
+            this.firewallCheckbox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.firewallCheckbox.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firewallCheckbox.ForeColor = System.Drawing.Color.White;
+            this.firewallCheckbox.Location = new System.Drawing.Point(272, 16);
+            this.firewallCheckbox.Name = "firewallCheckbox";
+            this.firewallCheckbox.Size = new System.Drawing.Size(257, 23);
+            this.firewallCheckbox.TabIndex = 7;
+            this.firewallCheckbox.Text = "Add Firewall Exception on Install";
+            this.firewallCheckbox.UseVisualStyleBackColor = false;
+            this.firewallCheckbox.Visible = false;
             // 
             // resilioButton
             // 
@@ -205,22 +231,11 @@
             this.welcomeLabel.Text = "Welcome to the official VRPE Installer, the next step will let you choose which p" +
     "rograms you want to install from our suite. ";
             // 
-            // firewallCheckbox
+            // rookieFolderDialog
             // 
-            this.firewallCheckbox.AutoSize = true;
-            this.firewallCheckbox.BackColor = System.Drawing.Color.Transparent;
-            this.firewallCheckbox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.firewallCheckbox.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firewallCheckbox.ForeColor = System.Drawing.Color.White;
-            this.firewallCheckbox.Location = new System.Drawing.Point(272, 16);
-            this.firewallCheckbox.Name = "firewallCheckbox";
-            this.firewallCheckbox.Size = new System.Drawing.Size(257, 23);
-            this.firewallCheckbox.TabIndex = 7;
-            this.firewallCheckbox.Text = "Add Firewall Exception on Install";
-            this.firewallCheckbox.UseVisualStyleBackColor = false;
-            this.firewallCheckbox.Visible = false;
+            this.rookieFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
-            // Form1
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -230,7 +245,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -254,6 +269,7 @@
         private System.Windows.Forms.Button resilioButton;
         private System.Windows.Forms.Button vrpguiButton;
         private System.Windows.Forms.CheckBox firewallCheckbox;
+        private System.Windows.Forms.FolderBrowserDialog rookieFolderDialog;
+        public System.Windows.Forms.ProgressBar downloadProgress;
     }
 }
-

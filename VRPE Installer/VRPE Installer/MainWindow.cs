@@ -6,13 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace VRPE_Installer
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
@@ -25,10 +27,13 @@ namespace VRPE_Installer
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
         IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
-        public Form1()
+        public static string selectedPath;
+        public static string fixPath;
+        public MainWindow()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
+
         }
 
         private void minimizeButton_Click(object sender, System.EventArgs e)
@@ -57,7 +62,7 @@ namespace VRPE_Installer
             backButton.Show();
             rookieButton.Show();
             vrpguiButton.Show();
-            resilioButton.Show();  
+            resilioButton.Show();
             firewallCheckbox.Show();
         }
 
@@ -71,11 +76,27 @@ namespace VRPE_Installer
             firewallCheckbox.Hide();
         }
 
-        private void rookieButton_Click(object sender, EventArgs e)
+        public async void rookieButton_Click(object sender, EventArgs e)
         {
-            if (firewallCheckbox.Checked)
+            if (rookieFolderDialog.ShowDialog() == DialogResult.OK)
             {
-               Buttons.FirewallException();
+                fixPath = @"\";
+                selectedPath = rookieFolderDialog.SelectedPath;
+                if (firewallCheckbox.Checked)
+                {
+                    downloadProgress.Show();
+                    downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
+                    await Downloader.GetRookie();
+                    Buttons.FirewallException();
+                    downloadProgress.Hide();
+                }
+                else
+                {
+                    downloadProgress.Show();
+                    downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
+                    await Downloader.GetRookie();
+                    downloadProgress.Hide();
+                }
             }
         }
     }
