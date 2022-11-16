@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/VRPE Installer/.vs/VRPE Installer
+/VRPE Installer/VRPE Installer/obj/Debug
+/WindowsFormsApp1
+/VRPE Installer/VRPE Installer/obj/Release
+/obj
+/VRPE Installer/VRPE Installer/bin/
+/VRPE Installer/VRPE Installer/obj
