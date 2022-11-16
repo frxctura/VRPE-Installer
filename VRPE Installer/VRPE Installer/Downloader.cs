@@ -16,7 +16,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Telerik.WinControls.UI;
 using static System.Net.WebRequestMethods;
 
 namespace VRPE_Installer
@@ -25,15 +24,11 @@ namespace VRPE_Installer
     {
         public class HttpClientDownloadWithProgress : IDisposable
         {
-            public static int progressPercentage;
             private readonly string _downloadUrl;
             private readonly string _destinationFilePath;
+            public static string rookieDL = string.Empty;
 
             private HttpClient _httpClient;
-
-            public delegate void ProgressChangedHandler(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage);
-
-            public event ProgressChangedHandler ProgressChanged;
 
             public HttpClientDownloadWithProgress(string downloadUrl, string destinationFilePath)
             {
@@ -74,7 +69,6 @@ namespace VRPE_Installer
                         if (bytesRead == 0)
                         {
                             isMoreToRead = false;
-                            TriggerProgressChanged(totalDownloadSize, totalBytesRead);
                             continue;
                         }
 
@@ -82,24 +76,9 @@ namespace VRPE_Installer
 
                         totalBytesRead += bytesRead;
                         readCount += 1;
-
-                        if (readCount % 100 == 0)
-                            TriggerProgressChanged(totalDownloadSize, totalBytesRead);
                     }
                     while (isMoreToRead);
                 }
-            }
-
-            private void TriggerProgressChanged(long? totalDownloadSize, long totalBytesRead)
-            {
-                if (ProgressChanged == null)
-                    return;
-
-                double? progressPercentage = null;
-                if (totalDownloadSize.HasValue)
-                    progressPercentage = Math.Round((double)totalBytesRead / totalDownloadSize.Value * 100, 2);
-
-                ProgressChanged(totalDownloadSize, totalBytesRead, progressPercentage);
             }
 
             public void Dispose()
@@ -107,22 +86,95 @@ namespace VRPE_Installer
                 _httpClient?.Dispose();
             }
         }
-
         public static async Task GetRookie()
         {
-            var downloadFileUrl = "https://speed.hetzner.de/1GB.bin";
-            var destinationFilePath = Path.GetFullPath($"{MainWindow.selectedPath}{MainWindow.fixPath}RSL.7z");
-
-            using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePath))
+            HttpClient githubgetter = new HttpClient();
+            string rookieLink = "https://raw.githubusercontent.com/Chax1/TestLinks/main/TestLinks";
+            string rookieDL = githubgetter.GetStringAsync($"{rookieLink}").Result;
+            var downloadFileUrl = $"{rookieDL}";
+            var destinationFilePath = Path.GetFullPath($"{MainWindow.selectedPath}{MainWindow.fixPath}RSL.zip");
+        try
             {
-                client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
+                using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePath))
                 {
-                    Console.WriteLine($"{progressPercentage}% ({totalBytesDownloaded}/{totalFileSize})");
-                    Console.WriteLine((int)progressPercentage);
-                };
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                await client.StartDownload();
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    await client.StartDownload();
+                }
             }
+        catch (Exception ex)
+            {
+                string message =
+                   $"{ex.Message}";
+                string caption = "Error while Downloading!";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static async Task GetVRPGUI()
+        {
+            var downloadFileUrl = "https://wiki.vrpirates.club/downloads/vrp_gui_2022-10-01.zip";
+            var destinationFilePathVRPGUI = Path.GetFullPath($"{MainWindow.selectedPathVRPGUI}{MainWindow.fixPath}VRPGUI.zip");
+        try
+            {
+            using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePathVRPGUI))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    await client.StartDownload();
+                }
+            }
+        catch (Exception ex)
+            {
+                string message =
+                   $"{ex.Message}";
+                string caption = "Error while Downloading!";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static async Task GetResilio()
+        {
+            if (!Environment.Is64BitOperatingSystem)
+            {
+                var downloadFileUrl = "https://download-cdn.resilio.com/stable/windows/Resilio-Sync.exe";
+                var destinationFilePathResilio = Path.GetFullPath($"{MainWindow.selectedPathResilio}{MainWindow.fixPath}Resilio-Sync.exe");
+            try
+                {
+                using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePathResilio))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    await client.StartDownload();
+                    Process.Start($"{MainWindow.selectedPathResilio}{MainWindow.fixPath}Resilio-Sync.exe");
+                    }
+                }
+            catch (Exception ex)
+                {
+                    string message =
+                       $"{ex.Message}";
+                    string caption = "Error while Downloading!";
+                    MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+                {
+                var downloadFileUrl64 = "https://download-cdn.resilio.com/stable/windows64/Resilio-Sync_x64.exe";
+                var destinationFilePathResilio64 = Path.GetFullPath($"{MainWindow.selectedPathResilio}{MainWindow.fixPath}Resilio-Sync_64.exe");
+            try
+                {
+                using (var client = new HttpClientDownloadWithProgress(downloadFileUrl64, destinationFilePathResilio64))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    await client.StartDownload();
+                    Process.Start($"{MainWindow.selectedPathResilio}{MainWindow.fixPath}Resilio-Sync_64.exe");
+                    }
+                }
+            catch (Exception ex)
+            {
+                string message =
+                   $"{ex.Message}";
+                string caption = "Error while Downloading!";
+                    MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+        }
         }
     }
 }

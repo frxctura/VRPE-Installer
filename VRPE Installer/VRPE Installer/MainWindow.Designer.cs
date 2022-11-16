@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.topLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.minimizeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.resilioPathCheckbox = new System.Windows.Forms.CheckBox();
             this.downloadProgress = new System.Windows.Forms.ProgressBar();
             this.firewallCheckbox = new System.Windows.Forms.CheckBox();
             this.resilioButton = new System.Windows.Forms.Button();
@@ -42,27 +43,30 @@
             this.nextButton = new System.Windows.Forms.Button();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.rookieFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.vrpGUIFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.resilioFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // topLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(6, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "VRPE Installer";
+            this.topLabel.AutoSize = true;
+            this.topLabel.BackColor = System.Drawing.Color.Transparent;
+            this.topLabel.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.topLabel.ForeColor = System.Drawing.Color.White;
+            this.topLabel.Location = new System.Drawing.Point(6, 8);
+            this.topLabel.Name = "topLabel";
+            this.topLabel.Size = new System.Drawing.Size(108, 19);
+            this.topLabel.TabIndex = 0;
+            this.topLabel.Text = "VRPE Installer";
+            this.topLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onMouseDown);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.minimizeButton);
             this.panel1.Controls.Add(this.closeButton);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.topLabel);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(885, 33);
@@ -104,6 +108,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.resilioPathCheckbox);
             this.panel2.Controls.Add(this.downloadProgress);
             this.panel2.Controls.Add(this.firewallCheckbox);
             this.panel2.Controls.Add(this.resilioButton);
@@ -117,11 +122,24 @@
             this.panel2.Size = new System.Drawing.Size(844, 359);
             this.panel2.TabIndex = 2;
             // 
+            // resilioPathCheckbox
+            // 
+            this.resilioPathCheckbox.AutoSize = true;
+            this.resilioPathCheckbox.Font = new System.Drawing.Font("Roboto", 12F);
+            this.resilioPathCheckbox.ForeColor = System.Drawing.Color.White;
+            this.resilioPathCheckbox.Location = new System.Drawing.Point(291, 233);
+            this.resilioPathCheckbox.Name = "resilioPathCheckbox";
+            this.resilioPathCheckbox.Size = new System.Drawing.Size(254, 23);
+            this.resilioPathCheckbox.TabIndex = 9;
+            this.resilioPathCheckbox.Text = "Select Custom Download Folder";
+            this.resilioPathCheckbox.UseVisualStyleBackColor = true;
+            this.resilioPathCheckbox.Visible = false;
+            // 
             // downloadProgress
             // 
             this.downloadProgress.Location = new System.Drawing.Point(81, 326);
             this.downloadProgress.Name = "downloadProgress";
-            this.downloadProgress.Size = new System.Drawing.Size(680, 28);
+            this.downloadProgress.Size = new System.Drawing.Size(758, 28);
             this.downloadProgress.TabIndex = 8;
             this.downloadProgress.Visible = false;
             // 
@@ -132,7 +150,7 @@
             this.firewallCheckbox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.firewallCheckbox.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firewallCheckbox.ForeColor = System.Drawing.Color.White;
-            this.firewallCheckbox.Location = new System.Drawing.Point(272, 16);
+            this.firewallCheckbox.Location = new System.Drawing.Point(291, 58);
             this.firewallCheckbox.Name = "firewallCheckbox";
             this.firewallCheckbox.Size = new System.Drawing.Size(257, 23);
             this.firewallCheckbox.TabIndex = 7;
@@ -147,7 +165,7 @@
             this.resilioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.resilioButton.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resilioButton.ForeColor = System.Drawing.Color.White;
-            this.resilioButton.Location = new System.Drawing.Point(3, 122);
+            this.resilioButton.Location = new System.Drawing.Point(288, 262);
             this.resilioButton.Name = "resilioButton";
             this.resilioButton.Size = new System.Drawing.Size(263, 58);
             this.resilioButton.TabIndex = 6;
@@ -155,6 +173,7 @@
             this.resilioButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.resilioButton.UseVisualStyleBackColor = false;
             this.resilioButton.Visible = false;
+            this.resilioButton.Click += new System.EventHandler(this.resilioButton_Click);
             // 
             // vrpguiButton
             // 
@@ -163,13 +182,14 @@
             this.vrpguiButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vrpguiButton.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vrpguiButton.ForeColor = System.Drawing.Color.White;
-            this.vrpguiButton.Location = new System.Drawing.Point(3, 58);
+            this.vrpguiButton.Location = new System.Drawing.Point(288, 129);
             this.vrpguiButton.Name = "vrpguiButton";
             this.vrpguiButton.Size = new System.Drawing.Size(263, 58);
             this.vrpguiButton.TabIndex = 5;
             this.vrpguiButton.Text = "Download and Install VRPGUI";
             this.vrpguiButton.UseVisualStyleBackColor = false;
             this.vrpguiButton.Visible = false;
+            this.vrpguiButton.Click += new System.EventHandler(this.vrpguiButton_Click);
             // 
             // backButton
             // 
@@ -194,7 +214,7 @@
             this.rookieButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rookieButton.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rookieButton.ForeColor = System.Drawing.Color.White;
-            this.rookieButton.Location = new System.Drawing.Point(3, 3);
+            this.rookieButton.Location = new System.Drawing.Point(288, 3);
             this.rookieButton.Name = "rookieButton";
             this.rookieButton.Size = new System.Drawing.Size(263, 49);
             this.rookieButton.TabIndex = 2;
@@ -216,7 +236,7 @@
             this.nextButton.TabIndex = 1;
             this.nextButton.Text = "NEXT";
             this.nextButton.UseVisualStyleBackColor = false;
-            this.nextButton.Click += new System.EventHandler(this.button1_Click);
+            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
             // welcomeLabel
             // 
@@ -235,6 +255,14 @@
             // 
             this.rookieFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
+            // vrpGUIFolderDialog
+            // 
+            this.vrpGUIFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            // 
+            // resilioFolderDialog
+            // 
+            this.resilioFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,7 +274,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainWindow";
-            this.Text = "Form1";
+            this.Text = "VRPE Installer";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -257,7 +285,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label topLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button closeButton;
@@ -271,5 +299,8 @@
         private System.Windows.Forms.CheckBox firewallCheckbox;
         private System.Windows.Forms.FolderBrowserDialog rookieFolderDialog;
         public System.Windows.Forms.ProgressBar downloadProgress;
+        private System.Windows.Forms.FolderBrowserDialog vrpGUIFolderDialog;
+        private System.Windows.Forms.FolderBrowserDialog resilioFolderDialog;
+        private System.Windows.Forms.CheckBox resilioPathCheckbox;
     }
 }
