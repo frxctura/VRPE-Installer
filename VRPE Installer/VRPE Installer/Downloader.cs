@@ -89,7 +89,7 @@ namespace VRPE_Installer
         public static async Task GetRookie()
         {
             HttpClient githubgetter = new HttpClient();
-            string rookieLink = "https://raw.githubusercontent.com/Chax1/TestLinks/main/TestLinks";
+            string rookieLink = "https://raw.githubusercontent.com/Chax1/TestLinks/main/RookieLink";
             string rookieDL = githubgetter.GetStringAsync($"{rookieLink}").Result;
             var downloadFileUrl = $"{rookieDL}";
             var destinationFilePath = Path.GetFullPath($"{MainWindow.selectedPath}{MainWindow.fixPath}RSL.zip");
@@ -112,7 +112,10 @@ namespace VRPE_Installer
 
         public static async Task GetVRPGUI()
         {
-            var downloadFileUrl = "https://wiki.vrpirates.club/downloads/vrp_gui_2022-10-01.zip";
+            HttpClient githubgetter = new HttpClient();
+            string VRPGUILink = "https://raw.githubusercontent.com/Chax1/TestLinks/main/VRPGUILink";
+            string VRPGUIDL = githubgetter.GetStringAsync($"{VRPGUILink}").Result;
+            var downloadFileUrl = $"{VRPGUIDL}";
             var destinationFilePathVRPGUI = Path.GetFullPath($"{MainWindow.selectedPathVRPGUI}{MainWindow.fixPath}VRPGUI.zip");
         try
             {
