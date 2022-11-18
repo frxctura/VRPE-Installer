@@ -61,6 +61,7 @@ namespace VRPE_Installer
 
         private void nextButton_Click(object sender, EventArgs e)
         {
+            wikiLink.Hide();
             welcomeLabel.Hide();
             backButton.Show();
             nextButton.Hide();
@@ -69,17 +70,29 @@ namespace VRPE_Installer
             resilioButton.Show();
             firewallCheckbox.Show();
             resilioPathCheckbox.Show();
+            downloadProgress.Show();
+            if (File.Exists(@"C:/VRPE/RookiePath.txt"))
+            {
+                LaunchRookie.Show();
+            }
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
+            wikiLink.Show();
             backButton.Hide();
+            nextButton.Show();
             welcomeLabel.Show();
             rookieButton.Hide();
             vrpguiButton.Hide();
             resilioButton.Hide();
             firewallCheckbox.Hide();
             resilioPathCheckbox.Hide();
+            downloadProgress.Hide();
+            if (File.Exists(@"C:/VRPE/RookiePath.txt"))
+            {
+                LaunchRookie.Hide();
+            }
         }
 
         public async void rookieButton_Click(object sender, EventArgs e)
@@ -186,5 +199,15 @@ namespace VRPE_Installer
                     downloadProgress.Hide();
                 }
             }
+
+        private void wikiLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://wiki.vrpirates.club/");
+        }
+
+        private void LaunchRookie_Click(object sender, EventArgs e)
+        {
+            Buttons.LaunchRookie();
+        }
     }
     }
