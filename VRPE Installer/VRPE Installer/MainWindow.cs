@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -31,12 +32,15 @@ namespace VRPE_Installer
         public static string selectedPathVRPGUI;
         public static string selectedPathResilio;
         public static string fixPath;
+        public static string ver;
         public MainWindow()
         {
+            HttpClient client = new HttpClient();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
             System.IO.Directory.CreateDirectory(@"C:\VRPE\");
             FileStream fs = File.Create(@"C:\VRPE\LoggedInstallPaths.txt");
+            ver = client.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
         }
 
         private void minimizeButton_Click(object sender, System.EventArgs e)

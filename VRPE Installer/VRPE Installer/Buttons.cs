@@ -17,15 +17,14 @@ namespace VRPE_Installer
     public class Buttons
     {
         public static string rookiePath;
-        public static string ver = string.Empty;
         public static void FirewallException()
         {
             HttpClient client = new HttpClient();
             var fixPath = MainWindow.fixPath;
             var path = MainWindow.selectedPath;
             string ver = client.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
-            var folderName = $"rookie_{ver}_portable";
-            string finishedPath = $"{path}{fixPath}{folderName}{fixPath}AndroidSideloader_v{ver}.exe";
+            var folderName = $"rookie_{MainWindow.ver}_portable";
+            string finishedPath = $"{path}{fixPath}{folderName}{fixPath}AndroidSideloader_v{MainWindow.ver}.exe";
             Process p = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = "CMD.EXE";
@@ -36,13 +35,16 @@ namespace VRPE_Installer
         }
         public static void LaunchRookie()
         {
-            HttpClient client = new HttpClient();
-            string ver = client.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
+            HttpClient client = new HttpClient();   
             rookiePath = File.ReadLines(@"C:/VRPE/RookiePath.txt").First();
             Console.WriteLine(rookiePath);
             try
             {
-                Process.Start(rookiePath);
+                Process p = new Process(); 
+                p.StartInfo.WorkingDirectory = rookiePath;
+                p.StartInfo.FileName = $"AndroidSideloader_v{MainWindow.ver}.exe";
+                p.StartInfo.CreateNoWindow = true;
+                p.Start();
             }
             catch (Exception ex)
             {

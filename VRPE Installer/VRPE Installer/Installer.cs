@@ -20,12 +20,10 @@ namespace VRPE_Installer
     {
         public static async Task InstallRookie()
         {
-            HttpClient client = new HttpClient();
             var destinationFilePath = Path.GetFullPath($"{MainWindow.selectedPath}{MainWindow.fixPath}RSL.zip");
             var storePath = Path.GetFullPath($"{MainWindow.selectedPath}{MainWindow.fixPath}");
             var outputFolder = Path.GetFullPath($"{MainWindow.selectedPath}{MainWindow.fixPath}");
-            string ver = client.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
-            var folderName = $"rookie_{ver}_portable";
+            var folderName = $"rookie_{MainWindow.ver}_portable";
             var VRPEPATH = @"C:\VRPE\";
             try
             {
@@ -34,14 +32,14 @@ namespace VRPE_Installer
                     Directory.CreateDirectory(@"C:/VRPE");
                     using (StreamWriter sw = File.CreateText($"{VRPEPATH}/RookiePath.txt"))
                     {
-                        sw.WriteLine($"{storePath}{folderName}{MainWindow.fixPath}AndroidSideloader_v{ver}.exe");
+                        sw.WriteLine($"{storePath}{folderName}{MainWindow.fixPath}");
                     }
                 }
                 else
                 {
                     using (StreamWriter sw = File.CreateText($"{VRPEPATH}/RookiePath.txt"))
                     {
-                        sw.WriteLine($"{storePath}{folderName}{MainWindow.fixPath}AndroidSideloader_v{ver}.exe");
+                        sw.WriteLine($"{storePath}{folderName}{MainWindow.fixPath}");
                     }
                 }
                 ZipFile.ExtractToDirectory(destinationFilePath, outputFolder);

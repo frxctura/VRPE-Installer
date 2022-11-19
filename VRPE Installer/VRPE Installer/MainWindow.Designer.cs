@@ -348,7 +348,7 @@
             this.rookiePathLabel.AutoSize = true;
             this.rookiePathLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rookiePathLabel.ForeColor = System.Drawing.Color.White;
-            this.rookiePathLabel.Location = new System.Drawing.Point(272, 275);
+            this.rookiePathLabel.Location = new System.Drawing.Point(272, 286);
             this.rookiePathLabel.MaximumSize = new System.Drawing.Size(670, 0);
             this.rookiePathLabel.Name = "rookiePathLabel";
             this.rookiePathLabel.Size = new System.Drawing.Size(0, 15);
