@@ -54,6 +54,7 @@
             this.VRPGUItoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.firewalltoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customFoldertooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.rookiePathLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -117,6 +118,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.rookiePathLabel);
             this.panel2.Controls.Add(this.LaunchRookie);
             this.panel2.Controls.Add(this.wikiLink);
             this.panel2.Controls.Add(this.resilioPathCheckbox);
@@ -128,7 +130,7 @@
             this.panel2.Controls.Add(this.rookieButton);
             this.panel2.Controls.Add(this.nextButton);
             this.panel2.Controls.Add(this.welcomeLabel);
-            this.panel2.Location = new System.Drawing.Point(23, 93);
+            this.panel2.Location = new System.Drawing.Point(23, 80);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(844, 359);
             this.panel2.TabIndex = 2;
@@ -340,6 +342,19 @@
             this.customFoldertooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.customFoldertooltip.ToolTipTitle = "Selections";
             // 
+            // rookiePathLabel
+            // 
+            this.rookiePathLabel.AutoEllipsis = true;
+            this.rookiePathLabel.AutoSize = true;
+            this.rookiePathLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rookiePathLabel.ForeColor = System.Drawing.Color.White;
+            this.rookiePathLabel.Location = new System.Drawing.Point(272, 275);
+            this.rookiePathLabel.MaximumSize = new System.Drawing.Size(670, 0);
+            this.rookiePathLabel.Name = "rookiePathLabel";
+            this.rookiePathLabel.Size = new System.Drawing.Size(0, 15);
+            this.rookiePathLabel.TabIndex = 12;
+            this.rookiePathLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,5 +404,6 @@
         private System.Windows.Forms.ToolTip customFoldertooltip;
         private System.Windows.Forms.ToolTip firewalltoolTip;
         private System.Windows.Forms.Button LaunchRookie;
+        private System.Windows.Forms.Label rookiePathLabel;
     }
 }

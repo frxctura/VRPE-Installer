@@ -16,6 +16,7 @@ namespace VRPE_Installer
 {
     public class Buttons
     {
+        public static string rookiePath;
         public static string ver = string.Empty;
         public static void FirewallException()
         {
@@ -37,7 +38,7 @@ namespace VRPE_Installer
         {
             HttpClient client = new HttpClient();
             string ver = client.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
-            string rookiePath = File.ReadLines(@"C:/VRPE/RookiePath.txt").First();
+            rookiePath = File.ReadLines(@"C:/VRPE/RookiePath.txt").First();
             Console.WriteLine(rookiePath);
             try
             {

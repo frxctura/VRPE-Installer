@@ -73,6 +73,8 @@ namespace VRPE_Installer
             downloadProgress.Show();
             if (File.Exists(@"C:/VRPE/RookiePath.txt"))
             {
+                Buttons.rookiePath = File.ReadLines(@"C:/VRPE/RookiePath.txt").First();
+                rookiePathLabel.Text = Buttons.rookiePath;
                 LaunchRookie.Show();
             }
         }
@@ -91,6 +93,7 @@ namespace VRPE_Installer
             downloadProgress.Hide();
             if (File.Exists(@"C:/VRPE/RookiePath.txt"))
             {
+                rookiePathLabel.Text = "";
                 LaunchRookie.Hide();
             }
         }
