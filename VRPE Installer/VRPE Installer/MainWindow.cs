@@ -121,8 +121,13 @@ namespace VRPE_Installer
                     topLabel.Text = "VRPE Installer";
                     Buttons.FirewallException();
                     string message = "Done!";
+                    if (File.Exists(@"C:/VRPE/RookiePath.txt"))
+                    {
+                        Buttons.rookiePath = File.ReadLines(@"C:/VRPE/RookiePath.txt").First();
+                        rookiePathLabel.Text = Buttons.rookiePath;
+                        rookiePathLabel.Refresh();
+                    }
                     string caption = "Downloading & Extracting Finished";
-                    rookiePathLabel.Refresh();
                     MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     downloadProgress.Hide();
                 }
@@ -140,7 +145,12 @@ namespace VRPE_Installer
                     topLabel.Refresh();
                     string message = "Done!";
                     string caption = "Downloading & Extracting Finished";
-                    rookiePathLabel.Refresh();
+                    if (File.Exists(@"C:/VRPE/RookiePath.txt"))
+                    {
+                        Buttons.rookiePath = File.ReadLines(@"C:/VRPE/RookiePath.txt").First();
+                        rookiePathLabel.Text = Buttons.rookiePath;
+                        rookiePathLabel.Refresh();
+                    }
                     MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     downloadProgress.Hide();
                 }
