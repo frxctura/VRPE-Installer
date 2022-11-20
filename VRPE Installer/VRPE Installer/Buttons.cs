@@ -40,11 +40,11 @@ namespace VRPE_Installer
             Console.WriteLine(rookiePath);
             try
             {
-                Process p = new Process(); 
-                p.StartInfo.WorkingDirectory = rookiePath;
-                p.StartInfo.FileName = $"AndroidSideloader_v{MainWindow.ver}.exe";
-                p.StartInfo.CreateNoWindow = true;
-                p.Start();
+                ProcessStartInfo p = new ProcessStartInfo(); 
+                p.WorkingDirectory = rookiePath;
+                p.FileName = $"AndroidSideloader_v{MainWindow.ver}.exe";
+                p.CreateNoWindow = true;
+                Process startRookie = Process.Start(p);
             }
             catch (Exception ex)
             {

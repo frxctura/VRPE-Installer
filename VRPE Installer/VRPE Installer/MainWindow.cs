@@ -122,6 +122,7 @@ namespace VRPE_Installer
                     Buttons.FirewallException();
                     string message = "Done!";
                     string caption = "Downloading & Extracting Finished";
+                    rookiePathLabel.Refresh();
                     MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     downloadProgress.Hide();
                 }
@@ -139,6 +140,7 @@ namespace VRPE_Installer
                     topLabel.Refresh();
                     string message = "Done!";
                     string caption = "Downloading & Extracting Finished";
+                    rookiePathLabel.Refresh();
                     MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     downloadProgress.Hide();
                 }
