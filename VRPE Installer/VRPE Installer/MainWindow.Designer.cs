@@ -35,6 +35,8 @@
             this.minimizeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.rookiePathOpen = new System.Windows.Forms.Button();
+            this.rookiePathLabel = new System.Windows.Forms.Label();
             this.LaunchRookie = new System.Windows.Forms.Button();
             this.wikiLink = new System.Windows.Forms.LinkLabel();
             this.resilioPathCheckbox = new System.Windows.Forms.CheckBox();
@@ -54,7 +56,8 @@
             this.VRPGUItoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.firewalltoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customFoldertooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.rookiePathLabel = new System.Windows.Forms.Label();
+            this.openPathtoolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.launchRookietoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -118,6 +121,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.rookiePathOpen);
             this.panel2.Controls.Add(this.rookiePathLabel);
             this.panel2.Controls.Add(this.LaunchRookie);
             this.panel2.Controls.Add(this.wikiLink);
@@ -135,20 +139,51 @@
             this.panel2.Size = new System.Drawing.Size(844, 359);
             this.panel2.TabIndex = 2;
             // 
+            // rookiePathOpen
+            // 
+            this.rookiePathOpen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.rookiePathOpen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rookiePathOpen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.rookiePathOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rookiePathOpen.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rookiePathOpen.ForeColor = System.Drawing.Color.White;
+            this.rookiePathOpen.Location = new System.Drawing.Point(3, 292);
+            this.rookiePathOpen.Name = "rookiePathOpen";
+            this.rookiePathOpen.Size = new System.Drawing.Size(263, 28);
+            this.rookiePathOpen.TabIndex = 13;
+            this.rookiePathOpen.Text = "Open Path";
+            this.openPathtoolTip.SetToolTip(this.rookiePathOpen, "Opens the path of where Rookie was last installed into.");
+            this.rookiePathOpen.UseVisualStyleBackColor = false;
+            this.rookiePathOpen.Visible = false;
+            this.rookiePathOpen.Click += new System.EventHandler(this.rookiePathOpen_Click);
+            // 
+            // rookiePathLabel
+            // 
+            this.rookiePathLabel.AutoEllipsis = true;
+            this.rookiePathLabel.AutoSize = true;
+            this.rookiePathLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rookiePathLabel.ForeColor = System.Drawing.Color.White;
+            this.rookiePathLabel.Location = new System.Drawing.Point(272, 283);
+            this.rookiePathLabel.MaximumSize = new System.Drawing.Size(670, 0);
+            this.rookiePathLabel.Name = "rookiePathLabel";
+            this.rookiePathLabel.Size = new System.Drawing.Size(0, 15);
+            this.rookiePathLabel.TabIndex = 12;
+            this.rookiePathLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // LaunchRookie
             // 
             this.LaunchRookie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.LaunchRookie.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LaunchRookie.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.LaunchRookie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LaunchRookie.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LaunchRookie.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LaunchRookie.ForeColor = System.Drawing.Color.White;
-            this.LaunchRookie.Location = new System.Drawing.Point(3, 271);
+            this.LaunchRookie.Location = new System.Drawing.Point(3, 258);
             this.LaunchRookie.Name = "LaunchRookie";
-            this.LaunchRookie.Size = new System.Drawing.Size(263, 49);
+            this.LaunchRookie.Size = new System.Drawing.Size(263, 28);
             this.LaunchRookie.TabIndex = 11;
             this.LaunchRookie.Text = "Launch Rookie";
-            this.rookietoolTip.SetToolTip(this.LaunchRookie, "This will download and install Rookie to a selected location.");
+            this.launchRookietoolTip.SetToolTip(this.LaunchRookie, "...Launches rookie...who woulda thought...");
             this.LaunchRookie.UseVisualStyleBackColor = false;
             this.LaunchRookie.Visible = false;
             this.LaunchRookie.Click += new System.EventHandler(this.LaunchRookie_Click);
@@ -342,19 +377,6 @@
             this.customFoldertooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.customFoldertooltip.ToolTipTitle = "Selections";
             // 
-            // rookiePathLabel
-            // 
-            this.rookiePathLabel.AutoEllipsis = true;
-            this.rookiePathLabel.AutoSize = true;
-            this.rookiePathLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rookiePathLabel.ForeColor = System.Drawing.Color.White;
-            this.rookiePathLabel.Location = new System.Drawing.Point(272, 286);
-            this.rookiePathLabel.MaximumSize = new System.Drawing.Size(670, 0);
-            this.rookiePathLabel.Name = "rookiePathLabel";
-            this.rookiePathLabel.Size = new System.Drawing.Size(0, 15);
-            this.rookiePathLabel.TabIndex = 12;
-            this.rookiePathLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -405,5 +427,8 @@
         private System.Windows.Forms.ToolTip firewalltoolTip;
         private System.Windows.Forms.Button LaunchRookie;
         private System.Windows.Forms.Label rookiePathLabel;
+        private System.Windows.Forms.Button rookiePathOpen;
+        private System.Windows.Forms.ToolTip openPathtoolTip;
+        private System.Windows.Forms.ToolTip launchRookietoolTip;
     }
 }

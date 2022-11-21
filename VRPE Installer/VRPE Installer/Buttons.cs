@@ -1,30 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Net.Http;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace VRPE_Installer
 {
     public class Buttons
     {
         public static string rookiePath;
+        // Adds a firewall exception to the Rookie exe when the user prompted VRPE to do so with the checkmark, unsure if works or not.
         public static void FirewallException()
         {
-            HttpClient client = new HttpClient();
-            var fixPath = MainWindow.fixPath;
-            var path = MainWindow.selectedPath;
-            string ver = client.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
             var folderName = $"rookie_{MainWindow.ver}_portable";
-            string finishedPath = $"{path}{fixPath}{folderName}{fixPath}AndroidSideloader_v{MainWindow.ver}.exe";
+            string finishedPath = $"{MainWindow.selectedPath}{MainWindow.fixPath}{folderName}{MainWindow.fixPath}AndroidSideloader_v{MainWindow.ver}.exe";
             Process p = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = "CMD.EXE";
@@ -32,11 +21,12 @@ namespace VRPE_Installer
             p.StartInfo = info;
             p.Start();
             p.WaitForExit();
-        }
+        } 
+
+        // As the method name suggests, this launches rookie, lol.
         public static void LaunchRookie()
         {
-            HttpClient client = new HttpClient();   
-            rookiePath = File.ReadLines(@"C:/VRPE/RookiePath.txt").First();
+            rookiePath = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
             Console.WriteLine(rookiePath);
             try
             {
@@ -52,6 +42,18 @@ namespace VRPE_Installer
                 string caption = "Error when trying to launch Rookie!";
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // Opens the Path in which Rookie was last installed in.
+        public static void rookiePathOpener()
+        {
+            rookiePath = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
+            ProcessStartInfo p = new ProcessStartInfo
+            {
+                Arguments = rookiePath,
+                FileName = "explorer.exe"
+            };
+            Process.Start(p);
         }
     }
 }

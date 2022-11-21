@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace VRPE_Installer
 {
@@ -25,22 +17,35 @@ namespace VRPE_Installer
 
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
-        IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
         public static string selectedPath;
         public static string selectedPathVRPGUI;
         public static string selectedPathResilio;
-        public static string fixPath;
+        public static string fixPath = @"\";
         public static string ver;
+        public string normalTitle = "VRPE Installer";
+        public string captionFinish = "Done!";
+        public string messageFinish = "Downloading & Extracting Finished";
+        public static bool RSLPathExists;
+        public static bool RookiePathExists;
+        public static bool VRPGUIPathExists;
         public MainWindow()
         {
+            var RSLPATH = @"C:\RSL\";
             HttpClient client = new HttpClient();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
-            System.IO.Directory.CreateDirectory(@"C:\VRPE\");
-            FileStream fs = File.Create(@"C:\VRPE\LoggedInstallPaths.txt");
             ver = client.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
+            if (Directory.Exists(RSLPATH))
+            {
+                RSLPathExists = true;
+            }
+            if (File.Exists(@"C:/RSL/RookiePath.txt"))
+            {
+                RookiePathExists = true;
+            }
+            if (File.Exists(@"C:/RSL/VRPGUIPath.txt")) {
+                VRPGUIPathExists = true;
+            }
         }
 
         private void minimizeButton_Click(object sender, System.EventArgs e)
@@ -75,11 +80,12 @@ namespace VRPE_Installer
             firewallCheckbox.Show();
             resilioPathCheckbox.Show();
             downloadProgress.Show();
-            if (File.Exists(@"C:/VRPE/RookiePath.txt"))
+            if (RookiePathExists)
             {
-                Buttons.rookiePath = File.ReadLines(@"C:/VRPE/RookiePath.txt").First();
-                rookiePathLabel.Text = Buttons.rookiePath;
+                rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
+                rookiePathLabel.Refresh();
                 LaunchRookie.Show();
+                rookiePathOpen.Show();
             }
         }
 
@@ -95,10 +101,11 @@ namespace VRPE_Installer
             firewallCheckbox.Hide();
             resilioPathCheckbox.Hide();
             downloadProgress.Hide();
-            if (File.Exists(@"C:/VRPE/RookiePath.txt"))
+            if (RookiePathExists)
             {
                 rookiePathLabel.Text = "";
                 LaunchRookie.Hide();
+                rookiePathOpen.Hide();
             }
         }
 
@@ -106,7 +113,6 @@ namespace VRPE_Installer
         {
             if (rookieFolderDialog.ShowDialog() == DialogResult.OK)
             {
-                fixPath = @"\";
                 selectedPath = rookieFolderDialog.SelectedPath;
                 if (firewallCheckbox.Checked)
                 {
@@ -118,17 +124,16 @@ namespace VRPE_Installer
                     topLabel.Text = "Extracting Rookie...";
                     topLabel.Refresh();
                     await Installer.InstallRookie();
-                    topLabel.Text = "VRPE Installer";
+                    topLabel.Text = normalTitle;
                     Buttons.FirewallException();
-                    string message = "Done!";
-                    if (File.Exists(@"C:/VRPE/RookiePath.txt"))
+                    if (RookiePathExists)
                     {
-                        Buttons.rookiePath = File.ReadLines(@"C:/VRPE/RookiePath.txt").First();
-                        rookiePathLabel.Text = Buttons.rookiePath;
+                        rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
                         rookiePathLabel.Refresh();
+                        LaunchRookie.Show();
+                        rookiePathOpen.Show();
                     }
-                    string caption = "Downloading & Extracting Finished";
-                    MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     downloadProgress.Hide();
                 }
                 else
@@ -141,17 +146,16 @@ namespace VRPE_Installer
                     topLabel.Text = "Extracting Rookie...";
                     topLabel.Refresh();
                     await Installer.InstallRookie();
-                    topLabel.Text = "VRPE Installer";
+                    topLabel.Text = normalTitle;
                     topLabel.Refresh();
-                    string message = "Done!";
-                    string caption = "Downloading & Extracting Finished";
-                    if (File.Exists(@"C:/VRPE/RookiePath.txt"))
+                    if (RookiePathExists)
                     {
-                        Buttons.rookiePath = File.ReadLines(@"C:/VRPE/RookiePath.txt").First();
-                        rookiePathLabel.Text = Buttons.rookiePath;
+                        rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
                         rookiePathLabel.Refresh();
+                        LaunchRookie.Show();
+                        rookiePathOpen.Show();
                     }
-                    MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     downloadProgress.Hide();
                 }
             }
@@ -161,7 +165,6 @@ namespace VRPE_Installer
         {
             if (vrpGUIFolderDialog.ShowDialog() == DialogResult.OK)
             {
-                fixPath = @"\";
                 selectedPathVRPGUI = vrpGUIFolderDialog.SelectedPath;
                 downloadProgress.Show();
                 topLabel.Text = "Downloading VRP GUI...";
@@ -171,11 +174,9 @@ namespace VRPE_Installer
                 topLabel.Text = "Extracting VRP GUI...";
                 topLabel.Refresh();
                 await Installer.InstallVRPGUI();
-                topLabel.Text = "VRPE Installer";
+                topLabel.Text = normalTitle;
                 topLabel.Refresh();
-                string message = "Done!";
-                string caption = "Downloading & Extracting Finished";
-                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 downloadProgress.Hide();
             }
         }
@@ -186,39 +187,33 @@ namespace VRPE_Installer
             {
                 if (resilioFolderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    fixPath = @"\";
                     selectedPathResilio = resilioFolderDialog.SelectedPath;
                     downloadProgress.Show();
                     topLabel.Text = "Downloading Resilio...";
                     topLabel.Refresh();
                     downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
                     await Downloader.GetResilio();
-                    topLabel.Text = "VRPE Installer";
+                    topLabel.Text = normalTitle;
                     topLabel.Refresh();
-                    string message = "Done!";
-                    string caption = "Downloading & Extracting Finished";
-                    MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     downloadProgress.Hide();
                 }
             }
             else
             {
-                    fixPath = @"\";
-                    selectedPathResilio = System.IO.Path.GetTempPath();
-                    downloadProgress.Show();
-                    topLabel.Text = "Downloading Resilio...";
-                    topLabel.Refresh();
-                    downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
-                    await Downloader.GetResilio();
-                    topLabel.Text = "VRPE Installer";
-                    topLabel.Refresh();
-                    string message = "Done!";
-                    string caption = "Downloading & Extracting Finished";
-                    MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    downloadProgress.Hide();
-                }
+                selectedPathResilio = System.IO.Path.GetTempPath();
+                downloadProgress.Show();
+                topLabel.Text = "Downloading Resilio...";
+                topLabel.Refresh();
+                downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
+                await Downloader.GetResilio();
+                topLabel.Text = normalTitle;
+                topLabel.Refresh();
+                MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                downloadProgress.Hide();
             }
-
+        }
+        // Opens a link to our wiki!
         private void wikiLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://wiki.vrpirates.club/");
@@ -228,5 +223,20 @@ namespace VRPE_Installer
         {
             Buttons.LaunchRookie();
         }
+
+        private void rookiePathOpen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Buttons.rookiePathOpener();
+            }
+
+            catch (Exception ex)
+            {
+                string message = $"{ex.Message}";
+                string caption = "Error while Launching!";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
-    }
+}
