@@ -86,6 +86,8 @@ namespace VRPE_Installer
                 _httpClient?.Dispose();
             }
         }
+
+        // Downloads Rookie from a link that is defined in the github repo file (HTTP Client fetches the string)
         public static async Task GetRookie()
         {
             HttpClient githubgetter = new HttpClient();
@@ -110,6 +112,8 @@ namespace VRPE_Installer
             }
         }
 
+
+        // Downloads the VRP GUI from a link that is defined in the github repo file (HTTP Client fetches the string)
         public static async Task GetVRPGUI()
         {
             HttpClient githubgetter = new HttpClient();
@@ -133,6 +137,8 @@ namespace VRPE_Installer
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // Checks which arhitecture the user is on and downloads the correct Installer exe
 
         public static async Task GetResilio()
         {

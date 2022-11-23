@@ -28,6 +28,8 @@ namespace VRPE_Installer
         public static bool RSLPathExists;
         public static bool RookiePathExists;
         public static bool VRPGUIPathExists;
+
+        // On Program start, set the RSL Path, create an HTTP Client to fetch the version number of Rookie and set the string, set bools true if files exist.
         public MainWindow()
         {
             var RSLPATH = @"C:\RSL\";
@@ -47,18 +49,18 @@ namespace VRPE_Installer
                 VRPGUIPathExists = true;
             }
         }
-
+        // Minimizes the program
         private void minimizeButton_Click(object sender, System.EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
-
+        // Closes the program
         private void closeButton_Click(object sender, System.EventArgs e)
         {
             Application.Exit();
             Close();
         }
-
+        // Is needed to make the custom tab bar moveable
         private void onMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -67,7 +69,7 @@ namespace VRPE_Installer
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
         }
-
+        // Goes to the main part of the installer with all the download buttons etc
         private void nextButton_Click(object sender, EventArgs e)
         {
             wikiLink.Hide();
@@ -88,7 +90,7 @@ namespace VRPE_Installer
                 rookiePathOpen.Show();
             }
         }
-
+        // Just goes back to the welcoming screen on the form
         private void backButton_Click(object sender, EventArgs e)
         {
             wikiLink.Show();
@@ -109,6 +111,9 @@ namespace VRPE_Installer
             }
         }
 
+        
+        // Downloads Rookie and extracts the RSL.zip onto the selected install path, if Firewall Checkbox is checked it will automatically add a firewall exception to rookie
+        // Firewall checkbox may not work! (As in the method might not work)
         public async void rookieButton_Click(object sender, EventArgs e)
         {
             if (rookieFolderDialog.ShowDialog() == DialogResult.OK)
@@ -161,6 +166,7 @@ namespace VRPE_Installer
             }
         }
 
+        // Downloads VRP GUI
         private async void vrpguiButton_Click(object sender, EventArgs e)
         {
             if (vrpGUIFolderDialog.ShowDialog() == DialogResult.OK)
@@ -181,6 +187,7 @@ namespace VRPE_Installer
             }
         }
 
+        // Starts the download to Resilio, if checkbox is checked the user is able to select a custom install directory for the setup.exe 
         private async void resilioButton_Click(object sender, EventArgs e)
         {
             if (resilioPathCheckbox.Checked)
@@ -223,6 +230,8 @@ namespace VRPE_Installer
         {
             Buttons.LaunchRookie();
         }
+
+        // Opens the Path in which Rookie was last installed into.
 
         private void rookiePathOpen_Click(object sender, EventArgs e)
         {
