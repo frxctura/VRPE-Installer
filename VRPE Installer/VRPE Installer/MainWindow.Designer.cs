@@ -58,6 +58,7 @@
             this.customFoldertooltip = new System.Windows.Forms.ToolTip(this.components);
             this.openPathtoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.launchRookietoolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.rainbow = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +69,7 @@
             this.topLabel.BackColor = System.Drawing.Color.Transparent;
             this.topLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.topLabel.ForeColor = System.Drawing.Color.White;
-            this.topLabel.Location = new System.Drawing.Point(3, 6);
+            this.topLabel.Location = new System.Drawing.Point(10, 7);
             this.topLabel.Name = "topLabel";
             this.topLabel.Size = new System.Drawing.Size(78, 15);
             this.topLabel.TabIndex = 0;
@@ -77,14 +78,15 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.panel1.Controls.Add(this.minimizeButton);
             this.panel1.Controls.Add(this.closeButton);
             this.panel1.Controls.Add(this.topLabel);
             this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Location = new System.Drawing.Point(-1, -1);
             this.panel1.Name = "panel1";
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel1.Size = new System.Drawing.Size(885, 28);
+            this.panel1.Size = new System.Drawing.Size(897, 28);
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onMouseDown);
             // 
@@ -96,9 +98,9 @@
             this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimizeButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minimizeButton.ForeColor = System.Drawing.Color.White;
-            this.minimizeButton.Location = new System.Drawing.Point(823, 0);
+            this.minimizeButton.Location = new System.Drawing.Point(806, -1);
             this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(28, 28);
+            this.minimizeButton.Size = new System.Drawing.Size(28, 22);
             this.minimizeButton.TabIndex = 1;
             this.minimizeButton.Text = "-";
             this.minimizeButton.UseVisualStyleBackColor = false;
@@ -112,9 +114,9 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.White;
-            this.closeButton.Location = new System.Drawing.Point(857, 0);
+            this.closeButton.Location = new System.Drawing.Point(840, -1);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(28, 28);
+            this.closeButton.Size = new System.Drawing.Size(28, 22);
             this.closeButton.TabIndex = 0;
             this.closeButton.Text = "X";
             this.closeButton.UseVisualStyleBackColor = false;
@@ -140,7 +142,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(844, 359);
             this.panel2.TabIndex = 2;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // rookiePathOpen
             // 
@@ -159,6 +160,8 @@
             this.rookiePathOpen.UseVisualStyleBackColor = false;
             this.rookiePathOpen.Visible = false;
             this.rookiePathOpen.Click += new System.EventHandler(this.rookiePathOpen_Click);
+            this.rookiePathOpen.MouseLeave += new System.EventHandler(this.stopHoverEffect);
+            this.rookiePathOpen.MouseHover += new System.EventHandler(this.rookiePathOpen_MouseHover);
             // 
             // rookiePathLabel
             // 
@@ -190,6 +193,8 @@
             this.LaunchRookie.UseVisualStyleBackColor = false;
             this.LaunchRookie.Visible = false;
             this.LaunchRookie.Click += new System.EventHandler(this.LaunchRookie_Click);
+            this.LaunchRookie.MouseLeave += new System.EventHandler(this.stopHoverEffect);
+            this.LaunchRookie.MouseHover += new System.EventHandler(this.LaunchRookie_MouseHover);
             // 
             // wikiLink
             // 
@@ -260,6 +265,8 @@
             this.resilioButton.UseVisualStyleBackColor = false;
             this.resilioButton.Visible = false;
             this.resilioButton.Click += new System.EventHandler(this.resilioButton_Click);
+            this.resilioButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
+            this.resilioButton.MouseHover += new System.EventHandler(this.resilioButton_MouseHover);
             // 
             // vrpguiButton
             // 
@@ -278,6 +285,8 @@
             this.vrpguiButton.UseVisualStyleBackColor = false;
             this.vrpguiButton.Visible = false;
             this.vrpguiButton.Click += new System.EventHandler(this.vrpguiButton_Click);
+            this.vrpguiButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
+            this.vrpguiButton.MouseHover += new System.EventHandler(this.vrpguiButton_MouseHover);
             // 
             // backButton
             // 
@@ -313,6 +322,8 @@
             this.rookieButton.UseVisualStyleBackColor = false;
             this.rookieButton.Visible = false;
             this.rookieButton.Click += new System.EventHandler(this.rookieButton_Click);
+            this.rookieButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
+            this.rookieButton.MouseHover += new System.EventHandler(this.rookieButton_MouseHover);
             // 
             // nextButton
             // 
@@ -380,12 +391,17 @@
             this.customFoldertooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.customFoldertooltip.ToolTipTitle = "Selections";
             // 
+            // rainbow
+            // 
+            this.rainbow.Interval = 5;
+            this.rainbow.Tick += new System.EventHandler(this.rainbow_Tick);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.BackgroundImage = global::VRPE_Installer.Properties.Resources.pattern_cubes_1_1_2_0_0_0_1__000000_171717__1_1;
+            this.BackgroundImage = global::VRPE_Installer.Properties.Resources.pattern_cubes_1_1_2_0_0_0_1__000000_171717__1_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(891, 502);
             this.Controls.Add(this.panel2);
@@ -433,5 +449,6 @@
         private System.Windows.Forms.Button rookiePathOpen;
         private System.Windows.Forms.ToolTip openPathtoolTip;
         private System.Windows.Forms.ToolTip launchRookietoolTip;
+        private System.Windows.Forms.Timer rainbow;
     }
 }

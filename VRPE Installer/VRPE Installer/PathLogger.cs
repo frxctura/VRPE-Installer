@@ -5,14 +5,14 @@ namespace VRPE_Installer
 {
     internal class PathLogger
     {
-        public static string rookiePath;
-        public static string vrpguiPath;
+        public static string rookiePath = string.Empty;
+        public static string vrpguiPath = string.Empty; 
         public static void AccessPaths()
         {
             if (MainWindow.RSLPathExists)
             {
-                dynamic rookiePath = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
-                dynamic vrpguiPath = File.ReadLines(@"C:/RSL/VRPGUIPath.txt").First();
+                rookiePath = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
+                vrpguiPath = File.ReadLines(@"C:/RSL/VRPGUIPath.txt").First();
             }
         }
 

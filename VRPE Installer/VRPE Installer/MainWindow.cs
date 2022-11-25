@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -16,7 +17,7 @@ namespace VRPE_Installer
         [DllImport("User32.dll")]
 
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-
+        private Random rnd = new Random();
         public static string selectedPath;
         public static string selectedPathVRPGUI;
         public static string selectedPathResilio;
@@ -30,8 +31,20 @@ namespace VRPE_Installer
         public static bool VRPGUIPathExists;
 
         // On Program start, set the RSL Path, create an HTTP Client to fetch the version number of Rookie and set the string, set bools true if files exist.
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
         public MainWindow()
         {
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, 891, 502, 25, 25));
             var RSLPATH = @"C:\RSL\";
             HttpClient client = new HttpClient();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -45,7 +58,8 @@ namespace VRPE_Installer
             {
                 RookiePathExists = true;
             }
-            if (File.Exists(@"C:/RSL/VRPGUIPath.txt")) {
+            if (File.Exists(@"C:/RSL/VRPGUIPath.txt"))
+            {
                 VRPGUIPathExists = true;
             }
         }
@@ -111,7 +125,7 @@ namespace VRPE_Installer
             }
         }
 
-        
+
         // Downloads Rookie and extracts the RSL.zip onto the selected install path, if Firewall Checkbox is checked it will automatically add a firewall exception to rookie
         // Firewall checkbox may not work! (As in the method might not work)
         public async void rookieButton_Click(object sender, EventArgs e)
@@ -246,6 +260,17 @@ namespace VRPE_Installer
                 string caption = "Error while Launching!";
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // Minimized Rainbow Effect, minimized cuz like cmon we dont need to waste 15 lines for some rainbow effect lol.
+        public int r = 224, g = 0, b = 0, id;
+        private void stopHoverEffect(object sender, EventArgs e){r=224;g=0;b=0;rainbow.Stop();rookieButton.FlatAppearance.BorderColor=Color.FromArgb(224,224,224);vrpguiButton.FlatAppearance.BorderColor=Color.FromArgb(224,224,224);resilioButton.FlatAppearance.BorderColor=Color.FromArgb(224,224,224);LaunchRookie.FlatAppearance.BorderColor=Color.FromArgb(224,224,224);rookiePathOpen.FlatAppearance.BorderColor=Color.FromArgb(224,224,224);}
+        private void vrpguiButton_MouseHover(object sender, EventArgs e){id=1;rainbow.Start();}
+        private void resilioButton_MouseHover(object sender, EventArgs e){id=2;rainbow.Start();}
+        private void LaunchRookie_MouseHover(object sender, EventArgs e){id=3;rainbow.Start();}
+        private void rookiePathOpen_MouseHover(object sender, EventArgs e){id=4;rainbow.Start();}
+        private void rookieButton_MouseHover(object sender, EventArgs e){id=0;rainbow.Start();}
+        private void rainbow_Tick(object sender, EventArgs e){if(id==0){rookieButton.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==1){vrpguiButton.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==2){resilioButton.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==3){LaunchRookie.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==4){rookiePathOpen.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(r>0&&b==0){r--;g++;}if(g>0&&r==0){g--;b++;}if(b>0&&g==0){b--;r++;}
         }
     }
 }
