@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.topLabel = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.titleBar = new System.Windows.Forms.Panel();
             this.minimizeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.contentPanel = new System.Windows.Forms.Panel();
             this.rookiePathOpen = new System.Windows.Forms.Button();
             this.rookiePathLabel = new System.Windows.Forms.Label();
             this.LaunchRookie = new System.Windows.Forms.Button();
@@ -59,8 +59,13 @@
             this.openPathtoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.launchRookietoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.rainbow = new System.Windows.Forms.Timer(this.components);
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.rainbowBorderTop = new System.Windows.Forms.Panel();
+            this.rainbowBorderLeft = new System.Windows.Forms.Panel();
+            this.rainbowBorderRight = new System.Windows.Forms.Panel();
+            this.rainbowBorderBottom = new System.Windows.Forms.Panel();
+            this.rainbowBorder = new System.Windows.Forms.Timer(this.components);
+            this.titleBar.SuspendLayout();
+            this.contentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // topLabel
@@ -76,19 +81,19 @@
             this.topLabel.Text = "VRPE Installer";
             this.topLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onMouseDown);
             // 
-            // panel1
+            // titleBar
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.panel1.Controls.Add(this.minimizeButton);
-            this.panel1.Controls.Add(this.closeButton);
-            this.panel1.Controls.Add(this.topLabel);
-            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel1.Location = new System.Drawing.Point(-1, -1);
-            this.panel1.Name = "panel1";
-            this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel1.Size = new System.Drawing.Size(897, 28);
-            this.panel1.TabIndex = 1;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onMouseDown);
+            this.titleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.titleBar.Controls.Add(this.minimizeButton);
+            this.titleBar.Controls.Add(this.closeButton);
+            this.titleBar.Controls.Add(this.topLabel);
+            this.titleBar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.titleBar.Location = new System.Drawing.Point(-1, -1);
+            this.titleBar.Name = "titleBar";
+            this.titleBar.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.titleBar.Size = new System.Drawing.Size(897, 28);
+            this.titleBar.TabIndex = 1;
+            this.titleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onMouseDown);
             // 
             // minimizeButton
             // 
@@ -98,7 +103,7 @@
             this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimizeButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minimizeButton.ForeColor = System.Drawing.Color.White;
-            this.minimizeButton.Location = new System.Drawing.Point(806, -1);
+            this.minimizeButton.Location = new System.Drawing.Point(806, -2);
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Size = new System.Drawing.Size(28, 22);
             this.minimizeButton.TabIndex = 1;
@@ -114,7 +119,7 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.White;
-            this.closeButton.Location = new System.Drawing.Point(840, -1);
+            this.closeButton.Location = new System.Drawing.Point(840, -2);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(28, 22);
             this.closeButton.TabIndex = 0;
@@ -122,32 +127,33 @@
             this.closeButton.UseVisualStyleBackColor = false;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
-            // panel2
+            // contentPanel
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.rookiePathOpen);
-            this.panel2.Controls.Add(this.rookiePathLabel);
-            this.panel2.Controls.Add(this.LaunchRookie);
-            this.panel2.Controls.Add(this.wikiLink);
-            this.panel2.Controls.Add(this.resilioPathCheckbox);
-            this.panel2.Controls.Add(this.downloadProgress);
-            this.panel2.Controls.Add(this.firewallCheckbox);
-            this.panel2.Controls.Add(this.resilioButton);
-            this.panel2.Controls.Add(this.vrpguiButton);
-            this.panel2.Controls.Add(this.backButton);
-            this.panel2.Controls.Add(this.rookieButton);
-            this.panel2.Controls.Add(this.nextButton);
-            this.panel2.Controls.Add(this.welcomeLabel);
-            this.panel2.Location = new System.Drawing.Point(23, 80);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(844, 359);
-            this.panel2.TabIndex = 2;
+            this.contentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.contentPanel.Controls.Add(this.rookiePathOpen);
+            this.contentPanel.Controls.Add(this.rookiePathLabel);
+            this.contentPanel.Controls.Add(this.LaunchRookie);
+            this.contentPanel.Controls.Add(this.wikiLink);
+            this.contentPanel.Controls.Add(this.resilioPathCheckbox);
+            this.contentPanel.Controls.Add(this.downloadProgress);
+            this.contentPanel.Controls.Add(this.firewallCheckbox);
+            this.contentPanel.Controls.Add(this.resilioButton);
+            this.contentPanel.Controls.Add(this.vrpguiButton);
+            this.contentPanel.Controls.Add(this.backButton);
+            this.contentPanel.Controls.Add(this.rookieButton);
+            this.contentPanel.Controls.Add(this.nextButton);
+            this.contentPanel.Controls.Add(this.welcomeLabel);
+            this.contentPanel.Location = new System.Drawing.Point(23, 80);
+            this.contentPanel.Name = "contentPanel";
+            this.contentPanel.Size = new System.Drawing.Size(844, 359);
+            this.contentPanel.TabIndex = 2;
             // 
             // rookiePathOpen
             // 
             this.rookiePathOpen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.rookiePathOpen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rookiePathOpen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.rookiePathOpen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.rookiePathOpen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.rookiePathOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rookiePathOpen.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rookiePathOpen.ForeColor = System.Drawing.Color.White;
@@ -160,8 +166,8 @@
             this.rookiePathOpen.UseVisualStyleBackColor = false;
             this.rookiePathOpen.Visible = false;
             this.rookiePathOpen.Click += new System.EventHandler(this.rookiePathOpen_Click);
+            this.rookiePathOpen.MouseEnter += new System.EventHandler(this.rookiePathOpen_MouseHover);
             this.rookiePathOpen.MouseLeave += new System.EventHandler(this.stopHoverEffect);
-            this.rookiePathOpen.MouseHover += new System.EventHandler(this.rookiePathOpen_MouseHover);
             // 
             // rookiePathLabel
             // 
@@ -180,7 +186,8 @@
             // 
             this.LaunchRookie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.LaunchRookie.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LaunchRookie.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.LaunchRookie.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.LaunchRookie.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.LaunchRookie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LaunchRookie.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LaunchRookie.ForeColor = System.Drawing.Color.White;
@@ -193,8 +200,8 @@
             this.LaunchRookie.UseVisualStyleBackColor = false;
             this.LaunchRookie.Visible = false;
             this.LaunchRookie.Click += new System.EventHandler(this.LaunchRookie_Click);
+            this.LaunchRookie.MouseEnter += new System.EventHandler(this.LaunchRookie_MouseHover);
             this.LaunchRookie.MouseLeave += new System.EventHandler(this.stopHoverEffect);
-            this.LaunchRookie.MouseHover += new System.EventHandler(this.LaunchRookie_MouseHover);
             // 
             // wikiLink
             // 
@@ -252,7 +259,8 @@
             // 
             this.resilioButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.resilioButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.resilioButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.resilioButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.resilioButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.resilioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.resilioButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resilioButton.ForeColor = System.Drawing.Color.White;
@@ -265,14 +273,15 @@
             this.resilioButton.UseVisualStyleBackColor = false;
             this.resilioButton.Visible = false;
             this.resilioButton.Click += new System.EventHandler(this.resilioButton_Click);
+            this.resilioButton.MouseEnter += new System.EventHandler(this.resilioButton_MouseHover);
             this.resilioButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
-            this.resilioButton.MouseHover += new System.EventHandler(this.resilioButton_MouseHover);
             // 
             // vrpguiButton
             // 
             this.vrpguiButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.vrpguiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.vrpguiButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.vrpguiButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.vrpguiButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.vrpguiButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vrpguiButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vrpguiButton.ForeColor = System.Drawing.Color.White;
@@ -285,14 +294,15 @@
             this.vrpguiButton.UseVisualStyleBackColor = false;
             this.vrpguiButton.Visible = false;
             this.vrpguiButton.Click += new System.EventHandler(this.vrpguiButton_Click);
+            this.vrpguiButton.MouseEnter += new System.EventHandler(this.vrpguiButton_MouseHover);
             this.vrpguiButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
-            this.vrpguiButton.MouseHover += new System.EventHandler(this.vrpguiButton_MouseHover);
             // 
             // backButton
             // 
             this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.backButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.backButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.backButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backButton.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.ForeColor = System.Drawing.Color.White;
@@ -304,12 +314,15 @@
             this.backButton.UseVisualStyleBackColor = false;
             this.backButton.Visible = false;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.backButton.MouseEnter += new System.EventHandler(this.backButton_MouseEnter);
+            this.backButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
             // 
             // rookieButton
             // 
             this.rookieButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.rookieButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rookieButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.rookieButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.rookieButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.rookieButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rookieButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rookieButton.ForeColor = System.Drawing.Color.White;
@@ -322,14 +335,15 @@
             this.rookieButton.UseVisualStyleBackColor = false;
             this.rookieButton.Visible = false;
             this.rookieButton.Click += new System.EventHandler(this.rookieButton_Click);
+            this.rookieButton.MouseEnter += new System.EventHandler(this.rookieButton_MouseHover);
             this.rookieButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
-            this.rookieButton.MouseHover += new System.EventHandler(this.rookieButton_MouseHover);
             // 
             // nextButton
             // 
             this.nextButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.nextButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.nextButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.nextButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.nextButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextButton.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.nextButton.ForeColor = System.Drawing.Color.White;
@@ -340,6 +354,8 @@
             this.nextButton.Text = "NEXT";
             this.nextButton.UseVisualStyleBackColor = false;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
+            this.nextButton.MouseEnter += new System.EventHandler(this.nextButton_MouseEnter);
+            this.nextButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
             // 
             // welcomeLabel
             // 
@@ -396,6 +412,43 @@
             this.rainbow.Interval = 5;
             this.rainbow.Tick += new System.EventHandler(this.rainbow_Tick);
             // 
+            // rainbowBorderTop
+            // 
+            this.rainbowBorderTop.BackColor = System.Drawing.Color.White;
+            this.rainbowBorderTop.Location = new System.Drawing.Point(23, 80);
+            this.rainbowBorderTop.Name = "rainbowBorderTop";
+            this.rainbowBorderTop.Size = new System.Drawing.Size(844, 1);
+            this.rainbowBorderTop.TabIndex = 14;
+            // 
+            // rainbowBorderLeft
+            // 
+            this.rainbowBorderLeft.BackColor = System.Drawing.Color.White;
+            this.rainbowBorderLeft.Location = new System.Drawing.Point(23, 80);
+            this.rainbowBorderLeft.Name = "rainbowBorderLeft";
+            this.rainbowBorderLeft.Size = new System.Drawing.Size(1, 359);
+            this.rainbowBorderLeft.TabIndex = 14;
+            // 
+            // rainbowBorderRight
+            // 
+            this.rainbowBorderRight.BackColor = System.Drawing.Color.White;
+            this.rainbowBorderRight.Location = new System.Drawing.Point(866, 80);
+            this.rainbowBorderRight.Name = "rainbowBorderRight";
+            this.rainbowBorderRight.Size = new System.Drawing.Size(1, 359);
+            this.rainbowBorderRight.TabIndex = 15;
+            // 
+            // rainbowBorderBottom
+            // 
+            this.rainbowBorderBottom.BackColor = System.Drawing.Color.White;
+            this.rainbowBorderBottom.Location = new System.Drawing.Point(23, 438);
+            this.rainbowBorderBottom.Name = "rainbowBorderBottom";
+            this.rainbowBorderBottom.Size = new System.Drawing.Size(844, 1);
+            this.rainbowBorderBottom.TabIndex = 15;
+            // 
+            // rainbowBorder
+            // 
+            this.rainbowBorder.Interval = 5;
+            this.rainbowBorder.Tick += new System.EventHandler(this.rainbowBorder_Tick);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -404,17 +457,21 @@
             this.BackgroundImage = global::VRPE_Installer.Properties.Resources.pattern_cubes_1_1_2_0_0_0_1__000000_171717__1_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(891, 502);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.rainbowBorderBottom);
+            this.Controls.Add(this.rainbowBorderRight);
+            this.Controls.Add(this.rainbowBorderLeft);
+            this.Controls.Add(this.rainbowBorderTop);
+            this.Controls.Add(this.contentPanel);
+            this.Controls.Add(this.titleBar);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Text = "VRPE Installer";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.titleBar.ResumeLayout(false);
+            this.titleBar.PerformLayout();
+            this.contentPanel.ResumeLayout(false);
+            this.contentPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -422,8 +479,8 @@
         #endregion
 
         private System.Windows.Forms.Label topLabel;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel titleBar;
+        private System.Windows.Forms.Panel contentPanel;
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.Button minimizeButton;
         private System.Windows.Forms.Label welcomeLabel;
@@ -450,5 +507,10 @@
         private System.Windows.Forms.ToolTip openPathtoolTip;
         private System.Windows.Forms.ToolTip launchRookietoolTip;
         private System.Windows.Forms.Timer rainbow;
+        private System.Windows.Forms.Panel rainbowBorderTop;
+        private System.Windows.Forms.Panel rainbowBorderLeft;
+        private System.Windows.Forms.Panel rainbowBorderRight;
+        private System.Windows.Forms.Panel rainbowBorderBottom;
+        private System.Windows.Forms.Timer rainbowBorder;
     }
 }

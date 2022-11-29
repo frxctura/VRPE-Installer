@@ -14,3 +14,5 @@
 /VRPE Installer/.vs/VRPE Installer/config/applicationhost.config
 /.vs
 /VRPE Installer/VRPE Installer/bin/
+/VRPE Installer/VRPE Installer/VRPE Installer_TemporaryKey.pfx
+/VRPE Installer/VRPE Installer/VRPE Installer.csproj.user

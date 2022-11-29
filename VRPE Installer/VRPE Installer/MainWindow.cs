@@ -12,10 +12,7 @@ namespace VRPE_Installer
     {
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
-        [DllImport("User32.dll")]
-        public static extern bool ReleaseCapture();
-        [DllImport("User32.dll")]
-
+        [DllImport("User32.dll")] public static extern bool ReleaseCapture(); [DllImport("User32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         private Random rnd = new Random();
         public static string selectedPath;
@@ -29,19 +26,10 @@ namespace VRPE_Installer
         public static bool RSLPathExists;
         public static bool RookiePathExists;
         public static bool VRPGUIPathExists;
-
-        // On Program start, set the RSL Path, create an HTTP Client to fetch the version number of Rookie and set the string, set bools true if files exist.
-
+        public static bool runningProcess;
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // width of ellipse
-            int nHeightEllipse // height of ellipse
-        );
+        private static extern IntPtr CreateRoundRectRgn(int nLeftRect,int nTopRect,int nRightRect,int nBottomRect,int nWidthEllipse,int nHeightEllipse);
+        // On Program start, set the RSL Path, create an HTTP Client to fetch the version number of Rookie and set the string, set bools true if files exist.
         public MainWindow()
         {
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, 891, 502, 25, 25));
@@ -49,6 +37,7 @@ namespace VRPE_Installer
             HttpClient client = new HttpClient();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
+            rainbowBorder.Start();
             ver = client.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
             if (Directory.Exists(RSLPATH))
             {
@@ -71,8 +60,19 @@ namespace VRPE_Installer
         // Closes the program
         private void closeButton_Click(object sender, System.EventArgs e)
         {
-            Application.Exit();
-            Close();
+            if (!runningProcess)
+            {
+                Application.Exit();
+                Close();
+            }
+            else
+            {
+                if (MessageBox.Show("Are you sure you want to exit?\nThis will cancel any ongoing operation", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    Application.Exit();
+                    Close();
+                }
+            }
         }
         // Is needed to make the custom tab bar moveable
         private void onMouseDown(object sender, MouseEventArgs e)
@@ -86,16 +86,7 @@ namespace VRPE_Installer
         // Goes to the main part of the installer with all the download buttons etc
         private void nextButton_Click(object sender, EventArgs e)
         {
-            wikiLink.Hide();
-            welcomeLabel.Hide();
-            backButton.Show();
-            nextButton.Hide();
-            rookieButton.Show();
-            vrpguiButton.Show();
-            resilioButton.Show();
-            firewallCheckbox.Show();
-            resilioPathCheckbox.Show();
-            downloadProgress.Show();
+            wikiLink.Hide();welcomeLabel.Hide();backButton.Show();nextButton.Hide();rookieButton.Show();vrpguiButton.Show();resilioButton.Show();firewallCheckbox.Show();resilioPathCheckbox.Show();
             if (RookiePathExists)
             {
                 rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
@@ -107,16 +98,7 @@ namespace VRPE_Installer
         // Just goes back to the welcoming screen on the form
         private void backButton_Click(object sender, EventArgs e)
         {
-            wikiLink.Show();
-            backButton.Hide();
-            nextButton.Show();
-            welcomeLabel.Show();
-            rookieButton.Hide();
-            vrpguiButton.Hide();
-            resilioButton.Hide();
-            firewallCheckbox.Hide();
-            resilioPathCheckbox.Hide();
-            downloadProgress.Hide();
+            wikiLink.Show();backButton.Hide();nextButton.Show();welcomeLabel.Show();rookieButton.Hide();vrpguiButton.Hide();resilioButton.Hide();firewallCheckbox.Hide();resilioPathCheckbox.Hide();
             if (RookiePathExists)
             {
                 rookiePathLabel.Text = "";
@@ -135,6 +117,7 @@ namespace VRPE_Installer
                 selectedPath = rookieFolderDialog.SelectedPath;
                 if (firewallCheckbox.Checked)
                 {
+                    runningProcess = true;
                     downloadProgress.Show();
                     downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
                     topLabel.Text = "Downloading Rookie...";
@@ -145,6 +128,7 @@ namespace VRPE_Installer
                     await Installer.InstallRookie();
                     topLabel.Text = normalTitle;
                     Buttons.FirewallException();
+                    RookiePathExists = true;
                     if (RookiePathExists)
                     {
                         rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
@@ -152,11 +136,14 @@ namespace VRPE_Installer
                         LaunchRookie.Show();
                         rookiePathOpen.Show();
                     }
+                    runningProcess = false;
                     MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    downloadProgress.Enabled = false;
                     downloadProgress.Hide();
                 }
                 else
                 {
+                    runningProcess = true;
                     downloadProgress.Show();
                     downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
                     topLabel.Text = "Downloading Rookie...";
@@ -167,6 +154,7 @@ namespace VRPE_Installer
                     await Installer.InstallRookie();
                     topLabel.Text = normalTitle;
                     topLabel.Refresh();
+                    RookiePathExists = true;
                     if (RookiePathExists)
                     {
                         rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
@@ -174,6 +162,7 @@ namespace VRPE_Installer
                         LaunchRookie.Show();
                         rookiePathOpen.Show();
                     }
+                    runningProcess = false;
                     MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     downloadProgress.Hide();
                 }
@@ -185,6 +174,7 @@ namespace VRPE_Installer
         {
             if (vrpGUIFolderDialog.ShowDialog() == DialogResult.OK)
             {
+                runningProcess = true;
                 selectedPathVRPGUI = vrpGUIFolderDialog.SelectedPath;
                 downloadProgress.Show();
                 topLabel.Text = "Downloading VRP GUI...";
@@ -196,6 +186,7 @@ namespace VRPE_Installer
                 await Installer.InstallVRPGUI();
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
+                runningProcess = false;
                 MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 downloadProgress.Hide();
             }
@@ -208,6 +199,7 @@ namespace VRPE_Installer
             {
                 if (resilioFolderDialog.ShowDialog() == DialogResult.OK)
                 {
+                    runningProcess = true;
                     selectedPathResilio = resilioFolderDialog.SelectedPath;
                     downloadProgress.Show();
                     topLabel.Text = "Downloading Resilio...";
@@ -216,12 +208,14 @@ namespace VRPE_Installer
                     await Downloader.GetResilio();
                     topLabel.Text = normalTitle;
                     topLabel.Refresh();
+                    runningProcess = false;
                     MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     downloadProgress.Hide();
                 }
             }
             else
             {
+                runningProcess = true;
                 selectedPathResilio = System.IO.Path.GetTempPath();
                 downloadProgress.Show();
                 topLabel.Text = "Downloading Resilio...";
@@ -230,6 +224,7 @@ namespace VRPE_Installer
                 await Downloader.GetResilio();
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
+                runningProcess = false;
                 MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 downloadProgress.Hide();
             }
@@ -263,14 +258,32 @@ namespace VRPE_Installer
         }
 
         // Minimized Rainbow Effect, minimized cuz like cmon we dont need to waste 15 lines for some rainbow effect lol.
-        public int r = 224, g = 0, b = 0, id;
-        private void stopHoverEffect(object sender, EventArgs e){r=224;g=0;b=0;rainbow.Stop();rookieButton.FlatAppearance.BorderColor=Color.FromArgb(224,224,224);vrpguiButton.FlatAppearance.BorderColor=Color.FromArgb(224,224,224);resilioButton.FlatAppearance.BorderColor=Color.FromArgb(224,224,224);LaunchRookie.FlatAppearance.BorderColor=Color.FromArgb(224,224,224);rookiePathOpen.FlatAppearance.BorderColor=Color.FromArgb(224,224,224);}
+        int r = 224, g = 0, b = 0, id;
+        int rr = 224, gg = 0, bb = 0;
+        private void stopHoverEffect(object sender, EventArgs e){r=224;g=0;b=0;rainbow.Stop();rookieButton.FlatAppearance.BorderColor=Color.FromArgb(34, 34, 34);vrpguiButton.FlatAppearance.BorderColor=Color.FromArgb(34, 34, 34);resilioButton.FlatAppearance.BorderColor=Color.FromArgb(34, 34, 34);LaunchRookie.FlatAppearance.BorderColor=Color.FromArgb(34, 34, 34);rookiePathOpen.FlatAppearance.BorderColor=Color.FromArgb(34, 34, 34);backButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); nextButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); }
         private void vrpguiButton_MouseHover(object sender, EventArgs e){id=1;rainbow.Start();}
         private void resilioButton_MouseHover(object sender, EventArgs e){id=2;rainbow.Start();}
         private void LaunchRookie_MouseHover(object sender, EventArgs e){id=3;rainbow.Start();}
+
+        private void rainbowBorder_Tick(object sender, EventArgs e)
+        {
+            rainbowBorderBottom.BackColor = Color.FromArgb(rr, gg, bb);
+            rainbowBorderTop.BackColor = Color.FromArgb(rr, gg, bb);
+            rainbowBorderLeft.BackColor = Color.FromArgb(rr, gg, bb);
+            rainbowBorderRight.BackColor = Color.FromArgb(rr, gg, bb);
+            if (rr > 0 && bb == 0) { rr--; gg++; }
+            if (gg > 0 && rr == 0) { gg--; bb++; }
+            if (bb > 0 && gg == 0)
+            {
+                bb--; rr++;
+            }
+        }
+
+        private void backButton_MouseEnter(object sender, EventArgs e) { id = 5; rainbow.Start();}
+        private void nextButton_MouseEnter(object sender, EventArgs e){id = 6; rainbow.Start();}
         private void rookiePathOpen_MouseHover(object sender, EventArgs e){id=4;rainbow.Start();}
-        private void rookieButton_MouseHover(object sender, EventArgs e){id=0;rainbow.Start();}
-        private void rainbow_Tick(object sender, EventArgs e){if(id==0){rookieButton.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==1){vrpguiButton.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==2){resilioButton.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==3){LaunchRookie.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==4){rookiePathOpen.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(r>0&&b==0){r--;g++;}if(g>0&&r==0){g--;b++;}if(b>0&&g==0){b--;r++;}
+        private void rookieButton_MouseHover(object sender, EventArgs e){id=0;rainbow.Start(); }
+        private void rainbow_Tick(object sender, EventArgs e){if(id==0){ rookieButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b);}if(id==1){vrpguiButton.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==2){resilioButton.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==3){LaunchRookie.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==4){rookiePathOpen.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if (id == 5) { backButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }if (id == 6) { nextButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b);}; if (r>0&&b==0){r--;g++;}if(g>0&&r==0){g--;b++;}if(b>0&&g==0){b--;r++;}
         }
     }
 }
