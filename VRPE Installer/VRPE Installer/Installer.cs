@@ -28,6 +28,26 @@ namespace VRPE_Installer
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
+        public static async Task InstallShortcutMaker()
+        {
+            var destinationFilePath = Path.GetFullPath($"{MainWindow.selectedPathShortcutMaker}{MainWindow.fixPath}ShortcutMaker.zip");
+            var outputFolder = Path.GetFullPath($"{MainWindow.selectedPathShortcutMaker}{MainWindow.fixPath}");
+            try
+            {
+                // Extract the ShortcutMaker.zip into the selected path.
+                ZipFile.ExtractToDirectory(destinationFilePath, outputFolder);
+                // Delete the ShortcutMaker.zip file as it is no longer needed.
+                File.Delete(destinationFilePath);
+            }
+            catch (Exception ex)
+            {
+                // Catch and show the user any exception that happens during the entire process
+                string message = $"{ex.Message}";
+                string caption = "Error while Unzipping/Installing!";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         public static async Task InstallVRPGUI()
         {

@@ -138,6 +138,27 @@ namespace VRPE_Installer
             }
         }
 
+        public static async Task GetShortcutMaker()
+        {
+            var downloadFileUrl = "https://wiki.vrpirates.club/downloads/shortcut_maker.zip";
+            var destinationFilePathShortcutMaker = Path.GetFullPath($"{MainWindow.selectedPathShortcutMaker}{MainWindow.fixPath}ShortcutMaker.zip");
+            try
+            {
+                using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePathShortcutMaker))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    await client.StartDownload();
+                }
+            }
+            catch (Exception ex)
+            {
+                string message =
+                   $"{ex.Message}";
+                string caption = "Error while Downloading!";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         // Checks which arhitecture the user is on and downloads the correct Installer exe
 
         public static async Task GetResilio()

@@ -35,6 +35,7 @@
             this.minimizeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.shortcutmakerButton = new System.Windows.Forms.Button();
             this.rookiePathOpen = new System.Windows.Forms.Button();
             this.rookiePathLabel = new System.Windows.Forms.Label();
             this.LaunchRookie = new System.Windows.Forms.Button();
@@ -64,6 +65,8 @@
             this.rainbowBorderRight = new System.Windows.Forms.Panel();
             this.rainbowBorderBottom = new System.Windows.Forms.Panel();
             this.rainbowBorder = new System.Windows.Forms.Timer(this.components);
+            this.shortcutmakerFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.shortcutmakerToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.titleBar.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
@@ -130,6 +133,7 @@
             // contentPanel
             // 
             this.contentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.contentPanel.Controls.Add(this.shortcutmakerButton);
             this.contentPanel.Controls.Add(this.rookiePathOpen);
             this.contentPanel.Controls.Add(this.rookiePathLabel);
             this.contentPanel.Controls.Add(this.LaunchRookie);
@@ -147,6 +151,27 @@
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(844, 359);
             this.contentPanel.TabIndex = 2;
+            // 
+            // shortcutmakerButton
+            // 
+            this.shortcutmakerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.shortcutmakerButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.shortcutmakerButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.shortcutmakerButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.shortcutmakerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.shortcutmakerButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.shortcutmakerButton.ForeColor = System.Drawing.Color.White;
+            this.shortcutmakerButton.Location = new System.Drawing.Point(3, 186);
+            this.shortcutmakerButton.Name = "shortcutmakerButton";
+            this.shortcutmakerButton.Size = new System.Drawing.Size(263, 58);
+            this.shortcutmakerButton.TabIndex = 14;
+            this.shortcutmakerButton.Text = "Download and Install \r\nShortcut Maker";
+            this.shortcutmakerToolTip.SetToolTip(this.shortcutmakerButton, "This will download and install Shortcut Maker to a selected location.");
+            this.shortcutmakerButton.UseVisualStyleBackColor = false;
+            this.shortcutmakerButton.Visible = false;
+            this.shortcutmakerButton.Click += new System.EventHandler(this.shortcutmakerButton_Click);
+            this.shortcutmakerButton.MouseEnter += new System.EventHandler(this.shortcutmakerButton_MouseEnter);
+            this.shortcutmakerButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
             // 
             // rookiePathOpen
             // 
@@ -449,6 +474,15 @@
             this.rainbowBorder.Interval = 5;
             this.rainbowBorder.Tick += new System.EventHandler(this.rainbowBorder_Tick);
             // 
+            // shortcutmakerFolderDialog
+            // 
+            this.shortcutmakerFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            // 
+            // shortcutmakerToolTip
+            // 
+            this.shortcutmakerToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.shortcutmakerToolTip.ToolTipTitle = "Downloads";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,5 +546,8 @@
         private System.Windows.Forms.Panel rainbowBorderRight;
         private System.Windows.Forms.Panel rainbowBorderBottom;
         private System.Windows.Forms.Timer rainbowBorder;
+        private System.Windows.Forms.FolderBrowserDialog shortcutmakerFolderDialog;
+        private System.Windows.Forms.Button shortcutmakerButton;
+        private System.Windows.Forms.ToolTip shortcutmakerToolTip;
     }
 }
