@@ -264,21 +264,7 @@ namespace VRPE_Installer
         private void vrpguiButton_MouseHover(object sender, EventArgs e){id=1;rainbow.Start();}
         private void resilioButton_MouseHover(object sender, EventArgs e){id=2;rainbow.Start();}
         private void LaunchRookie_MouseHover(object sender, EventArgs e){id=3;rainbow.Start();}
-
-        private void rainbowBorder_Tick(object sender, EventArgs e)
-        {
-            rainbowBorderBottom.BackColor = Color.FromArgb(rr, gg, bb);
-            rainbowBorderTop.BackColor = Color.FromArgb(rr, gg, bb);
-            rainbowBorderLeft.BackColor = Color.FromArgb(rr, gg, bb);
-            rainbowBorderRight.BackColor = Color.FromArgb(rr, gg, bb);
-            if (rr > 0 && bb == 0) { rr--; gg++; }
-            if (gg > 0 && rr == 0) { gg--; bb++; }
-            if (bb > 0 && gg == 0)
-            {
-                bb--; rr++;
-            }
-        }
-
+        private void rainbowBorder_Tick(object sender, EventArgs e){rainbowBorderBottom.BackColor = Color.FromArgb(rr, gg, bb);rainbowBorderTop.BackColor = Color.FromArgb(rr, gg, bb);rainbowBorderLeft.BackColor = Color.FromArgb(rr, gg, bb);rainbowBorderRight.BackColor = Color.FromArgb(rr, gg, bb);if (rr > 0 && bb == 0) { rr--; gg++; }if (gg > 0 && rr == 0) { gg--; bb++; }if (bb > 0 && gg == 0){bb--; rr++;}}
         private void backButton_MouseEnter(object sender, EventArgs e) { id = 5; rainbow.Start();}
         private void nextButton_MouseEnter(object sender, EventArgs e){id = 6; rainbow.Start();}
         private void rookiePathOpen_MouseHover(object sender, EventArgs e){id=4;rainbow.Start();}
