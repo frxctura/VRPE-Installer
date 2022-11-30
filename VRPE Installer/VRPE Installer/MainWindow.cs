@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,15 +16,8 @@ namespace VRPE_Installer
         [DllImport("User32.dll")] public static extern bool ReleaseCapture(); [DllImport("User32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         private Random rnd = new Random();
-        public static string selectedPath;
-        public static string selectedPathVRPGUI;
-        public static string selectedPathResilio;
-        public static string selectedPathShortcutMaker;
         public static string fixPath = @"\";
-        public static string ver;
         public string normalTitle = "VRPE Installer";
-        public string captionFinish = "Done!";
-        public string messageFinish = "Downloading & Extracting Finished";
         public static bool RSLPathExists;
         public static bool RookiePathExists;
         public static bool VRPGUIPathExists;
@@ -35,11 +29,9 @@ namespace VRPE_Installer
         {
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, 891, 502, 25, 25));
             var RSLPATH = @"C:\RSL\";
-            HttpClient client = new HttpClient();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
             rainbowBorder.Start();
-            ver = client.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
             if (Directory.Exists(RSLPATH))
             {
                 RSLPathExists = true;
@@ -58,6 +50,7 @@ namespace VRPE_Installer
         {
             WindowState = FormWindowState.Minimized;
         }
+
         // Closes the program
         private void closeButton_Click(object sender, System.EventArgs e)
         {
@@ -108,27 +101,26 @@ namespace VRPE_Installer
             }
         }
 
-
         // Downloads Rookie and extracts the RSL.zip onto the selected install path, if Firewall Checkbox is checked it will automatically add a firewall exception to rookie
         // Firewall checkbox may not work! (As in the method might not work)
         public async void rookieButton_Click(object sender, EventArgs e)
         {
             if (rookieFolderDialog.ShowDialog() == DialogResult.OK)
             {
-                selectedPath = rookieFolderDialog.SelectedPath;
+                var selectedPath = rookieFolderDialog.SelectedPath;
+                var ver = Program.HttpClient.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
                 if (firewallCheckbox.Checked)
                 {
                     runningProcess = true;
-                    downloadProgress.Show();
-                    downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
+                    EnableProcessbar(sender, e);
                     topLabel.Text = "Downloading Rookie...";
                     topLabel.Refresh();
-                    await Downloader.GetRookie();
+                    await Downloader.GetRookie(selectedPath, fixPath);
                     topLabel.Text = "Extracting Rookie...";
                     topLabel.Refresh();
-                    await Installer.InstallRookie();
+                    await Installer.InstallRookie(selectedPath, ver, fixPath);
                     topLabel.Text = normalTitle;
-                    Buttons.FirewallException();
+                    Buttons.FirewallException(selectedPath, fixPath, ver);
                     RookiePathExists = true;
                     if (RookiePathExists)
                     {
@@ -138,21 +130,20 @@ namespace VRPE_Installer
                         rookiePathOpen.Show();
                     }
                     runningProcess = false;
-                    MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBoxes.Finish();
                     downloadProgress.Enabled = false;
                     downloadProgress.Hide();
                 }
                 else
                 {
                     runningProcess = true;
-                    downloadProgress.Show();
-                    downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
+                    EnableProcessbar(sender, e);
                     topLabel.Text = "Downloading Rookie...";
                     topLabel.Refresh();
-                    await Downloader.GetRookie();
+                    await Downloader.GetRookie(selectedPath, fixPath);
                     topLabel.Text = "Extracting Rookie...";
                     topLabel.Refresh();
-                    await Installer.InstallRookie();
+                    await Installer.InstallRookie(selectedPath, ver, fixPath);
                     topLabel.Text = normalTitle;
                     topLabel.Refresh();
                     RookiePathExists = true;
@@ -164,7 +155,7 @@ namespace VRPE_Installer
                         rookiePathOpen.Show();
                     }
                     runningProcess = false;
-                    MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBoxes.Finish();
                     downloadProgress.Hide();
                 }
             }
@@ -176,19 +167,18 @@ namespace VRPE_Installer
             if (vrpGUIFolderDialog.ShowDialog() == DialogResult.OK)
             {
                 runningProcess = true;
-                selectedPathVRPGUI = vrpGUIFolderDialog.SelectedPath;
-                downloadProgress.Show();
+                var selectedPathVRPGUI = vrpGUIFolderDialog.SelectedPath;
                 topLabel.Text = "Downloading VRP GUI...";
                 topLabel.Refresh();
-                downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
-                await Downloader.GetVRPGUI();
+                EnableProcessbar(sender, e);
+                await Downloader.GetVRPGUI(selectedPathVRPGUI, fixPath);
                 topLabel.Text = "Extracting VRP GUI...";
                 topLabel.Refresh();
-                await Installer.InstallVRPGUI();
+                await Installer.InstallVRPGUI(selectedPathVRPGUI, fixPath);
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
                 runningProcess = false;
-                MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBoxes.Finish();
                 downloadProgress.Hide();
             }
         }
@@ -201,34 +191,39 @@ namespace VRPE_Installer
                 if (resilioFolderDialog.ShowDialog() == DialogResult.OK)
                 {
                     runningProcess = true;
-                    selectedPathResilio = resilioFolderDialog.SelectedPath;
-                    downloadProgress.Show();
+                    var selectedPathResilio = resilioFolderDialog.SelectedPath;
                     topLabel.Text = "Downloading Resilio...";
                     topLabel.Refresh();
-                    downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
-                    await Downloader.GetResilio();
+                    EnableProcessbar(sender, e);
+                    await Downloader.GetResilio(selectedPathResilio, fixPath);
                     topLabel.Text = normalTitle;
                     topLabel.Refresh();
                     runningProcess = false;
-                    MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBoxes.Finish();
                     downloadProgress.Hide();
                 }
             }
             else
             {
                 runningProcess = true;
-                selectedPathResilio = System.IO.Path.GetTempPath();
-                downloadProgress.Show();
+                var selectedPathResilio = System.IO.Path.GetTempPath();
                 topLabel.Text = "Downloading Resilio...";
                 topLabel.Refresh();
-                downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
-                await Downloader.GetResilio();
+                EnableProcessbar(sender, e);
+                await Downloader.GetResilio(selectedPathResilio, fixPath);
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
                 runningProcess = false;
-                MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBoxes.Finish();
                 downloadProgress.Hide();
             }
+        }
+
+        // Shows the progressbar and enables its animation
+        private void EnableProcessbar(object sender, EventArgs e)
+        {
+            downloadProgress.Show();
+            downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
         }
 
         // Downloads Shortcut Maker
@@ -236,20 +231,19 @@ namespace VRPE_Installer
         {
             if (shortcutmakerFolderDialog.ShowDialog() == DialogResult.OK)
             {
-                selectedPathShortcutMaker = shortcutmakerFolderDialog.SelectedPath;
+                var selectedPathShortcutMaker = shortcutmakerFolderDialog.SelectedPath;
                 runningProcess = true;
-                downloadProgress.Show();
-                downloadProgress.Invoke((Action)(() => { downloadProgress.Style = ProgressBarStyle.Marquee; }));
+                EnableProcessbar(sender, e);
                 topLabel.Text = "Downloading Shortcut Maker...";
                 topLabel.Refresh();
-                await Downloader.GetShortcutMaker();
+                await Downloader.GetShortcutMaker(selectedPathShortcutMaker, fixPath);
                 topLabel.Text = "Extracting Shortcut Maker...";
                 topLabel.Refresh();
-                await Installer.InstallShortcutMaker();
+                await Installer.InstallShortcutMaker(selectedPathShortcutMaker, fixPath);
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
                 runningProcess = false;
-                MessageBox.Show(messageFinish, captionFinish, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBoxes.Finish();
                 downloadProgress.Hide();
             }
         }
@@ -262,7 +256,8 @@ namespace VRPE_Installer
 
         private void LaunchRookie_Click(object sender, EventArgs e)
         {
-            Buttons.LaunchRookie();
+            var ver = Program.HttpClient.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
+            Buttons.LaunchRookie(ver);
         }
 
         // Opens the Path in which Rookie was last installed into.
@@ -277,7 +272,7 @@ namespace VRPE_Installer
             catch (Exception ex)
             {
                 string message = $"{ex.Message}";
-                string caption = "Error while Launching!";
+                string caption = "Error while opening!";
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

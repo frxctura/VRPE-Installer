@@ -132,6 +132,7 @@
             // 
             // contentPanel
             // 
+            this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.contentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.contentPanel.Controls.Add(this.shortcutmakerButton);
             this.contentPanel.Controls.Add(this.rookiePathOpen);
@@ -161,7 +162,7 @@
             this.shortcutmakerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.shortcutmakerButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.shortcutmakerButton.ForeColor = System.Drawing.Color.White;
-            this.shortcutmakerButton.Location = new System.Drawing.Point(3, 186);
+            this.shortcutmakerButton.Location = new System.Drawing.Point(3, 177);
             this.shortcutmakerButton.Name = "shortcutmakerButton";
             this.shortcutmakerButton.Size = new System.Drawing.Size(263, 58);
             this.shortcutmakerButton.TabIndex = 14;
@@ -184,7 +185,7 @@
             this.rookiePathOpen.ForeColor = System.Drawing.Color.White;
             this.rookiePathOpen.Location = new System.Drawing.Point(3, 292);
             this.rookiePathOpen.Name = "rookiePathOpen";
-            this.rookiePathOpen.Size = new System.Drawing.Size(263, 28);
+            this.rookiePathOpen.Size = new System.Drawing.Size(117, 28);
             this.rookiePathOpen.TabIndex = 13;
             this.rookiePathOpen.Text = "Open Path";
             this.openPathtoolTip.SetToolTip(this.rookiePathOpen, "Opens the path of where Rookie was last installed into.");
@@ -200,7 +201,7 @@
             this.rookiePathLabel.AutoSize = true;
             this.rookiePathLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rookiePathLabel.ForeColor = System.Drawing.Color.White;
-            this.rookiePathLabel.Location = new System.Drawing.Point(272, 283);
+            this.rookiePathLabel.Location = new System.Drawing.Point(128, 283);
             this.rookiePathLabel.MaximumSize = new System.Drawing.Size(670, 0);
             this.rookiePathLabel.Name = "rookiePathLabel";
             this.rookiePathLabel.Size = new System.Drawing.Size(0, 15);
@@ -218,7 +219,7 @@
             this.LaunchRookie.ForeColor = System.Drawing.Color.White;
             this.LaunchRookie.Location = new System.Drawing.Point(3, 258);
             this.LaunchRookie.Name = "LaunchRookie";
-            this.LaunchRookie.Size = new System.Drawing.Size(263, 28);
+            this.LaunchRookie.Size = new System.Drawing.Size(117, 28);
             this.LaunchRookie.TabIndex = 11;
             this.LaunchRookie.Text = "Launch Rookie";
             this.launchRookietoolTip.SetToolTip(this.LaunchRookie, "...Launches rookie...who woulda thought...");
@@ -247,7 +248,7 @@
             this.resilioPathCheckbox.AutoSize = true;
             this.resilioPathCheckbox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resilioPathCheckbox.ForeColor = System.Drawing.Color.White;
-            this.resilioPathCheckbox.Location = new System.Drawing.Point(273, 140);
+            this.resilioPathCheckbox.Location = new System.Drawing.Point(272, 131);
             this.resilioPathCheckbox.Name = "resilioPathCheckbox";
             this.resilioPathCheckbox.Size = new System.Drawing.Size(251, 25);
             this.resilioPathCheckbox.TabIndex = 9;
@@ -289,7 +290,7 @@
             this.resilioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.resilioButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resilioButton.ForeColor = System.Drawing.Color.White;
-            this.resilioButton.Location = new System.Drawing.Point(3, 122);
+            this.resilioButton.Location = new System.Drawing.Point(3, 113);
             this.resilioButton.Name = "resilioButton";
             this.resilioButton.Size = new System.Drawing.Size(263, 58);
             this.resilioButton.TabIndex = 6;
@@ -312,7 +313,7 @@
             this.vrpguiButton.ForeColor = System.Drawing.Color.White;
             this.vrpguiButton.Location = new System.Drawing.Point(3, 58);
             this.vrpguiButton.Name = "vrpguiButton";
-            this.vrpguiButton.Size = new System.Drawing.Size(263, 58);
+            this.vrpguiButton.Size = new System.Drawing.Size(263, 49);
             this.vrpguiButton.TabIndex = 5;
             this.vrpguiButton.Text = "Download and Install VRPGUI";
             this.VRPGUItoolTip.SetToolTip(this.vrpguiButton, "This will download and install VRP GUI to a selected location.");
@@ -487,8 +488,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.BackgroundImage = global::VRPE_Installer.Properties.Resources.pattern_cubes_1_1_2_0_0_0_1__000000_171717__1_;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
+            this.BackgroundImage = global::VRPE_Installer.Properties.Resources.pattern_cubes_1_1_1_0_0_0_1__000000_212121;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(891, 502);
             this.Controls.Add(this.rainbowBorderBottom);

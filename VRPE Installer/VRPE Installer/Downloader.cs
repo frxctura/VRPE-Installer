@@ -1,23 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.WebRequestMethods;
-
 namespace VRPE_Installer
 {
     internal class Downloader
@@ -88,13 +74,12 @@ namespace VRPE_Installer
         }
 
         // Downloads Rookie from a link that is defined in the github repo file (HTTP Client fetches the string)
-        public static async Task GetRookie()
+        public static async Task GetRookie(string selectedPath, string fixPath)
         {
-            HttpClient githubgetter = new HttpClient();
             string rookieLink = "https://raw.githubusercontent.com/Chax1/TestLinks/main/RookieLink";
-            string rookieDL = githubgetter.GetStringAsync($"{rookieLink}").Result;
+            string rookieDL = Program.HttpClient.GetStringAsync($"{rookieLink}").Result;
             var downloadFileUrl = $"{rookieDL}";
-            var destinationFilePath = Path.GetFullPath($"{MainWindow.selectedPath}{MainWindow.fixPath}RSL.zip");
+            var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSL.zip");
         try
             {
                 using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePath))
@@ -105,22 +90,19 @@ namespace VRPE_Installer
             }
         catch (Exception ex)
             {
-                string message =
-                   $"{ex.Message}";
-                string caption = "Error while Downloading!";
-                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.DownloadError();
             }
         }
 
 
         // Downloads the VRP GUI from a link that is defined in the github repo file (HTTP Client fetches the string)
-        public static async Task GetVRPGUI()
+        public static async Task GetVRPGUI(string selectedPathVRPGUI, string fixPath)
         {
-            HttpClient githubgetter = new HttpClient();
             string VRPGUILink = "https://raw.githubusercontent.com/Chax1/TestLinks/main/VRPGUILink";
-            string VRPGUIDL = githubgetter.GetStringAsync($"{VRPGUILink}").Result;
+            string VRPGUIDL = Program.HttpClient.GetStringAsync($"{VRPGUILink}").Result;
             var downloadFileUrl = $"{VRPGUIDL}";
-            var destinationFilePathVRPGUI = Path.GetFullPath($"{MainWindow.selectedPathVRPGUI}{MainWindow.fixPath}VRPGUI.zip");
+            var destinationFilePathVRPGUI = Path.GetFullPath($"{selectedPathVRPGUI}{fixPath}VRPGUI.zip");
         try
             {
             using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePathVRPGUI))
@@ -131,17 +113,15 @@ namespace VRPE_Installer
             }
         catch (Exception ex)
             {
-                string message =
-                   $"{ex.Message}";
-                string caption = "Error while Downloading!";
-                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.DownloadError();
             }
         }
 
-        public static async Task GetShortcutMaker()
+        public static async Task GetShortcutMaker(string selectedPathShortcutMaker, string fixPath)
         {
             var downloadFileUrl = "https://wiki.vrpirates.club/downloads/shortcut_maker.zip";
-            var destinationFilePathShortcutMaker = Path.GetFullPath($"{MainWindow.selectedPathShortcutMaker}{MainWindow.fixPath}ShortcutMaker.zip");
+            var destinationFilePathShortcutMaker = Path.GetFullPath($"{selectedPathShortcutMaker}{fixPath}ShortcutMaker.zip");
             try
             {
                 using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePathShortcutMaker))
@@ -152,57 +132,51 @@ namespace VRPE_Installer
             }
             catch (Exception ex)
             {
-                string message =
-                   $"{ex.Message}";
-                string caption = "Error while Downloading!";
-                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.DownloadError();
             }
         }
 
-        // Checks which arhitecture the user is on and downloads the correct Installer exe
+        // Checks which architecture the user is on and downloads the correct Installer exe
 
-        public static async Task GetResilio()
+        public static async Task GetResilio(string selectedPathResilio, string fixPath)
         {
             if (!Environment.Is64BitOperatingSystem)
             {
                 var downloadFileUrl = "https://download-cdn.resilio.com/stable/windows/Resilio-Sync.exe";
-                var destinationFilePathResilio = Path.GetFullPath($"{MainWindow.selectedPathResilio}{MainWindow.fixPath}Resilio-Sync.exe");
+                var destinationFilePathResilio = Path.GetFullPath($"{selectedPathResilio}{fixPath}Resilio-Sync.exe");
             try
                 {
                 using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePathResilio))
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
-                    Process.Start($"{MainWindow.selectedPathResilio}{MainWindow.fixPath}Resilio-Sync.exe");
+                    Process.Start($"{selectedPathResilio}{fixPath}Resilio-Sync.exe");
                     }
                 }
             catch (Exception ex)
                 {
-                    string message =
-                       $"{ex.Message}";
-                    string caption = "Error while Downloading!";
-                    MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBoxes.exceptionMessage = ex.Message;
+                    MessageBoxes.DownloadError();
                 }
             }
             else
                 {
                 var downloadFileUrl64 = "https://download-cdn.resilio.com/stable/windows64/Resilio-Sync_x64.exe";
-                var destinationFilePathResilio64 = Path.GetFullPath($"{MainWindow.selectedPathResilio}{MainWindow.fixPath}Resilio-Sync_64.exe");
+                var destinationFilePathResilio64 = Path.GetFullPath($"{selectedPathResilio}{fixPath}Resilio-Sync_64.exe");
             try
                 {
                 using (var client = new HttpClientDownloadWithProgress(downloadFileUrl64, destinationFilePathResilio64))
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
-                    Process.Start($"{MainWindow.selectedPathResilio}{MainWindow.fixPath}Resilio-Sync_64.exe");
+                    Process.Start($"{selectedPathResilio}{fixPath}Resilio-Sync_64.exe");
                     }
                 }
             catch (Exception ex)
             {
-                string message =
-                   $"{ex.Message}";
-                string caption = "Error while Downloading!";
-                    MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBoxes.exceptionMessage = ex.Message;
+                    MessageBoxes.DownloadError();
                 }
         }
         }

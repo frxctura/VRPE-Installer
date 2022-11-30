@@ -2,20 +2,19 @@
 using System.Threading.Tasks;
 using System.IO;
 using System.IO.Compression;
-using System.Windows.Forms;
 
 namespace VRPE_Installer
 {
     internal class Installer
     {
-        public static async Task InstallRookie()
+        public static async Task InstallRookie(string selectedPath, string ver, string fixPath)
         {
-            var destinationFilePath = Path.GetFullPath($"{MainWindow.selectedPath}{MainWindow.fixPath}RSL.zip");
-            var outputFolder = Path.GetFullPath($"{MainWindow.selectedPath}{MainWindow.fixPath}");
+            var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSL.zip");
+            var outputFolder = Path.GetFullPath($"{selectedPath}{fixPath}");
             try
             {   
                 // Log the path in which Rookie was last installed in.
-                PathLogger.LogRookie();
+                PathLogger.LogRookie(selectedPath, ver);
                 // Extract the RSL.zip into the selected path.
                 ZipFile.ExtractToDirectory(destinationFilePath, outputFolder);
                 // Delete the RSL.zip file as it is no longer needed.
@@ -23,16 +22,15 @@ namespace VRPE_Installer
             }
             catch (Exception ex) {
                 // Catch and show the user any exception that happens during the entire process
-                string message = $"{ex.Message}";
-                string caption = "Error while Unzipping/Installing!";
-                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.InstallError();
             }
         }
         
-        public static async Task InstallShortcutMaker()
+        public static async Task InstallShortcutMaker(string selectedPathShortcutMaker, string fixPath)
         {
-            var destinationFilePath = Path.GetFullPath($"{MainWindow.selectedPathShortcutMaker}{MainWindow.fixPath}ShortcutMaker.zip");
-            var outputFolder = Path.GetFullPath($"{MainWindow.selectedPathShortcutMaker}{MainWindow.fixPath}");
+            var destinationFilePath = Path.GetFullPath($"{selectedPathShortcutMaker}{fixPath}ShortcutMaker.zip");
+            var outputFolder = Path.GetFullPath($"{selectedPathShortcutMaker}{fixPath}");
             try
             {
                 // Extract the ShortcutMaker.zip into the selected path.
@@ -43,20 +41,19 @@ namespace VRPE_Installer
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
-                string message = $"{ex.Message}";
-                string caption = "Error while Unzipping/Installing!";
-                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.InstallError();
             }
         }
 
-        public static async Task InstallVRPGUI()
+        public static async Task InstallVRPGUI(string selectedPathVRPGUI, string fixPath)
         {
-            var destinationFilePathVRPGUI = Path.GetFullPath($"{MainWindow.selectedPathVRPGUI}{MainWindow.fixPath}VRPGUI.zip");
-            var createFolderPathVRPGUI = Path.GetFullPath($"{MainWindow.selectedPathVRPGUI}{MainWindow.fixPath}VRP-GUI");
+            var destinationFilePathVRPGUI = Path.GetFullPath($"{selectedPathVRPGUI}{fixPath}VRPGUI.zip");
+            var createFolderPathVRPGUI = Path.GetFullPath($"{selectedPathVRPGUI}{fixPath}VRP-GUI");
             try
             {
                 // Log the Path in which VRPGUI was last installed in.
-                PathLogger.LogVRPGUI();
+                PathLogger.LogVRPGUI(selectedPathVRPGUI, fixPath);
                 // Create a VRP-GUI folder otherwise all the files would just be extracted into the selected folder.
                 Directory.CreateDirectory($"{createFolderPathVRPGUI}");
                 // Extract VRPGUI into the created VRP-GUI folder from above which is inside the selected path.
@@ -67,9 +64,8 @@ namespace VRPE_Installer
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
-                string message = $"{ex.Message}";
-                string caption = "Error while Unzipping/Installing!";
-                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.InstallError();
             }
         }
     }
