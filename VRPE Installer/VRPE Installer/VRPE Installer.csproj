@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>vrpe.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <Content Include="vrpe.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
