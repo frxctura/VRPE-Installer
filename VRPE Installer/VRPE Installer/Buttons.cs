@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Xml.Linq;
+using System.Windows.Forms;
 
 namespace VRPE_Installer
 {
@@ -32,7 +31,7 @@ namespace VRPE_Installer
             Console.WriteLine(rookiePath);
             try
             {
-                ProcessStartInfo p = new ProcessStartInfo(); 
+                ProcessStartInfo p = new ProcessStartInfo();
                 p.WorkingDirectory = rookiePath;
                 p.FileName = $"AndroidSideloader_v{ver}.exe";
                 p.CreateNoWindow = true;

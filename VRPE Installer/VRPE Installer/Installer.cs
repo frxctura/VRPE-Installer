@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.IO;
 using System.IO.Compression;
+using System.Threading.Tasks;
 
 namespace VRPE_Installer
 {
@@ -12,7 +12,7 @@ namespace VRPE_Installer
             var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSL.zip");
             var outputFolder = Path.GetFullPath($"{selectedPath}{fixPath}");
             try
-            {   
+            {
                 // Log the path in which Rookie was last installed in.
                 PathLogger.LogRookie(selectedPath, ver);
                 // Extract the RSL.zip into the selected path.
@@ -20,13 +20,14 @@ namespace VRPE_Installer
                 // Delete the RSL.zip file as it is no longer needed.
                 File.Delete(destinationFilePath);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 // Catch and show the user any exception that happens during the entire process
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.InstallError();
             }
         }
-        
+
         public static async Task InstallShortcutMaker(string selectedPathShortcutMaker, string fixPath)
         {
             var destinationFilePath = Path.GetFullPath($"{selectedPathShortcutMaker}{fixPath}ShortcutMaker.zip");

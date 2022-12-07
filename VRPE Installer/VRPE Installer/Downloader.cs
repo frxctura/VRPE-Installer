@@ -80,7 +80,7 @@ namespace VRPE_Installer
             string rookieDL = Program.HttpClient.GetStringAsync($"{rookieLink}").Result;
             var downloadFileUrl = $"{rookieDL}";
             var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSL.zip");
-        try
+            try
             {
                 using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePath))
                 {
@@ -88,7 +88,7 @@ namespace VRPE_Installer
                     await client.StartDownload();
                 }
             }
-        catch (Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
@@ -103,15 +103,15 @@ namespace VRPE_Installer
             string VRPGUIDL = Program.HttpClient.GetStringAsync($"{VRPGUILink}").Result;
             var downloadFileUrl = $"{VRPGUIDL}";
             var destinationFilePathVRPGUI = Path.GetFullPath($"{selectedPathVRPGUI}{fixPath}VRPGUI.zip");
-        try
+            try
             {
-            using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePathVRPGUI))
+                using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePathVRPGUI))
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
                 }
             }
-        catch (Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
@@ -145,40 +145,40 @@ namespace VRPE_Installer
             {
                 var downloadFileUrl = "https://download-cdn.resilio.com/stable/windows/Resilio-Sync.exe";
                 var destinationFilePathResilio = Path.GetFullPath($"{selectedPathResilio}{fixPath}Resilio-Sync.exe");
-            try
+                try
                 {
-                using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePathResilio))
-                {
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                    await client.StartDownload();
-                    Process.Start($"{selectedPathResilio}{fixPath}Resilio-Sync.exe");
+                    using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePathResilio))
+                    {
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                        await client.StartDownload();
+                        Process.Start($"{selectedPathResilio}{fixPath}Resilio-Sync.exe");
                     }
                 }
-            catch (Exception ex)
+                catch (Exception ex)
                 {
                     MessageBoxes.exceptionMessage = ex.Message;
                     MessageBoxes.DownloadError();
                 }
             }
             else
-                {
+            {
                 var downloadFileUrl64 = "https://download-cdn.resilio.com/stable/windows64/Resilio-Sync_x64.exe";
                 var destinationFilePathResilio64 = Path.GetFullPath($"{selectedPathResilio}{fixPath}Resilio-Sync_64.exe");
-            try
+                try
                 {
-                using (var client = new HttpClientDownloadWithProgress(downloadFileUrl64, destinationFilePathResilio64))
-                {
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                    await client.StartDownload();
-                    Process.Start($"{selectedPathResilio}{fixPath}Resilio-Sync_64.exe");
+                    using (var client = new HttpClientDownloadWithProgress(downloadFileUrl64, destinationFilePathResilio64))
+                    {
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                        await client.StartDownload();
+                        Process.Start($"{selectedPathResilio}{fixPath}Resilio-Sync_64.exe");
                     }
                 }
-            catch (Exception ex)
-            {
+                catch (Exception ex)
+                {
                     MessageBoxes.exceptionMessage = ex.Message;
                     MessageBoxes.DownloadError();
                 }
-        }
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ namespace VRPE_Installer
     internal class PathLogger
     {
         public static string rookiePath = string.Empty;
-        public static string vrpguiPath = string.Empty; 
+        public static string vrpguiPath = string.Empty;
         public static void AccessPaths()
         {
             if (MainWindow.RSLPathExists)

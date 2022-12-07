@@ -21,7 +21,7 @@ namespace VRPE_Installer
         public static bool VRPGUIPathExists;
         public static bool runningProcess;
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn(int nLeftRect,int nTopRect,int nRightRect,int nBottomRect,int nWidthEllipse,int nHeightEllipse);
+        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
         // On Program start, set the RSL Path, create an HTTP Client to fetch the version number of Rookie and set the string, set bools true if files exist.
         public MainWindow()
         {
@@ -78,7 +78,7 @@ namespace VRPE_Installer
         // Goes to the main part of the installer with all the download buttons etc
         private void nextButton_Click(object sender, EventArgs e)
         {
-            wikiLink.Hide();welcomeLabel.Hide();backButton.Show();nextButton.Hide();rookieButton.Show();vrpguiButton.Show();resilioButton.Show();firewallCheckbox.Show();resilioPathCheckbox.Show();shortcutmakerButton.Show();
+            wikiLink.Hide(); welcomeLabel.Hide(); backButton.Show(); nextButton.Hide(); rookieButton.Show(); vrpguiButton.Show(); resilioButton.Show(); firewallCheckbox.Show(); resilioPathCheckbox.Show(); shortcutmakerButton.Show();
             if (RookiePathExists)
             {
                 rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
@@ -90,7 +90,7 @@ namespace VRPE_Installer
         // Just goes back to the welcoming screen on the form
         private void backButton_Click(object sender, EventArgs e)
         {
-            wikiLink.Show();backButton.Hide();nextButton.Show();welcomeLabel.Show();rookieButton.Hide();vrpguiButton.Hide();resilioButton.Hide();firewallCheckbox.Hide();resilioPathCheckbox.Hide();shortcutmakerButton.Hide();
+            wikiLink.Show(); backButton.Hide(); nextButton.Show(); welcomeLabel.Show(); rookieButton.Hide(); vrpguiButton.Hide(); resilioButton.Hide(); firewallCheckbox.Hide(); resilioPathCheckbox.Hide(); shortcutmakerButton.Hide();
             if (RookiePathExists)
             {
                 rookiePathLabel.Text = "";
@@ -278,17 +278,28 @@ namespace VRPE_Installer
         // Minimized Rainbow Effect, minimized cuz like cmon we dont need to waste 15 lines for some rainbow effect lol.
         int r = 224, g = 0, b = 0, id;
         int rr = 224, gg = 0, bb = 0;
-        private void stopHoverEffect(object sender, EventArgs e){r=224;g=0;b=0;rainbow.Stop();rookieButton.FlatAppearance.BorderColor=Color.FromArgb(34, 34, 34);vrpguiButton.FlatAppearance.BorderColor=Color.FromArgb(34, 34, 34);resilioButton.FlatAppearance.BorderColor=Color.FromArgb(34, 34, 34);LaunchRookie.FlatAppearance.BorderColor=Color.FromArgb(34, 34, 34);rookiePathOpen.FlatAppearance.BorderColor=Color.FromArgb(34, 34, 34);backButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); nextButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); shortcutmakerButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); }
-        private void vrpguiButton_MouseHover(object sender, EventArgs e){id=1;rainbow.Start();}
-        private void resilioButton_MouseHover(object sender, EventArgs e){id=2;rainbow.Start();}
-        private void LaunchRookie_MouseHover(object sender, EventArgs e){id=3;rainbow.Start();}
-        private void rainbowBorder_Tick(object sender, EventArgs e){rainbowBorderBottom.BackColor = Color.FromArgb(rr, gg, bb);rainbowBorderTop.BackColor = Color.FromArgb(rr, gg, bb);rainbowBorderLeft.BackColor = Color.FromArgb(rr, gg, bb);rainbowBorderRight.BackColor = Color.FromArgb(rr, gg, bb); if (rr > 0 && bb == 0) { rr--; gg++; }if (gg > 0 && rr == 0) { gg--; bb++; }if (bb > 0 && gg == 0){bb--; rr++;}}
-        private void shortcutmakerButton_MouseEnter(object sender, EventArgs e){id = 7; rainbow.Start();}
-        private void backButton_MouseEnter(object sender, EventArgs e) { id = 5; rainbow.Start();}
-        private void nextButton_MouseEnter(object sender, EventArgs e){id = 6; rainbow.Start();}
-        private void rookiePathOpen_MouseHover(object sender, EventArgs e){id=4;rainbow.Start();}
-        private void rookieButton_MouseHover(object sender, EventArgs e){id=0;rainbow.Start(); }
-        private void rainbow_Tick(object sender, EventArgs e){if(id==0){ rookieButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b);}if(id==1){vrpguiButton.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==2){resilioButton.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==3){LaunchRookie.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if(id==4){rookiePathOpen.FlatAppearance.BorderColor=Color.FromArgb(r,g,b);}if (id == 5) { backButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }if (id == 6) { nextButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b);}if (id == 7) { shortcutmakerButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }; if (r>0&&b==0){r--;g++;}if(g>0&&r==0){g--;b++;}if(b>0&&g==0){b--;r++;}
+        private void stopHoverEffect(object sender, EventArgs e) { r = 224; g = 0; b = 0; rainbow.Stop(); rookieButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); vrpguiButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); resilioButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); LaunchRookie.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); rookiePathOpen.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); backButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); nextButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); shortcutmakerButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); }
+        private void vrpguiButton_MouseHover(object sender, EventArgs e) { id = 1; rainbow.Start(); }
+        private void resilioButton_MouseHover(object sender, EventArgs e) { id = 2; rainbow.Start(); }
+        private void LaunchRookie_MouseHover(object sender, EventArgs e) { id = 3; rainbow.Start(); }
+        private void rainbowBorder_Tick(object sender, EventArgs e) { rainbowBorderBottom.BackColor = Color.FromArgb(rr, gg, bb); rainbowBorderTop.BackColor = Color.FromArgb(rr, gg, bb); rainbowBorderLeft.BackColor = Color.FromArgb(rr, gg, bb); rainbowBorderRight.BackColor = Color.FromArgb(rr, gg, bb); if (rr > 0 && bb == 0) { rr--; gg++; } if (gg > 0 && rr == 0) { gg--; bb++; } if (bb > 0 && gg == 0) { bb--; rr++; } }
+        private void shortcutmakerButton_MouseEnter(object sender, EventArgs e) { id = 7; rainbow.Start(); }
+        private void backButton_MouseEnter(object sender, EventArgs e) { id = 5; rainbow.Start(); }
+        private void nextButton_MouseEnter(object sender, EventArgs e) { id = 6; rainbow.Start(); }
+        private void rookiePathOpen_MouseHover(object sender, EventArgs e) { id = 4; rainbow.Start(); }
+        private void rookieButton_MouseHover(object sender, EventArgs e) { id = 0; rainbow.Start(); }
+        private void rainbow_Tick(object sender, EventArgs e)
+        {
+            if (id == 0) { rookieButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
+            if (id == 1) { vrpguiButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
+            if (id == 2) { resilioButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
+            if (id == 3) { LaunchRookie.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
+            if (id == 4) { rookiePathOpen.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
+            if (id == 5) { backButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
+            if (id == 6) { nextButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
+            if (id == 7) { shortcutmakerButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }; if (r > 0 && b == 0) { r--; g++; }
+            if (g > 0 && r == 0) { g--; b++; }
+            if (b > 0 && g == 0) { b--; r++; }
         }
     }
 }
