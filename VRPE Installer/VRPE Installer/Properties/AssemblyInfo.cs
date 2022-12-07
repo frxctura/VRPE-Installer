@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("VRPE Installer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Downloads and Installs VRP Tools")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("VRP")]
 [assembly: AssemblyProduct("VRPE Installer")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]

@@ -63,29 +63,9 @@ namespace VRPE_Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pattern_cubes_1_1_1_0_0_0_1__000000_212121 {
+        internal static System.Drawing.Bitmap background {
             get {
-                object obj = ResourceManager.GetObject("pattern_cubes-1_1_1_0-0_0_1__000000_212121", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pattern_cubes_1_1_2_0_0_0_1__000000_171717__1_ {
-            get {
-                object obj = ResourceManager.GetObject("pattern_cubes-1_1_2_0-0_0_1__000000_171717 (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pattern_cubes_1_1_2_0_0_0_1__000000_171717__1_1 {
-            get {
-                object obj = ResourceManager.GetObject("pattern_cubes-1_1_2_0-0_0_1__000000_171717 (1)1", resourceCulture);
+                object obj = ResourceManager.GetObject("background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

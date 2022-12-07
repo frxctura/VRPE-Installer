@@ -489,7 +489,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-            this.BackgroundImage = global::VRPE_Installer.Properties.Resources.pattern_cubes_1_1_1_0_0_0_1__000000_212121;
+            this.BackgroundImage = global::VRPE_Installer.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(891, 502);
             this.Controls.Add(this.rainbowBorderBottom);
