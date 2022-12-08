@@ -1,5 +1,10 @@
 # VRPE Installer
 
+![Issues](https://img.shields.io/github/issues/Chax1/VRPE-Installer)
+![Commit](https://img.shields.io/github/last-commit/Chax1/VRPE-Installer)
+![Release](https://img.shields.io/github/v/release/Chax1/VRPE-Installer)
+![License](https://img.shields.io/github/license/Chax1/VRPE-Installer)
+
 VRPE Installer for Tools like RSL, Resilio Sync, and VRP GUI
 
 
