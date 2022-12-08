@@ -12,7 +12,7 @@ namespace VRPE_Installer
             MessageBox.Show("Downloading & Extracting Finished", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // Show the user what Error caused the Download to fail.
+        // Show the user what Error caused the Download/Install to fail.
         public static void DownloadError()
         {
             MessageBox.Show(exceptionMessage, "Error while Downloading!", MessageBoxButtons.OK, MessageBoxIcon.Error);

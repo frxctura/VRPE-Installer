@@ -7,14 +7,6 @@ namespace VRPE_Installer
     {
         public static string rookiePath = string.Empty;
         public static string vrpguiPath = string.Empty;
-        public static void AccessPaths()
-        {
-            if (MainWindow.RSLPathExists)
-            {
-                rookiePath = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
-                vrpguiPath = File.ReadLines(@"C:/RSL/VRPGUIPath.txt").First();
-            }
-        }
 
         public static void LogRookie(string selectedPath, string ver)
         {

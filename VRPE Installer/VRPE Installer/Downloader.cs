@@ -76,7 +76,7 @@ namespace VRPE_Installer
         // Downloads Rookie from a link that is defined in the github repo file (HTTP Client fetches the string)
         public static async Task GetRookie(string selectedPath, string fixPath)
         {
-            string rookieLink = "https://raw.githubusercontent.com/Chax1/TestLinks/main/RookieLink";
+            string rookieLink = "https://raw.githubusercontent.com/Chax1/VRPEDLLinks/main/RookieLink";
             string rookieDL = Program.HttpClient.GetStringAsync($"{rookieLink}").Result;
             var downloadFileUrl = $"{rookieDL}";
             var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSL.zip");
@@ -99,7 +99,7 @@ namespace VRPE_Installer
         // Downloads the VRP GUI from a link that is defined in the github repo file (HTTP Client fetches the string)
         public static async Task GetVRPGUI(string selectedPathVRPGUI, string fixPath)
         {
-            string VRPGUILink = "https://raw.githubusercontent.com/Chax1/TestLinks/main/VRPGUILink";
+            string VRPGUILink = "https://raw.githubusercontent.com/Chax1/VRPEDLLinks/main/VRPGUILink";
             string VRPGUIDL = Program.HttpClient.GetStringAsync($"{VRPGUILink}").Result;
             var downloadFileUrl = $"{VRPGUIDL}";
             var destinationFilePathVRPGUI = Path.GetFullPath($"{selectedPathVRPGUI}{fixPath}VRPGUI.zip");

@@ -14,7 +14,6 @@ namespace VRPE_Installer
             var folderName = $"rookie_{ver}_portable";
             var targetFolder = Path.Combine(selectedPath, folderName);
             var finishedPath = Path.Combine(targetFolder, $"AndroidSideloader_v{ver}.exe");
-            Console.WriteLine(finishedPath);
             Process p = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = "CMD.EXE";
@@ -28,7 +27,6 @@ namespace VRPE_Installer
         public static void LaunchRookie(string ver)
         {
             var rookiePath = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
-            Console.WriteLine(rookiePath);
             try
             {
                 ProcessStartInfo p = new ProcessStartInfo();
