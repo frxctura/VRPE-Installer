@@ -1,4 +1,4 @@
-  [![HitCount](https://hits.dwyl.com/Chax1/VRPE-Installer.svg?style=flat-square)](http://hits.dwyl.com/Chax1/VRPE-Installer)
+  [![ViewCount](https://hits.dwyl.com/Chax1/VRPE-Installer.svg?style=flat-square)](http://hits.dwyl.com/Chax1/VRPE-Installer)
 
 # VRPE Installer
 
