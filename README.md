@@ -1,5 +1,3 @@
-  [![ViewCount](https://hits.dwyl.com/Chax1/VRPE-Installer.svg?style=flat-square)](http://hits.dwyl.com/Chax1/VRPE-Installer)
-
 # VRPE Installer
 
 VRPE Installer for Tools like RSL, Resilio Sync, and VRP GUI
