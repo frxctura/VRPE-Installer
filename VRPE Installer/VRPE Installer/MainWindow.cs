@@ -119,6 +119,7 @@ namespace VRPE_Installer
                     await Installer.InstallRookie(selectedPath, ver, fixPath);
                     topLabel.Text = normalTitle;
                     Buttons.FirewallException(selectedPath, fixPath, ver);
+                    ShortcutMaker.CreateShortcutRookie(selectedPath, fixPath, ver);
                     RookiePathExists = true;
                     if (RookiePathExists)
                     {
@@ -144,6 +145,7 @@ namespace VRPE_Installer
                     await Installer.InstallRookie(selectedPath, ver, fixPath);
                     topLabel.Text = normalTitle;
                     topLabel.Refresh();
+                    ShortcutMaker.CreateShortcutRookie(selectedPath, fixPath, ver);
                     RookiePathExists = true;
                     if (RookiePathExists)
                     {
@@ -173,6 +175,7 @@ namespace VRPE_Installer
                 topLabel.Text = "Extracting VRP GUI...";
                 topLabel.Refresh();
                 await Installer.InstallVRPGUI(selectedPathVRPGUI, fixPath);
+                ShortcutMaker.CreateShortcutVRPGUI(selectedPathVRPGUI, fixPath);
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
                 runningProcess = false;
@@ -238,6 +241,7 @@ namespace VRPE_Installer
                 topLabel.Text = "Extracting Shortcut Maker...";
                 topLabel.Refresh();
                 await Installer.InstallShortcutMaker(selectedPathShortcutMaker, fixPath);
+                ShortcutMaker.CreateShortcutShortcutMaker(selectedPathShortcutMaker, fixPath);
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
                 runningProcess = false;
