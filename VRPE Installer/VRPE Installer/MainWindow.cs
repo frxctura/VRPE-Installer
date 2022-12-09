@@ -76,7 +76,7 @@ namespace VRPE_Installer
             }
         }
         // Goes to the main part of the installer with all the download buttons etc
-        private void nextButton_Click(object sender, EventArgs e)
+        private async void nextButton_Click(object sender, EventArgs e)
         {
             wikiLink.Hide(); welcomeLabel.Hide(); backButton.Show(); nextButton.Hide(); rookieButton.Show(); vrpguiButton.Show(); resilioButton.Show(); firewallCheckbox.Show(); resilioPathCheckbox.Show(); shortcutmakerButton.Show();
             if (RookiePathExists)
@@ -103,6 +103,7 @@ namespace VRPE_Installer
         // Firewall checkbox may not work! (As in the method might not work)
         public async void rookieButton_Click(object sender, EventArgs e)
         {
+            var RSLPATH = @"C:\RSL\";
             if (rookieFolderDialog.ShowDialog() == DialogResult.OK)
             {
                 var selectedPath = rookieFolderDialog.SelectedPath;
@@ -113,6 +114,7 @@ namespace VRPE_Installer
                     EnableProcessbar(sender, e);
                     topLabel.Text = "Downloading Rookie...";
                     topLabel.Refresh();
+                    await Downloader.GetIcons(RSLPATH);
                     await Downloader.GetRookie(selectedPath, fixPath);
                     topLabel.Text = "Extracting Rookie...";
                     topLabel.Refresh();
@@ -139,6 +141,7 @@ namespace VRPE_Installer
                     EnableProcessbar(sender, e);
                     topLabel.Text = "Downloading Rookie...";
                     topLabel.Refresh();
+                    await Downloader.GetIcons(RSLPATH);
                     await Downloader.GetRookie(selectedPath, fixPath);
                     topLabel.Text = "Extracting Rookie...";
                     topLabel.Refresh();
@@ -164,6 +167,7 @@ namespace VRPE_Installer
         // Downloads VRP GUI
         private async void vrpguiButton_Click(object sender, EventArgs e)
         {
+            var RSLPATH = @"C:\RSL\";
             if (vrpGUIFolderDialog.ShowDialog() == DialogResult.OK)
             {
                 runningProcess = true;
@@ -171,6 +175,7 @@ namespace VRPE_Installer
                 topLabel.Text = "Downloading VRP GUI...";
                 topLabel.Refresh();
                 EnableProcessbar(sender, e);
+                await Downloader.GetIcons(RSLPATH);
                 await Downloader.GetVRPGUI(selectedPathVRPGUI, fixPath);
                 topLabel.Text = "Extracting VRP GUI...";
                 topLabel.Refresh();
@@ -230,6 +235,7 @@ namespace VRPE_Installer
         // Downloads Shortcut Maker
         private async void shortcutmakerButton_Click(object sender, EventArgs e)
         {
+            var RSLPATH = @"C:\RSL\";
             if (shortcutmakerFolderDialog.ShowDialog() == DialogResult.OK)
             {
                 var selectedPathShortcutMaker = shortcutmakerFolderDialog.SelectedPath;
@@ -237,6 +243,7 @@ namespace VRPE_Installer
                 EnableProcessbar(sender, e);
                 topLabel.Text = "Downloading Shortcut Maker...";
                 topLabel.Refresh();
+                await Downloader.GetIcons(RSLPATH);
                 await Downloader.GetShortcutMaker(selectedPathShortcutMaker, fixPath);
                 topLabel.Text = "Extracting Shortcut Maker...";
                 topLabel.Refresh();

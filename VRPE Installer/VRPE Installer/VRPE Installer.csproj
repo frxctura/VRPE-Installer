@@ -91,6 +91,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buttons.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ShortcutMaker.cs" />
     <Compile Include="MessageBoxes.cs" />
     <Compile Include="PathLogger.cs" />
@@ -118,11 +123,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -136,9 +136,6 @@
     <None Include="Resources\background.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SM.ico" />
-    <None Include="Resources\Rookie.ico" />
-    <None Include="Resources\RCLONE.ico" />
     <Content Include="Resources\vrpe.ico" />
   </ItemGroup>
   <ItemGroup>
