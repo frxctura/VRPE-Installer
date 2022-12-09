@@ -95,6 +95,39 @@ namespace VRPE_Installer
             }
         }
 
+        public static async Task GetIcons(string RSLPATH)
+        {
+            var rookieIcon = "https://wiki.vrpirates.club/downloads/rookie.ico";
+            var rcloneIcon = "https://wiki.vrpirates.club/downloads/rclone.ico";
+            var smIcon = "https://wiki.vrpirates.club/downloads/sm.ico";
+            var RCLONEICONPATH = Path.GetFullPath($"{RSLPATH}RCLONE.ico");
+            var ROOKIEICONPATH = Path.GetFullPath($"{RSLPATH}ROOKIE.ico");
+            var SMICONPATH = Path.GetFullPath($"{RSLPATH}SM.ico");
+            try
+            {
+                using (var client = new HttpClientDownloadWithProgress(rookieIcon, ROOKIEICONPATH))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    await client.StartDownload();
+                }
+                using (var client = new HttpClientDownloadWithProgress(rcloneIcon, RCLONEICONPATH))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    await client.StartDownload();
+                }
+                using (var client = new HttpClientDownloadWithProgress(smIcon, SMICONPATH))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    await client.StartDownload();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.DownloadError();
+            }
+        }
+
 
         // Downloads the VRP GUI from a link that is defined in the github repo file (HTTP Client fetches the string)
         public static async Task GetVRPGUI(string selectedPathVRPGUI, string fixPath)
