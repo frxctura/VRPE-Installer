@@ -66,8 +66,11 @@
             this.rainbowBorder = new System.Windows.Forms.Timer(this.components);
             this.shortcutmakerFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.shortcutmakerToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.titleBar.SuspendLayout();
             this.contentPanel.SuspendLayout();
+            this.flowPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // topLabel
@@ -133,17 +136,14 @@
             // 
             this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.contentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.contentPanel.Controls.Add(this.shortcutmakerButton);
+            this.contentPanel.Controls.Add(this.flowPanel);
             this.contentPanel.Controls.Add(this.rookiePathOpen);
             this.contentPanel.Controls.Add(this.rookiePathLabel);
             this.contentPanel.Controls.Add(this.LaunchRookie);
             this.contentPanel.Controls.Add(this.wikiLink);
             this.contentPanel.Controls.Add(this.resilioPathCheckbox);
             this.contentPanel.Controls.Add(this.downloadProgress);
-            this.contentPanel.Controls.Add(this.resilioButton);
-            this.contentPanel.Controls.Add(this.vrpguiButton);
             this.contentPanel.Controls.Add(this.backButton);
-            this.contentPanel.Controls.Add(this.rookieButton);
             this.contentPanel.Controls.Add(this.nextButton);
             this.contentPanel.Controls.Add(this.welcomeLabel);
             this.contentPanel.Location = new System.Drawing.Point(23, 80);
@@ -160,11 +160,11 @@
             this.shortcutmakerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.shortcutmakerButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.shortcutmakerButton.ForeColor = System.Drawing.Color.White;
-            this.shortcutmakerButton.Location = new System.Drawing.Point(3, 177);
+            this.shortcutmakerButton.Location = new System.Drawing.Point(3, 123);
             this.shortcutmakerButton.Name = "shortcutmakerButton";
-            this.shortcutmakerButton.Size = new System.Drawing.Size(263, 58);
+            this.shortcutmakerButton.Size = new System.Drawing.Size(263, 38);
             this.shortcutmakerButton.TabIndex = 9;
-            this.shortcutmakerButton.Text = "Download and Install \r\nShortcut Maker";
+            this.shortcutmakerButton.Text = "Shortcut Maker\r\n";
             this.shortcutmakerToolTip.SetToolTip(this.shortcutmakerButton, "This will download and install Shortcut Maker to a selected location.");
             this.shortcutmakerButton.UseVisualStyleBackColor = false;
             this.shortcutmakerButton.Visible = false;
@@ -246,11 +246,11 @@
             this.resilioPathCheckbox.AutoSize = true;
             this.resilioPathCheckbox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resilioPathCheckbox.ForeColor = System.Drawing.Color.White;
-            this.resilioPathCheckbox.Location = new System.Drawing.Point(272, 131);
+            this.resilioPathCheckbox.Location = new System.Drawing.Point(284, 178);
             this.resilioPathCheckbox.Name = "resilioPathCheckbox";
-            this.resilioPathCheckbox.Size = new System.Drawing.Size(251, 25);
+            this.resilioPathCheckbox.Size = new System.Drawing.Size(266, 25);
             this.resilioPathCheckbox.TabIndex = 8;
-            this.resilioPathCheckbox.Text = "Select Custom Download Folder";
+            this.resilioPathCheckbox.Text = "Select Custom Download Location";
             this.customFoldertooltip.SetToolTip(this.resilioPathCheckbox, "This will allow you to choose where the Resilio Installer gets downloaded into.");
             this.resilioPathCheckbox.UseVisualStyleBackColor = true;
             this.resilioPathCheckbox.Visible = false;
@@ -272,11 +272,11 @@
             this.resilioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.resilioButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resilioButton.ForeColor = System.Drawing.Color.White;
-            this.resilioButton.Location = new System.Drawing.Point(3, 113);
+            this.resilioButton.Location = new System.Drawing.Point(3, 167);
             this.resilioButton.Name = "resilioButton";
-            this.resilioButton.Size = new System.Drawing.Size(263, 58);
+            this.resilioButton.Size = new System.Drawing.Size(263, 38);
             this.resilioButton.TabIndex = 7;
-            this.resilioButton.Text = "Download and Install \r\nResilio Sync";
+            this.resilioButton.Text = "Resilio Sync";
             this.resiliotoolTip.SetToolTip(this.resilioButton, "This will install Resilio Sync");
             this.resilioButton.UseVisualStyleBackColor = false;
             this.resilioButton.Visible = false;
@@ -293,11 +293,11 @@
             this.vrpguiButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vrpguiButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vrpguiButton.ForeColor = System.Drawing.Color.White;
-            this.vrpguiButton.Location = new System.Drawing.Point(3, 58);
+            this.vrpguiButton.Location = new System.Drawing.Point(3, 79);
             this.vrpguiButton.Name = "vrpguiButton";
-            this.vrpguiButton.Size = new System.Drawing.Size(263, 49);
+            this.vrpguiButton.Size = new System.Drawing.Size(263, 38);
             this.vrpguiButton.TabIndex = 6;
-            this.vrpguiButton.Text = "Download and Install VRPGUI";
+            this.vrpguiButton.Text = "VRP-GUI";
             this.VRPGUItoolTip.SetToolTip(this.vrpguiButton, "This will download and install VRP GUI to a selected location.");
             this.vrpguiButton.UseVisualStyleBackColor = false;
             this.vrpguiButton.Visible = false;
@@ -334,11 +334,11 @@
             this.rookieButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rookieButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rookieButton.ForeColor = System.Drawing.Color.White;
-            this.rookieButton.Location = new System.Drawing.Point(3, 3);
+            this.rookieButton.Location = new System.Drawing.Point(3, 35);
             this.rookieButton.Name = "rookieButton";
-            this.rookieButton.Size = new System.Drawing.Size(263, 49);
+            this.rookieButton.Size = new System.Drawing.Size(263, 38);
             this.rookieButton.TabIndex = 4;
-            this.rookieButton.Text = "Download and Install Rookie";
+            this.rookieButton.Text = "Rookie";
             this.rookietoolTip.SetToolTip(this.rookieButton, "This will download and install Rookie to a selected location.");
             this.rookieButton.UseVisualStyleBackColor = false;
             this.rookieButton.Visible = false;
@@ -466,6 +466,31 @@
             this.shortcutmakerToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.shortcutmakerToolTip.ToolTipTitle = "Downloads";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(258, 32);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Download and Install";
+            // 
+            // flowPanel
+            // 
+            this.flowPanel.Controls.Add(this.label1);
+            this.flowPanel.Controls.Add(this.rookieButton);
+            this.flowPanel.Controls.Add(this.vrpguiButton);
+            this.flowPanel.Controls.Add(this.shortcutmakerButton);
+            this.flowPanel.Controls.Add(this.resilioButton);
+            this.flowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowPanel.Location = new System.Drawing.Point(6, 3);
+            this.flowPanel.Name = "flowPanel";
+            this.flowPanel.Size = new System.Drawing.Size(272, 252);
+            this.flowPanel.TabIndex = 17;
+            this.flowPanel.Visible = false;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -490,6 +515,8 @@
             this.titleBar.PerformLayout();
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
+            this.flowPanel.ResumeLayout(false);
+            this.flowPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -532,5 +559,7 @@
         private System.Windows.Forms.FolderBrowserDialog shortcutmakerFolderDialog;
         private System.Windows.Forms.Button shortcutmakerButton;
         private System.Windows.Forms.ToolTip shortcutmakerToolTip;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel flowPanel;
     }
 }
