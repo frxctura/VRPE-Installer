@@ -8,21 +8,6 @@ namespace VRPE_Installer
 {
     public class Buttons
     {
-        // Adds a firewall exception to the Rookie exe when the user prompted VRPE to do so with the checkmark, unsure if works or not.
-        public static void FirewallException(string selectedPath, string fixPath, string ver)
-        {
-            var folderName = $"rookie_{ver}_portable";
-            var targetFolder = Path.Combine(selectedPath, folderName);
-            var finishedPath = Path.Combine(targetFolder, $"AndroidSideloader_v{ver}.exe");
-            Process p = new Process();
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.FileName = "CMD.EXE";
-            info.Arguments = $"/K netsh.exe firewall add allowedprogram {finishedPath} ROOKIE-SIDELOADER ENABLE";
-            p.StartInfo = info;
-            p.Start();
-            p.WaitForExit();
-        }
-
         // As the method name suggests, this launches rookie, lol.
         public static void LaunchRookie(string ver)
         {

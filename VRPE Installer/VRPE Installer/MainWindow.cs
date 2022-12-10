@@ -108,35 +108,6 @@ namespace VRPE_Installer
             {
                 var selectedPath = rookieFolderDialog.SelectedPath;
                 var ver = Program.HttpClient.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
-                if (firewallCheckbox.Checked)
-                {
-                    runningProcess = true;
-                    EnableProcessbar(sender, e);
-                    topLabel.Text = "Downloading Rookie...";
-                    topLabel.Refresh();
-                    await Downloader.GetIcons(RSLPATH);
-                    await Downloader.GetRookie(selectedPath, fixPath);
-                    topLabel.Text = "Extracting Rookie...";
-                    topLabel.Refresh();
-                    await Installer.InstallRookie(selectedPath, ver, fixPath);
-                    topLabel.Text = normalTitle;
-                    Buttons.FirewallException(selectedPath, fixPath, ver);
-                    ShortcutMaker.CreateShortcutRookie(selectedPath, fixPath, ver);
-                    RookiePathExists = true;
-                    if (RookiePathExists)
-                    {
-                        rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
-                        rookiePathLabel.Refresh();
-                        LaunchRookie.Show();
-                        rookiePathOpen.Show();
-                    }
-                    runningProcess = false;
-                    MessageBoxes.Finish();
-                    downloadProgress.Enabled = false;
-                    downloadProgress.Hide();
-                }
-                else
-                {
                     runningProcess = true;
                     EnableProcessbar(sender, e);
                     topLabel.Text = "Downloading Rookie...";
@@ -160,7 +131,6 @@ namespace VRPE_Installer
                     runningProcess = false;
                     MessageBoxes.Finish();
                     downloadProgress.Hide();
-                }
             }
         }
 

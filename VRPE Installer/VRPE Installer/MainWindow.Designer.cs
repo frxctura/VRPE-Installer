@@ -42,7 +42,6 @@
             this.wikiLink = new System.Windows.Forms.LinkLabel();
             this.resilioPathCheckbox = new System.Windows.Forms.CheckBox();
             this.downloadProgress = new System.Windows.Forms.ProgressBar();
-            this.firewallCheckbox = new System.Windows.Forms.CheckBox();
             this.resilioButton = new System.Windows.Forms.Button();
             this.vrpguiButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
@@ -141,7 +140,6 @@
             this.contentPanel.Controls.Add(this.wikiLink);
             this.contentPanel.Controls.Add(this.resilioPathCheckbox);
             this.contentPanel.Controls.Add(this.downloadProgress);
-            this.contentPanel.Controls.Add(this.firewallCheckbox);
             this.contentPanel.Controls.Add(this.resilioButton);
             this.contentPanel.Controls.Add(this.vrpguiButton);
             this.contentPanel.Controls.Add(this.backButton);
@@ -264,22 +262,6 @@
             this.downloadProgress.Size = new System.Drawing.Size(758, 26);
             this.downloadProgress.TabIndex = 8;
             this.downloadProgress.Visible = false;
-            // 
-            // firewallCheckbox
-            // 
-            this.firewallCheckbox.AutoSize = true;
-            this.firewallCheckbox.BackColor = System.Drawing.Color.Transparent;
-            this.firewallCheckbox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.firewallCheckbox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firewallCheckbox.ForeColor = System.Drawing.Color.White;
-            this.firewallCheckbox.Location = new System.Drawing.Point(272, 16);
-            this.firewallCheckbox.Name = "firewallCheckbox";
-            this.firewallCheckbox.Size = new System.Drawing.Size(252, 25);
-            this.firewallCheckbox.TabIndex = 5;
-            this.firewallCheckbox.Text = "Add Firewall Exception on Install";
-            this.firewalltoolTip.SetToolTip(this.firewallCheckbox, "This will add a firewall exception for Rookie.");
-            this.firewallCheckbox.UseVisualStyleBackColor = false;
-            this.firewallCheckbox.Visible = false;
             // 
             // resilioButton
             // 
@@ -525,7 +507,6 @@
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Button resilioButton;
         private System.Windows.Forms.Button vrpguiButton;
-        private System.Windows.Forms.CheckBox firewallCheckbox;
         private System.Windows.Forms.FolderBrowserDialog rookieFolderDialog;
         public System.Windows.Forms.ProgressBar downloadProgress;
         private System.Windows.Forms.FolderBrowserDialog vrpGUIFolderDialog;
