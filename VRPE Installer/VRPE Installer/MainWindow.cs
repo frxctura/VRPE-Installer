@@ -78,7 +78,7 @@ namespace VRPE_Installer
         // Goes to the main part of the installer with all the download buttons etc
         private async void nextButton_Click(object sender, EventArgs e)
         {
-            wikiLink.Hide(); welcomeLabel.Hide(); backButton.Show(); nextButton.Hide(); rookieButton.Show(); vrpguiButton.Show(); resilioButton.Show(); firewallCheckbox.Show(); resilioPathCheckbox.Show(); shortcutmakerButton.Show();
+            flowPanel.Show(); wikiLink.Hide(); welcomeLabel.Hide(); backButton.Show(); nextButton.Hide(); rookieButton.Show(); vrpguiButton.Show(); resilioButton.Show(); resilioPathCheckbox.Show(); shortcutmakerButton.Show();
             if (RookiePathExists)
             {
                 rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
@@ -90,7 +90,7 @@ namespace VRPE_Installer
         // Just goes back to the welcoming screen on the form
         private void backButton_Click(object sender, EventArgs e)
         {
-            wikiLink.Show(); backButton.Hide(); nextButton.Show(); welcomeLabel.Show(); rookieButton.Hide(); vrpguiButton.Hide(); resilioButton.Hide(); firewallCheckbox.Hide(); resilioPathCheckbox.Hide(); shortcutmakerButton.Hide();
+            flowPanel.Hide(); wikiLink.Show(); backButton.Hide(); nextButton.Show(); welcomeLabel.Show(); rookieButton.Hide(); vrpguiButton.Hide(); resilioButton.Hide(); resilioPathCheckbox.Hide(); shortcutmakerButton.Hide();
             if (RookiePathExists)
             {
                 rookiePathLabel.Text = "";
@@ -108,59 +108,29 @@ namespace VRPE_Installer
             {
                 var selectedPath = rookieFolderDialog.SelectedPath;
                 var ver = Program.HttpClient.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
-                if (firewallCheckbox.Checked)
+                runningProcess = true;
+                EnableProcessbar(sender, e);
+                topLabel.Text = "Downloading Rookie...";
+                topLabel.Refresh();
+                await Downloader.GetIcons(RSLPATH);
+                await Downloader.GetRookie(selectedPath, fixPath);
+                topLabel.Text = "Extracting Rookie...";
+                topLabel.Refresh();
+                await Installer.InstallRookie(selectedPath, ver, fixPath);
+                topLabel.Text = normalTitle;
+                topLabel.Refresh();
+                ShortcutMaker.CreateShortcutRookie(selectedPath, fixPath, ver);
+                RookiePathExists = true;
+                if (RookiePathExists)
                 {
-                    runningProcess = true;
-                    EnableProcessbar(sender, e);
-                    topLabel.Text = "Downloading Rookie...";
-                    topLabel.Refresh();
-                    await Downloader.GetIcons(RSLPATH);
-                    await Downloader.GetRookie(selectedPath, fixPath);
-                    topLabel.Text = "Extracting Rookie...";
-                    topLabel.Refresh();
-                    await Installer.InstallRookie(selectedPath, ver, fixPath);
-                    topLabel.Text = normalTitle;
-                    Buttons.FirewallException(selectedPath, fixPath, ver);
-                    ShortcutMaker.CreateShortcutRookie(selectedPath, fixPath, ver);
-                    RookiePathExists = true;
-                    if (RookiePathExists)
-                    {
-                        rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
-                        rookiePathLabel.Refresh();
-                        LaunchRookie.Show();
-                        rookiePathOpen.Show();
-                    }
-                    runningProcess = false;
-                    MessageBoxes.Finish();
-                    downloadProgress.Enabled = false;
-                    downloadProgress.Hide();
+                    rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
+                    rookiePathLabel.Refresh();
+                    LaunchRookie.Show();
+                    rookiePathOpen.Show();
                 }
-                else
-                {
-                    runningProcess = true;
-                    EnableProcessbar(sender, e);
-                    topLabel.Text = "Downloading Rookie...";
-                    topLabel.Refresh();
-                    await Downloader.GetIcons(RSLPATH);
-                    await Downloader.GetRookie(selectedPath, fixPath);
-                    topLabel.Text = "Extracting Rookie...";
-                    topLabel.Refresh();
-                    await Installer.InstallRookie(selectedPath, ver, fixPath);
-                    topLabel.Text = normalTitle;
-                    topLabel.Refresh();
-                    ShortcutMaker.CreateShortcutRookie(selectedPath, fixPath, ver);
-                    RookiePathExists = true;
-                    if (RookiePathExists)
-                    {
-                        rookiePathLabel.Text = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
-                        rookiePathLabel.Refresh();
-                        LaunchRookie.Show();
-                        rookiePathOpen.Show();
-                    }
-                    runningProcess = false;
-                    MessageBoxes.Finish();
-                    downloadProgress.Hide();
-                }
+                runningProcess = false;
+                MessageBoxes.Finish();
+                downloadProgress.Hide();
             }
         }
 
