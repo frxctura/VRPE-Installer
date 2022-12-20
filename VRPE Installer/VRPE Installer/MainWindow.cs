@@ -76,7 +76,7 @@ namespace VRPE_Installer
             }
         }
         // Goes to the main part of the installer with all the download buttons etc
-        private async void nextButton_Click(object sender, EventArgs e)
+        private void nextButton_Click(object sender, EventArgs e)
         {
             flowPanel.Show(); wikiLink.Hide(); welcomeLabel.Hide(); backButton.Show(); nextButton.Hide(); rookieButton.Show(); vrpguiButton.Show(); resilioButton.Show(); resilioPathCheckbox.Show(); shortcutmakerButton.Show();
             if (RookiePathExists)
@@ -99,8 +99,7 @@ namespace VRPE_Installer
             }
         }
 
-        // Downloads Rookie and extracts the RSL.zip onto the selected install path, if Firewall Checkbox is checked it will automatically add a firewall exception to rookie
-        // Firewall checkbox may not work! (As in the method might not work)
+        // Downloads Rookie and extracts the RSL.zip onto the selected install path.
         public async void rookieButton_Click(object sender, EventArgs e)
         {
             var RSLPATH = @"C:\RSL\";
