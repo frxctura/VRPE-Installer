@@ -35,17 +35,19 @@
             this.minimizeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rookieButton = new System.Windows.Forms.Button();
+            this.vrpguiButton = new System.Windows.Forms.Button();
             this.shortcutmakerButton = new System.Windows.Forms.Button();
+            this.resilioButton = new System.Windows.Forms.Button();
             this.rookiePathOpen = new System.Windows.Forms.Button();
             this.rookiePathLabel = new System.Windows.Forms.Label();
             this.LaunchRookie = new System.Windows.Forms.Button();
             this.wikiLink = new System.Windows.Forms.LinkLabel();
             this.resilioPathCheckbox = new System.Windows.Forms.CheckBox();
             this.downloadProgress = new System.Windows.Forms.ProgressBar();
-            this.resilioButton = new System.Windows.Forms.Button();
-            this.vrpguiButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
-            this.rookieButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.rookieFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
@@ -66,8 +68,6 @@
             this.rainbowBorder = new System.Windows.Forms.Timer(this.components);
             this.shortcutmakerFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.shortcutmakerToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.titleBar.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.flowPanel.SuspendLayout();
@@ -151,6 +151,73 @@
             this.contentPanel.Size = new System.Drawing.Size(844, 359);
             this.contentPanel.TabIndex = 2;
             // 
+            // flowPanel
+            // 
+            this.flowPanel.Controls.Add(this.label1);
+            this.flowPanel.Controls.Add(this.rookieButton);
+            this.flowPanel.Controls.Add(this.vrpguiButton);
+            this.flowPanel.Controls.Add(this.shortcutmakerButton);
+            this.flowPanel.Controls.Add(this.resilioButton);
+            this.flowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowPanel.Location = new System.Drawing.Point(6, 3);
+            this.flowPanel.Name = "flowPanel";
+            this.flowPanel.Size = new System.Drawing.Size(272, 252);
+            this.flowPanel.TabIndex = 17;
+            this.flowPanel.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(258, 32);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Download and Install";
+            // 
+            // rookieButton
+            // 
+            this.rookieButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.rookieButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rookieButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.rookieButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.rookieButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rookieButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rookieButton.ForeColor = System.Drawing.Color.White;
+            this.rookieButton.Location = new System.Drawing.Point(3, 35);
+            this.rookieButton.Name = "rookieButton";
+            this.rookieButton.Size = new System.Drawing.Size(263, 38);
+            this.rookieButton.TabIndex = 4;
+            this.rookieButton.Text = "Rookie";
+            this.rookietoolTip.SetToolTip(this.rookieButton, "This will download and install Rookie to a selected location.");
+            this.rookieButton.UseVisualStyleBackColor = false;
+            this.rookieButton.Visible = false;
+            this.rookieButton.Click += new System.EventHandler(this.rookieButton_Click);
+            this.rookieButton.MouseEnter += new System.EventHandler(this.rookieButton_MouseHover);
+            this.rookieButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
+            // 
+            // vrpguiButton
+            // 
+            this.vrpguiButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.vrpguiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.vrpguiButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.vrpguiButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.vrpguiButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.vrpguiButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vrpguiButton.ForeColor = System.Drawing.Color.White;
+            this.vrpguiButton.Location = new System.Drawing.Point(3, 79);
+            this.vrpguiButton.Name = "vrpguiButton";
+            this.vrpguiButton.Size = new System.Drawing.Size(263, 38);
+            this.vrpguiButton.TabIndex = 6;
+            this.vrpguiButton.Text = "VRP-GUI";
+            this.VRPGUItoolTip.SetToolTip(this.vrpguiButton, "This will download and install VRP GUI to a selected location.");
+            this.vrpguiButton.UseVisualStyleBackColor = false;
+            this.vrpguiButton.Visible = false;
+            this.vrpguiButton.Click += new System.EventHandler(this.vrpguiButton_Click);
+            this.vrpguiButton.MouseEnter += new System.EventHandler(this.vrpguiButton_MouseHover);
+            this.vrpguiButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
+            // 
             // shortcutmakerButton
             // 
             this.shortcutmakerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
@@ -171,6 +238,27 @@
             this.shortcutmakerButton.Click += new System.EventHandler(this.shortcutmakerButton_Click);
             this.shortcutmakerButton.MouseEnter += new System.EventHandler(this.shortcutmakerButton_MouseEnter);
             this.shortcutmakerButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
+            // 
+            // resilioButton
+            // 
+            this.resilioButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.resilioButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.resilioButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.resilioButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.resilioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resilioButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resilioButton.ForeColor = System.Drawing.Color.White;
+            this.resilioButton.Location = new System.Drawing.Point(3, 167);
+            this.resilioButton.Name = "resilioButton";
+            this.resilioButton.Size = new System.Drawing.Size(263, 38);
+            this.resilioButton.TabIndex = 7;
+            this.resilioButton.Text = "Resilio Sync";
+            this.resiliotoolTip.SetToolTip(this.resilioButton, "This will install Resilio Sync");
+            this.resilioButton.UseVisualStyleBackColor = false;
+            this.resilioButton.Visible = false;
+            this.resilioButton.Click += new System.EventHandler(this.resilioButton_Click);
+            this.resilioButton.MouseEnter += new System.EventHandler(this.resilioButton_MouseHover);
+            this.resilioButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
             // 
             // rookiePathOpen
             // 
@@ -263,48 +351,6 @@
             this.downloadProgress.TabIndex = 8;
             this.downloadProgress.Visible = false;
             // 
-            // resilioButton
-            // 
-            this.resilioButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.resilioButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.resilioButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.resilioButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.resilioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.resilioButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resilioButton.ForeColor = System.Drawing.Color.White;
-            this.resilioButton.Location = new System.Drawing.Point(3, 167);
-            this.resilioButton.Name = "resilioButton";
-            this.resilioButton.Size = new System.Drawing.Size(263, 38);
-            this.resilioButton.TabIndex = 7;
-            this.resilioButton.Text = "Resilio Sync";
-            this.resiliotoolTip.SetToolTip(this.resilioButton, "This will install Resilio Sync");
-            this.resilioButton.UseVisualStyleBackColor = false;
-            this.resilioButton.Visible = false;
-            this.resilioButton.Click += new System.EventHandler(this.resilioButton_Click);
-            this.resilioButton.MouseEnter += new System.EventHandler(this.resilioButton_MouseHover);
-            this.resilioButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
-            // 
-            // vrpguiButton
-            // 
-            this.vrpguiButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.vrpguiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.vrpguiButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.vrpguiButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.vrpguiButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.vrpguiButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vrpguiButton.ForeColor = System.Drawing.Color.White;
-            this.vrpguiButton.Location = new System.Drawing.Point(3, 79);
-            this.vrpguiButton.Name = "vrpguiButton";
-            this.vrpguiButton.Size = new System.Drawing.Size(263, 38);
-            this.vrpguiButton.TabIndex = 6;
-            this.vrpguiButton.Text = "VRP-GUI";
-            this.VRPGUItoolTip.SetToolTip(this.vrpguiButton, "This will download and install VRP GUI to a selected location.");
-            this.vrpguiButton.UseVisualStyleBackColor = false;
-            this.vrpguiButton.Visible = false;
-            this.vrpguiButton.Click += new System.EventHandler(this.vrpguiButton_Click);
-            this.vrpguiButton.MouseEnter += new System.EventHandler(this.vrpguiButton_MouseHover);
-            this.vrpguiButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
-            // 
             // backButton
             // 
             this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
@@ -324,27 +370,6 @@
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             this.backButton.MouseEnter += new System.EventHandler(this.backButton_MouseEnter);
             this.backButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
-            // 
-            // rookieButton
-            // 
-            this.rookieButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.rookieButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rookieButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.rookieButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.rookieButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rookieButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rookieButton.ForeColor = System.Drawing.Color.White;
-            this.rookieButton.Location = new System.Drawing.Point(3, 35);
-            this.rookieButton.Name = "rookieButton";
-            this.rookieButton.Size = new System.Drawing.Size(263, 38);
-            this.rookieButton.TabIndex = 4;
-            this.rookieButton.Text = "Rookie";
-            this.rookietoolTip.SetToolTip(this.rookieButton, "This will download and install Rookie to a selected location.");
-            this.rookieButton.UseVisualStyleBackColor = false;
-            this.rookieButton.Visible = false;
-            this.rookieButton.Click += new System.EventHandler(this.rookieButton_Click);
-            this.rookieButton.MouseEnter += new System.EventHandler(this.rookieButton_MouseHover);
-            this.rookieButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
             // 
             // nextButton
             // 
@@ -466,35 +491,10 @@
             this.shortcutmakerToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.shortcutmakerToolTip.ToolTipTitle = "Downloads";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(258, 32);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Download and Install";
-            // 
-            // flowPanel
-            // 
-            this.flowPanel.Controls.Add(this.label1);
-            this.flowPanel.Controls.Add(this.rookieButton);
-            this.flowPanel.Controls.Add(this.vrpguiButton);
-            this.flowPanel.Controls.Add(this.shortcutmakerButton);
-            this.flowPanel.Controls.Add(this.resilioButton);
-            this.flowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowPanel.Location = new System.Drawing.Point(6, 3);
-            this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(272, 252);
-            this.flowPanel.TabIndex = 17;
-            this.flowPanel.Visible = false;
-            // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             this.BackgroundImage = global::VRPE_Installer.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
