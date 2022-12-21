@@ -29,6 +29,7 @@ namespace VRPE_Installer
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
             rainbowBorder.Start();
+            var rookiePath = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
             if (Directory.Exists(RSLPATH))
             {
                 RSLPathExists = true;
@@ -101,6 +102,8 @@ namespace VRPE_Installer
         // Downloads Rookie and extracts the RSL.zip onto the selected install path.
         public async void rookieButton_Click(object sender, EventArgs e)
         {
+            bool success;
+            var neededIcon = "https://wiki.vrpirates.club/downloads/rookie.ico";
             var RSLPATH = @"C:\RSL\";
             if (rookieFolderDialog.ShowDialog() == DialogResult.OK)
             {
@@ -110,14 +113,12 @@ namespace VRPE_Installer
                 EnableProcessbar(sender, e);
                 topLabel.Text = "Downloading Rookie...";
                 topLabel.Refresh();
-                await Downloader.GetIcons(RSLPATH);
-                await Downloader.GetRookie(selectedPath, fixPath);
+                success = await Downloader.GetRookie(selectedPath, fixPath);
                 topLabel.Text = "Extracting Rookie...";
                 topLabel.Refresh();
-                await Installer.InstallRookie(selectedPath, ver, fixPath);
+                success = await Installer.InstallRookie(selectedPath, ver, fixPath);
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
-                ShortcutMaker.CreateShortcutRookie(selectedPath, fixPath, ver);
                 RookiePathExists = true;
                 if (RookiePathExists)
                 {
@@ -127,14 +128,29 @@ namespace VRPE_Installer
                     rookiePathOpen.Show();
                 }
                 runningProcess = false;
-                MessageBoxes.Finish();
                 downloadProgress.Hide();
+                if (success)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Would you like to create a desktop shortcut and launch Rookie?", "Create Desktop Shortcut", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        success = await Downloader.GetIcons(RSLPATH, "ROOKIE.ico", neededIcon);
+                        ShortcutMaker.CreateShortcutRookie(selectedPath, fixPath, ver);
+                        Buttons.LaunchRookie();
+                    }
+                    if (success)
+                    {
+                        MessageBoxes.Finish();
+                    }
+                }
             }
         }
 
         // Downloads VRP GUI
         private async void vrpguiButton_Click(object sender, EventArgs e)
         {
+            bool success;
+            var neededIcon = "https://wiki.vrpirates.club/downloads/rclone.ico";
             var RSLPATH = @"C:\RSL\";
             if (vrpGUIFolderDialog.ShowDialog() == DialogResult.OK)
             {
@@ -143,23 +159,27 @@ namespace VRPE_Installer
                 topLabel.Text = "Downloading VRP GUI...";
                 topLabel.Refresh();
                 EnableProcessbar(sender, e);
-                await Downloader.GetIcons(RSLPATH);
-                await Downloader.GetVRPGUI(selectedPathVRPGUI, fixPath);
+                success = await Downloader.GetIcons(RSLPATH, "RCLONE.ico", neededIcon);
+                success = await Downloader.GetVRPGUI(selectedPathVRPGUI, fixPath);
                 topLabel.Text = "Extracting VRP GUI...";
                 topLabel.Refresh();
-                await Installer.InstallVRPGUI(selectedPathVRPGUI, fixPath);
+                success = await Installer.InstallVRPGUI(selectedPathVRPGUI, fixPath);
                 ShortcutMaker.CreateShortcutVRPGUI(selectedPathVRPGUI, fixPath);
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
                 runningProcess = false;
-                MessageBoxes.Finish();
                 downloadProgress.Hide();
+                if (success)
+                {
+                    MessageBoxes.Finish();
+                }
             }
         }
 
         // Starts the download to Resilio, if checkbox is checked the user is able to select a custom install directory for the setup.exe 
         private async void resilioButton_Click(object sender, EventArgs e)
         {
+            bool success;
             if (resilioPathCheckbox.Checked)
             {
                 if (resilioFolderDialog.ShowDialog() == DialogResult.OK)
@@ -169,12 +189,15 @@ namespace VRPE_Installer
                     topLabel.Text = "Downloading Resilio...";
                     topLabel.Refresh();
                     EnableProcessbar(sender, e);
-                    await Downloader.GetResilio(selectedPathResilio, fixPath);
+                    success = await Downloader.GetResilio(selectedPathResilio, fixPath);
                     topLabel.Text = normalTitle;
                     topLabel.Refresh();
                     runningProcess = false;
-                    MessageBoxes.Finish();
                     downloadProgress.Hide();
+                    if (success)
+                    {
+                        MessageBoxes.Finish();
+                    }
                 }
             }
             else
@@ -184,12 +207,15 @@ namespace VRPE_Installer
                 topLabel.Text = "Downloading Resilio...";
                 topLabel.Refresh();
                 EnableProcessbar(sender, e);
-                await Downloader.GetResilio(selectedPathResilio, fixPath);
+                success = await Downloader.GetResilio(selectedPathResilio, fixPath);
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
                 runningProcess = false;
-                MessageBoxes.Finish();
                 downloadProgress.Hide();
+                if (success)
+                {
+                    MessageBoxes.Finish();
+                }
             }
         }
 
@@ -203,6 +229,8 @@ namespace VRPE_Installer
         // Downloads Shortcut Maker
         private async void shortcutmakerButton_Click(object sender, EventArgs e)
         {
+            bool success;
+            var neededIcon = "https://wiki.vrpirates.club/downloads/sm.ico";
             var RSLPATH = @"C:\RSL\";
             if (shortcutmakerFolderDialog.ShowDialog() == DialogResult.OK)
             {
@@ -211,17 +239,20 @@ namespace VRPE_Installer
                 EnableProcessbar(sender, e);
                 topLabel.Text = "Downloading Shortcut Maker...";
                 topLabel.Refresh();
-                await Downloader.GetIcons(RSLPATH);
-                await Downloader.GetShortcutMaker(selectedPathShortcutMaker, fixPath);
+                success = await Downloader.GetIcons(RSLPATH, "SM.ico", neededIcon);
+                success = await Downloader.GetShortcutMaker(selectedPathShortcutMaker, fixPath);
                 topLabel.Text = "Extracting Shortcut Maker...";
                 topLabel.Refresh();
-                await Installer.InstallShortcutMaker(selectedPathShortcutMaker, fixPath);
+                success = await Installer.InstallShortcutMaker(selectedPathShortcutMaker, fixPath);
                 ShortcutMaker.CreateShortcutShortcutMaker(selectedPathShortcutMaker, fixPath);
                 topLabel.Text = normalTitle;
                 topLabel.Refresh();
                 runningProcess = false;
-                MessageBoxes.Finish();
                 downloadProgress.Hide();
+                if (success)
+                {
+                    MessageBoxes.Finish();
+                }
             }
         }
 
@@ -233,8 +264,7 @@ namespace VRPE_Installer
 
         private void LaunchRookie_Click(object sender, EventArgs e)
         {
-            var ver = Program.HttpClient.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
-            Buttons.LaunchRookie(ver);
+            Buttons.LaunchRookie();
         }
 
         // Opens the Path in which Rookie was last installed into.
@@ -245,7 +275,6 @@ namespace VRPE_Installer
             {
                 Buttons.rookiePathOpener();
             }
-
             catch (Exception ex)
             {
                 string message = $"{ex.Message}";

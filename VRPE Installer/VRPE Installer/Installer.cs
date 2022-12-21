@@ -7,7 +7,7 @@ namespace VRPE_Installer
 {
     internal class Installer
     {
-        public static async Task InstallRookie(string selectedPath, string ver, string fixPath)
+        public static async Task<bool> InstallRookie(string selectedPath, string ver, string fixPath)
         {
             var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSL.zip");
             var outputFolder = Path.GetFullPath($"{selectedPath}{fixPath}");
@@ -19,16 +19,18 @@ namespace VRPE_Installer
                 ZipFile.ExtractToDirectory(destinationFilePath, outputFolder);
                 // Delete the RSL.zip file as it is no longer needed.
                 File.Delete(destinationFilePath);
+                return await Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.InstallError();
+                return await Task.FromResult(false);
             }
         }
 
-        public static async Task InstallShortcutMaker(string selectedPathShortcutMaker, string fixPath)
+        public static async Task<bool> InstallShortcutMaker(string selectedPathShortcutMaker, string fixPath)
         {
             var destinationFilePath = Path.GetFullPath($"{selectedPathShortcutMaker}{fixPath}ShortcutMaker.zip");
             var outputFolder = Path.GetFullPath($"{selectedPathShortcutMaker}{fixPath}");
@@ -38,16 +40,18 @@ namespace VRPE_Installer
                 ZipFile.ExtractToDirectory(destinationFilePath, outputFolder);
                 // Delete the ShortcutMaker.zip file as it is no longer needed.
                 File.Delete(destinationFilePath);
+                return await Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.InstallError();
+                return await Task.FromResult(false);
             }
         }
 
-        public static async Task InstallVRPGUI(string selectedPathVRPGUI, string fixPath)
+        public static async Task<bool> InstallVRPGUI(string selectedPathVRPGUI, string fixPath)
         {
             var destinationFilePathVRPGUI = Path.GetFullPath($"{selectedPathVRPGUI}{fixPath}VRPGUI.zip");
             var createFolderPathVRPGUI = Path.GetFullPath($"{selectedPathVRPGUI}{fixPath}VRP-GUI");
@@ -61,12 +65,14 @@ namespace VRPE_Installer
                 ZipFile.ExtractToDirectory(destinationFilePathVRPGUI, createFolderPathVRPGUI);
                 // Lastly delete the VRPGUI.zip
                 File.Delete(destinationFilePathVRPGUI);
+                return await Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.InstallError();
+                return await Task.FromResult(false);
             }
         }
     }

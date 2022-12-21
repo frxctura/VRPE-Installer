@@ -74,7 +74,7 @@ namespace VRPE_Installer
         }
 
         // Downloads Rookie from a link that is defined in the github repo file (HTTP Client fetches the string)
-        public static async Task GetRookie(string selectedPath, string fixPath)
+        public static async Task<bool> GetRookie(string selectedPath, string fixPath)
         {
             string rookieLink = "https://raw.githubusercontent.com/Chax1/VRPEDLLinks/main/RookieLink";
             string rookieDL = Program.HttpClient.GetStringAsync($"{rookieLink}").Result;
@@ -87,50 +87,39 @@ namespace VRPE_Installer
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
                 }
+                return await Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
+                return await Task.FromResult(false);
             }
         }
 
-        public static async Task GetIcons(string RSLPATH)
+        public static async Task<bool> GetIcons(string RSLPATH, string iconName, string neededIcon)
         {
-            var rookieIcon = "https://wiki.vrpirates.club/downloads/rookie.ico";
-            var rcloneIcon = "https://wiki.vrpirates.club/downloads/rclone.ico";
-            var smIcon = "https://wiki.vrpirates.club/downloads/sm.ico";
-            var RCLONEICONPATH = Path.GetFullPath($"{RSLPATH}RCLONE.ico");
-            var ROOKIEICONPATH = Path.GetFullPath($"{RSLPATH}ROOKIE.ico");
-            var SMICONPATH = Path.GetFullPath($"{RSLPATH}SM.ico");
+            var iconPath = Path.GetFullPath($"{RSLPATH}{iconName}");
             try
             {
-                using (var client = new HttpClientDownloadWithProgress(rookieIcon, ROOKIEICONPATH))
+                using (var client = new HttpClientDownloadWithProgress(neededIcon, iconPath))
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
                 }
-                using (var client = new HttpClientDownloadWithProgress(rcloneIcon, RCLONEICONPATH))
-                {
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                    await client.StartDownload();
-                }
-                using (var client = new HttpClientDownloadWithProgress(smIcon, SMICONPATH))
-                {
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                    await client.StartDownload();
-                }
+                return await Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
+                return await Task.FromResult(false);
             }
         }
 
 
         // Downloads the VRP GUI from a link that is defined in the github repo file (HTTP Client fetches the string)
-        public static async Task GetVRPGUI(string selectedPathVRPGUI, string fixPath)
+        public static async Task<bool> GetVRPGUI(string selectedPathVRPGUI, string fixPath)
         {
             string VRPGUILink = "https://raw.githubusercontent.com/Chax1/VRPEDLLinks/main/VRPGUILink";
             string VRPGUIDL = Program.HttpClient.GetStringAsync($"{VRPGUILink}").Result;
@@ -143,15 +132,17 @@ namespace VRPE_Installer
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
                 }
+                return await Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
+                return await Task.FromResult(false);
             }
         }
 
-        public static async Task GetShortcutMaker(string selectedPathShortcutMaker, string fixPath)
+        public static async Task<bool> GetShortcutMaker(string selectedPathShortcutMaker, string fixPath)
         {
             var downloadFileUrl = "https://wiki.vrpirates.club/downloads/shortcut_maker.zip";
             var destinationFilePathShortcutMaker = Path.GetFullPath($"{selectedPathShortcutMaker}{fixPath}ShortcutMaker.zip");
@@ -162,17 +153,19 @@ namespace VRPE_Installer
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
                 }
+                return await Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
+                return await Task.FromResult(false);
             }
         }
 
         // Checks which architecture the user is on and downloads the correct Installer exe
 
-        public static async Task GetResilio(string selectedPathResilio, string fixPath)
+        public static async Task<bool> GetResilio(string selectedPathResilio, string fixPath)
         {
             if (!Environment.Is64BitOperatingSystem)
             {
@@ -186,11 +179,13 @@ namespace VRPE_Installer
                         await client.StartDownload();
                         Process.Start($"{selectedPathResilio}{fixPath}Resilio-Sync.exe");
                     }
+                    return await Task.FromResult(true);
                 }
                 catch (Exception ex)
                 {
                     MessageBoxes.exceptionMessage = ex.Message;
                     MessageBoxes.DownloadError();
+                    return await Task.FromResult(false);
                 }
             }
             else
@@ -205,11 +200,13 @@ namespace VRPE_Installer
                         await client.StartDownload();
                         Process.Start($"{selectedPathResilio}{fixPath}Resilio-Sync_64.exe");
                     }
+                    return await Task.FromResult(true);
                 }
                 catch (Exception ex)
                 {
                     MessageBoxes.exceptionMessage = ex.Message;
                     MessageBoxes.DownloadError();
+                    return await Task.FromResult(false);
                 }
             }
         }
