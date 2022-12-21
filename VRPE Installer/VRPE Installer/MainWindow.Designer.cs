@@ -112,6 +112,7 @@
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Size = new System.Drawing.Size(28, 22);
             this.minimizeButton.TabIndex = 2;
+            this.minimizeButton.TabStop = false;
             this.minimizeButton.Text = "-";
             this.minimizeButton.UseVisualStyleBackColor = false;
             this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
@@ -128,6 +129,7 @@
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(28, 22);
             this.closeButton.TabIndex = 3;
+            this.closeButton.TabStop = false;
             this.closeButton.Text = "X";
             this.closeButton.UseVisualStyleBackColor = false;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
@@ -189,6 +191,7 @@
             this.rookieButton.Name = "rookieButton";
             this.rookieButton.Size = new System.Drawing.Size(263, 38);
             this.rookieButton.TabIndex = 4;
+            this.rookieButton.TabStop = false;
             this.rookieButton.Text = "Rookie";
             this.rookietoolTip.SetToolTip(this.rookieButton, "This will download and install Rookie to a selected location.");
             this.rookieButton.UseVisualStyleBackColor = false;
@@ -210,6 +213,7 @@
             this.vrpguiButton.Name = "vrpguiButton";
             this.vrpguiButton.Size = new System.Drawing.Size(263, 38);
             this.vrpguiButton.TabIndex = 6;
+            this.vrpguiButton.TabStop = false;
             this.vrpguiButton.Text = "VRP-GUI";
             this.VRPGUItoolTip.SetToolTip(this.vrpguiButton, "This will download and install VRP GUI to a selected location.");
             this.vrpguiButton.UseVisualStyleBackColor = false;
@@ -231,6 +235,7 @@
             this.shortcutmakerButton.Name = "shortcutmakerButton";
             this.shortcutmakerButton.Size = new System.Drawing.Size(263, 38);
             this.shortcutmakerButton.TabIndex = 9;
+            this.shortcutmakerButton.TabStop = false;
             this.shortcutmakerButton.Text = "Shortcut Maker\r\n";
             this.shortcutmakerToolTip.SetToolTip(this.shortcutmakerButton, "This will download and install Shortcut Maker to a selected location.");
             this.shortcutmakerButton.UseVisualStyleBackColor = false;
@@ -252,6 +257,7 @@
             this.resilioButton.Name = "resilioButton";
             this.resilioButton.Size = new System.Drawing.Size(263, 38);
             this.resilioButton.TabIndex = 7;
+            this.resilioButton.TabStop = false;
             this.resilioButton.Text = "Resilio Sync";
             this.resiliotoolTip.SetToolTip(this.resilioButton, "This will install Resilio Sync");
             this.resilioButton.UseVisualStyleBackColor = false;
@@ -273,6 +279,7 @@
             this.rookiePathOpen.Name = "rookiePathOpen";
             this.rookiePathOpen.Size = new System.Drawing.Size(117, 28);
             this.rookiePathOpen.TabIndex = 11;
+            this.rookiePathOpen.TabStop = false;
             this.rookiePathOpen.Text = "Open Path";
             this.openPathtoolTip.SetToolTip(this.rookiePathOpen, "Opens the path of where Rookie was last installed into.");
             this.rookiePathOpen.UseVisualStyleBackColor = false;
@@ -307,6 +314,7 @@
             this.LaunchRookie.Name = "LaunchRookie";
             this.LaunchRookie.Size = new System.Drawing.Size(117, 28);
             this.LaunchRookie.TabIndex = 10;
+            this.LaunchRookie.TabStop = false;
             this.LaunchRookie.Text = "Launch Rookie";
             this.launchRookietoolTip.SetToolTip(this.LaunchRookie, "...Launches rookie...who woulda thought...");
             this.LaunchRookie.UseVisualStyleBackColor = false;
@@ -324,8 +332,7 @@
             this.wikiLink.Location = new System.Drawing.Point(103, 218);
             this.wikiLink.Name = "wikiLink";
             this.wikiLink.Size = new System.Drawing.Size(102, 17);
-            this.wikiLink.TabIndex = 10;
-            this.wikiLink.TabStop = true;
+            this.wikiLink.TabIndex = 0;
             this.wikiLink.Text = "Official Wiki Link";
             this.wikiLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.wikiLink_LinkClicked);
             // 
@@ -338,6 +345,7 @@
             this.resilioPathCheckbox.Name = "resilioPathCheckbox";
             this.resilioPathCheckbox.Size = new System.Drawing.Size(266, 25);
             this.resilioPathCheckbox.TabIndex = 8;
+            this.resilioPathCheckbox.TabStop = false;
             this.resilioPathCheckbox.Text = "Select Custom Download Location";
             this.customFoldertooltip.SetToolTip(this.resilioPathCheckbox, "This will allow you to choose where the Resilio Installer gets downloaded into.");
             this.resilioPathCheckbox.UseVisualStyleBackColor = true;
@@ -364,6 +372,7 @@
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(72, 28);
             this.backButton.TabIndex = 12;
+            this.backButton.TabStop = false;
             this.backButton.Text = "BACK";
             this.backButton.UseVisualStyleBackColor = false;
             this.backButton.Visible = false;
@@ -384,6 +393,7 @@
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(72, 28);
             this.nextButton.TabIndex = 12;
+            this.nextButton.TabStop = false;
             this.nextButton.Text = "NEXT";
             this.nextButton.UseVisualStyleBackColor = false;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
