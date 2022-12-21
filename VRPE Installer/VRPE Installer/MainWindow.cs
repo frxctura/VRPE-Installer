@@ -43,6 +43,7 @@ namespace VRPE_Installer
                 VRPGUIPathExists = true;
             }
         }
+
         // Minimizes the program
         private void minimizeButton_Click(object sender, System.EventArgs e)
         {
