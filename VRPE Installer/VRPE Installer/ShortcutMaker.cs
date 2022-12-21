@@ -15,7 +15,7 @@ namespace VRPE_Installer
         {
             var folderName = $"rookie_{ver}_portable";
             var targetFolder = Path.Combine(selectedPath, folderName);
-            var finishedPath = Path.Combine(targetFolder, $"AndroidSideloader_v{ver}.exe");
+            var finishedPath = Path.Combine(targetFolder, $"Sideloader Launcher.exe");
             object shDesktop = (object)"Desktop";
             WshShell shell = new WshShell();
             string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + @"\Rookie.lnk";
