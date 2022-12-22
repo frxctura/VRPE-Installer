@@ -92,6 +92,7 @@ namespace VRPE_Installer
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
                 MessageBoxes.DownloadError();
                 return await Task.FromResult(false);
             }
@@ -112,6 +113,7 @@ namespace VRPE_Installer
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
                 MessageBoxes.DownloadError();
                 return await Task.FromResult(false);
             }
@@ -137,6 +139,7 @@ namespace VRPE_Installer
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
                 MessageBoxes.DownloadError();
                 return await Task.FromResult(false);
             }
@@ -158,6 +161,7 @@ namespace VRPE_Installer
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
                 MessageBoxes.DownloadError();
                 return await Task.FromResult(false);
             }
@@ -184,6 +188,7 @@ namespace VRPE_Installer
                 catch (Exception ex)
                 {
                     MessageBoxes.exceptionMessage = ex.Message;
+                    MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
                     MessageBoxes.DownloadError();
                     return await Task.FromResult(false);
                 }
@@ -204,8 +209,9 @@ namespace VRPE_Installer
                 }
                 catch (Exception ex)
                 {
-                    MessageBoxes.exceptionMessage = ex.Message;
-                    MessageBoxes.DownloadError();
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
+                MessageBoxes.DownloadError();
                     return await Task.FromResult(false);
                 }
             }

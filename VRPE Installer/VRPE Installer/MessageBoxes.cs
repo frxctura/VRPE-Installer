@@ -1,10 +1,12 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace VRPE_Installer
 {
     internal class MessageBoxes
     {
         public static string exceptionMessage;
+        public static string innerExceptionMessage;
 
         // Show the user that the process has finished.
         public static void Finish()
@@ -15,7 +17,7 @@ namespace VRPE_Installer
         // Show the user what Error caused the Download/Install to fail.
         public static void DownloadError()
         {
-            MessageBox.Show(exceptionMessage, "Error while Downloading!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(exceptionMessage + Environment.NewLine + innerExceptionMessage, "Error while Downloading!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         public static void InstallError()
         {
