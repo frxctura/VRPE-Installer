@@ -24,9 +24,8 @@ namespace VRPE_Installer
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
-                var exceptionMessage = ex.Message;
-                var innerExceptionMessage = ex.InnerException.Message;
-                MessageBoxes.InstallError(exceptionMessage, innerExceptionMessage);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.InstallError();
                 return await Task.FromResult(false);
             }
         }
@@ -46,9 +45,8 @@ namespace VRPE_Installer
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
-                var exceptionMessage = ex.Message;
-                var innerExceptionMessage = ex.InnerException.Message;
-                MessageBoxes.InstallError(exceptionMessage, innerExceptionMessage);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.InstallError();
                 return await Task.FromResult(false);
             }
         }
@@ -72,9 +70,8 @@ namespace VRPE_Installer
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
-                var exceptionMessage = ex.Message;
-                var innerExceptionMessage = ex.InnerException.Message;
-                MessageBoxes.InstallError(exceptionMessage, innerExceptionMessage);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.InstallError();
                 return await Task.FromResult(false);
             }
         }
