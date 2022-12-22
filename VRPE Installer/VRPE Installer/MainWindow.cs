@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace VRPE_Installer
@@ -29,7 +30,6 @@ namespace VRPE_Installer
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
             rainbowBorder.Start();
-            var rookiePath = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
             if (Directory.Exists(RSLPATH))
             {
                 RSLPathExists = true;
@@ -43,6 +43,7 @@ namespace VRPE_Installer
                 VRPGUIPathExists = true;
             }
         }
+
         // Minimizes the program
         private void minimizeButton_Click(object sender, System.EventArgs e)
         {
