@@ -91,9 +91,9 @@ namespace VRPE_Installer
             }
             catch (Exception ex)
             {
-                var exceptionMessage = ex.Message;
-                var innerExceptionMessage = ex.InnerException.Message;
-                MessageBoxes.DownloadError(exceptionMessage, innerExceptionMessage);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
+                MessageBoxes.DownloadError();
                 return await Task.FromResult(false);
             }
         }
@@ -112,9 +112,9 @@ namespace VRPE_Installer
             }
             catch (Exception ex)
             {
-                var exceptionMessage = ex.Message;
-                var innerExceptionMessage = ex.InnerException.Message;
-                MessageBoxes.DownloadError(exceptionMessage, innerExceptionMessage);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
+                MessageBoxes.DownloadError();
                 return await Task.FromResult(false);
             }
         }
@@ -138,9 +138,9 @@ namespace VRPE_Installer
             }
             catch (Exception ex)
             {
-                var exceptionMessage = ex.Message;
-                var innerExceptionMessage = ex.InnerException.Message;
-                MessageBoxes.DownloadError(exceptionMessage, innerExceptionMessage);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
+                MessageBoxes.DownloadError();
                 return await Task.FromResult(false);
             }
         }
@@ -160,9 +160,9 @@ namespace VRPE_Installer
             }
             catch (Exception ex)
             {
-                var exceptionMessage = ex.Message;
-                var innerExceptionMessage = ex.InnerException.Message;
-                MessageBoxes.DownloadError(exceptionMessage, innerExceptionMessage);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
+                MessageBoxes.DownloadError();
                 return await Task.FromResult(false);
             }
         }
@@ -187,9 +187,9 @@ namespace VRPE_Installer
                 }
                 catch (Exception ex)
                 {
-                    var exceptionMessage = ex.Message;
-                    var innerExceptionMessage = ex.InnerException.Message;
-                    MessageBoxes.DownloadError(exceptionMessage, innerExceptionMessage);
+                    MessageBoxes.exceptionMessage = ex.Message;
+                    MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
+                    MessageBoxes.DownloadError();
                     return await Task.FromResult(false);
                 }
             }
@@ -209,9 +209,9 @@ namespace VRPE_Installer
                 }
                 catch (Exception ex)
                 {
-                    var exceptionMessage = ex.Message;
-                    var innerExceptionMessage = ex.InnerException.Message;
-                    MessageBoxes.DownloadError(exceptionMessage, innerExceptionMessage);
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.innerExceptionMessage = ex.InnerException.Message;
+                MessageBoxes.DownloadError();
                     return await Task.FromResult(false);
                 }
             }
