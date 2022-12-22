@@ -4,8 +4,6 @@ namespace VRPE_Installer
 {
     internal class MessageBoxes
     {
-        public static string exceptionMessage;
-
         // Show the user that the process has finished.
         public static void Finish()
         {
@@ -13,13 +11,13 @@ namespace VRPE_Installer
         }
 
         // Show the user what Error caused the Download/Install to fail.
-        public static void DownloadError()
+        public static void DownloadError(string exceptionMessage, string innerExceptionMessage)
         {
-            MessageBox.Show(exceptionMessage, "Error while Downloading!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"{exceptionMessage}\n{innerExceptionMessage}", "Error while Downloading!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        public static void InstallError()
+        public static void InstallError(string exceptionMessage, string innerExceptionMessage)
         {
-            MessageBox.Show(exceptionMessage, "Error while Unzipping/Installing!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"{exceptionMessage}\n{innerExceptionMessage}", "Error while Unzipping/Installing!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
