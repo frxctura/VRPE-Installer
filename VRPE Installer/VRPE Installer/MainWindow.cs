@@ -30,7 +30,6 @@ namespace VRPE_Installer
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
             rainbowBorder.Start();
-            var rookiePath = File.ReadLines(@"C:/RSL/RookiePath.txt").First();
             if (Directory.Exists(RSLPATH))
             {
                 RSLPathExists = true;

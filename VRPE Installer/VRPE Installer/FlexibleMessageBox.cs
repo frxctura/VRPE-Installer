@@ -383,6 +383,7 @@ namespace JR.Utils.GUI.Forms
                 AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                 AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                 ClientSize = new System.Drawing.Size(260, 102);
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Controls.Add(button3);
                 Controls.Add(button2);
                 Controls.Add(panel1);
@@ -554,7 +555,8 @@ namespace JR.Utils.GUI.Forms
                 }
 
                 //Calculate whole text height
-                int textHeight = TextRenderer.MeasureText(text, FONT).Height;
+                int textHeight = TextRenderer.MeasureText(text, FONT, flexibleMessageBoxForm.MaximumSize, TextFormatFlags.WordBreak).Height;
+
 
                 //Calculate width for longest text line
                 const int SCROLLBAR_WIDTH_OFFSET = 15;
