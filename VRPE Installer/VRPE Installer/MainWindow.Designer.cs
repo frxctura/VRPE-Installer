@@ -333,6 +333,7 @@
             this.wikiLink.Name = "wikiLink";
             this.wikiLink.Size = new System.Drawing.Size(102, 17);
             this.wikiLink.TabIndex = 0;
+            this.wikiLink.TabStop = true;
             this.wikiLink.Text = "Official Wiki Link";
             this.wikiLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.wikiLink_LinkClicked);
             // 
@@ -503,8 +504,7 @@
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             this.BackgroundImage = global::VRPE_Installer.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
