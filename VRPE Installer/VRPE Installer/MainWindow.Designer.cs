@@ -96,7 +96,7 @@
             this.titleBar.Location = new System.Drawing.Point(-1, -1);
             this.titleBar.Name = "titleBar";
             this.titleBar.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.titleBar.Size = new System.Drawing.Size(897, 28);
+            this.titleBar.Size = new System.Drawing.Size(896, 28);
             this.titleBar.TabIndex = 1;
             this.titleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onMouseDown);
             // 
@@ -108,7 +108,7 @@
             this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimizeButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minimizeButton.ForeColor = System.Drawing.Color.White;
-            this.minimizeButton.Location = new System.Drawing.Point(806, -2);
+            this.minimizeButton.Location = new System.Drawing.Point(829, -2);
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Size = new System.Drawing.Size(28, 22);
             this.minimizeButton.TabIndex = 2;
@@ -125,7 +125,7 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.White;
-            this.closeButton.Location = new System.Drawing.Point(840, -2);
+            this.closeButton.Location = new System.Drawing.Point(861, -2);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(28, 22);
             this.closeButton.TabIndex = 3;
@@ -504,11 +504,11 @@
             // 
             // MainWindow
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             this.BackgroundImage = global::VRPE_Installer.Properties.Resources.background;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(891, 502);
+            this.ClientSize = new System.Drawing.Size(894, 502);
             this.Controls.Add(this.rainbowBorderBottom);
             this.Controls.Add(this.rainbowBorderRight);
             this.Controls.Add(this.rainbowBorderLeft);

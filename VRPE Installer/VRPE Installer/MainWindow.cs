@@ -20,12 +20,9 @@ namespace VRPE_Installer
         public static bool RookiePathExists;
         public static bool VRPGUIPathExists;
         public static bool runningProcess;
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
         // On Program start, set the RSL Path, create an HTTP Client to fetch the version number of Rookie and set the string, set bools true if files exist.
         public MainWindow()
         {
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, 891, 502, 25, 25));
             var RSLPATH = @"C:\RSL\";
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
