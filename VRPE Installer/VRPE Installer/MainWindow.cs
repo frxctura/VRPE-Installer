@@ -25,7 +25,10 @@ namespace VRPE_Installer
         // On Program start, set the RSL Path, create an HTTP Client to fetch the version number of Rookie and set the string, set bools true if files exist.
         public MainWindow()
         {
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, 891, 502, 25, 25));
+            int scaleValueWidth = 891 * (this.DeviceDpi / 96);
+            int scaleValueHeight = 502 * (this.DeviceDpi / 96);
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, scaleValueWidth, scaleValueHeight, 25, 25));
+            Console.WriteLine(this.DeviceDpi / 96.0);
             var RSLPATH = @"C:\RSL\";
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
@@ -109,6 +112,11 @@ namespace VRPE_Installer
             if (rookieFolderDialog.ShowDialog() == DialogResult.OK)
             {
                 var selectedPath = rookieFolderDialog.SelectedPath;
+                if (selectedPath.Contains("OneDrive"))
+                {
+                    DialogResult dialogResult = MessageBox.Show("VRPE has detected a OneDrive Path!\nAs OneDrive breaks Rookie the VRPE will not continue downloading.", "OneDrive Path Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 var ver = Program.HttpClient.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
                 runningProcess = true;
                 EnableProcessbar(sender, e);

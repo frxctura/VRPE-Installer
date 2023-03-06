@@ -96,7 +96,7 @@
             this.titleBar.Location = new System.Drawing.Point(-1, -1);
             this.titleBar.Name = "titleBar";
             this.titleBar.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.titleBar.Size = new System.Drawing.Size(897, 28);
+            this.titleBar.Size = new System.Drawing.Size(896, 28);
             this.titleBar.TabIndex = 1;
             this.titleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onMouseDown);
             // 
@@ -333,6 +333,7 @@
             this.wikiLink.Name = "wikiLink";
             this.wikiLink.Size = new System.Drawing.Size(102, 17);
             this.wikiLink.TabIndex = 0;
+            this.wikiLink.TabStop = true;
             this.wikiLink.Text = "Official Wiki Link";
             this.wikiLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.wikiLink_LinkClicked);
             // 
@@ -507,8 +508,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             this.BackgroundImage = global::VRPE_Installer.Properties.Resources.background;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(891, 502);
+            this.ClientSize = new System.Drawing.Size(894, 502);
             this.Controls.Add(this.rainbowBorderBottom);
             this.Controls.Add(this.rainbowBorderRight);
             this.Controls.Add(this.rainbowBorderLeft);
