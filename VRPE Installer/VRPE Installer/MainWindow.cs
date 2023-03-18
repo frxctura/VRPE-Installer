@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -25,10 +26,15 @@ namespace VRPE_Installer
         // On Program start, set the RSL Path, create an HTTP Client to fetch the version number of Rookie and set the string, set bools true if files exist.
         public MainWindow()
         {
+            #if DEBUG
+            InitializeComponent();
+            Debug.WriteLine("---------------------------------\nDEBUG MODE ENABLED\nPRINTING VALUES\n---------------------------------");
+            Debug.WriteLine("PATHS\nRookie Path: " + File.ReadLines(@"C:/RSL/RookiePath.txt").First() + "\nVRPGUI Path: " + File.ReadLines(@"C:/RSL/VRPGUIPath.txt").First());
+            Debug.WriteLine("\nDEVICE DPI: " + this.DeviceDpi / 96.0);
+            #endif
             int scaleValueWidth = 891 * (this.DeviceDpi / 96);
             int scaleValueHeight = 502 * (this.DeviceDpi / 96);
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, scaleValueWidth, scaleValueHeight, 25, 25));
-            Console.WriteLine(this.DeviceDpi / 96.0);
             var RSLPATH = @"C:\RSL\";
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();

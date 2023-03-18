@@ -10,13 +10,16 @@ namespace VRPE_Installer
         public static async Task<bool> InstallRookie(string selectedPath, string ver, string fixPath)
         {
             var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSL.zip");
-            var outputFolder = Path.GetFullPath($"{selectedPath}{fixPath}");
             try
             {
+                // Create a directory for Rookie to be extracted into.
+                var combinedFolder = Path.Combine(selectedPath, "Rookie");
+                Console.WriteLine(combinedFolder);
+                Directory.CreateDirectory(combinedFolder);
                 // Log the path in which Rookie was last installed in.
-                PathLogger.LogRookie(selectedPath, ver);
+                PathLogger.LogRookie(combinedFolder);
                 // Extract the RSL.zip into the selected path.
-                ZipFile.ExtractToDirectory(destinationFilePath, outputFolder);
+                ZipFile.ExtractToDirectory(destinationFilePath, combinedFolder);
                 // Delete the RSL.zip file as it is no longer needed.
                 File.Delete(destinationFilePath);
                 return await Task.FromResult(true);
