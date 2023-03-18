@@ -8,18 +8,16 @@ namespace VRPE_Installer
         public static string rookiePath = string.Empty;
         public static string vrpguiPath = string.Empty;
 
-        public static void LogRookie(string selectedPath, string ver)
+        public static void LogRookie(string combinedFolder)
         {
-            var folderName = $"rookie_{ver}_portable";
             var RSLPATH = @"C:\RSL\";
-            var fullPath = Path.Combine(selectedPath, folderName);
             // If the VRPE directory doesn't already exist, create the directory and a RookiePath.txt to log the path within.
             if (!MainWindow.RSLPathExists)
             {
                 Directory.CreateDirectory(@"C:/RSL");
                 using (StreamWriter sw = File.CreateText($"{RSLPATH}/RookiePath.txt"))
                 {
-                    sw.WriteLine($"{fullPath}");
+                    sw.WriteLine($"{combinedFolder}");
                 }
             }
             // If the VRPE directory does already exist, overwrite RookiePath.txt to log the new path within.
@@ -27,7 +25,7 @@ namespace VRPE_Installer
             {
                 using (StreamWriter sw = File.CreateText($"{RSLPATH}/RookiePath.txt"))
                 {
-                    sw.WriteLine($"{fullPath}");
+                    sw.WriteLine($"{combinedFolder}");
                 }
             }
         }
