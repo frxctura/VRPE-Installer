@@ -23,21 +23,28 @@ namespace VRPE_Installer
         public static bool runningProcess;
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
+        [DllImport("wininet.dll", EntryPoint = "InternetGetConnectedState")]
+        private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
         // On Program start, set the RSL Path, create an HTTP Client to fetch the version number of Rookie and set the string, set bools true if files exist.
         public MainWindow()
         {
-            #if DEBUG
-            InitializeComponent();
+            #if DEBUG 
+            // Print paths, device dpi, and internetstate to help with debugging
+            bool IsInternetAvailable()
+            {try{int description;return InternetGetConnectedState(out description, 0);}catch (Exception ex){return false;}}
+            string INTERNETSTATE;
             Debug.WriteLine("---------------------------------\nDEBUG MODE ENABLED\nPRINTING VALUES\n---------------------------------");
             Debug.WriteLine("PATHS\nRookie Path: " + File.ReadLines(@"C:/RSL/RookiePath.txt").First() + "\nVRPGUI Path: " + File.ReadLines(@"C:/RSL/VRPGUIPath.txt").First());
             Debug.WriteLine("\nDEVICE DPI: " + this.DeviceDpi / 96.0);
+            if (IsInternetAvailable() ){INTERNETSTATE = " TRUE"; }else{INTERNETSTATE = " FALSE";}
+            Debug.WriteLine($"\nINTERNET CONNECTION:" + INTERNETSTATE);
             #endif
+            InitializeComponent();
             int scaleValueWidth = 891 * (this.DeviceDpi / 96);
             int scaleValueHeight = 502 * (this.DeviceDpi / 96);
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, scaleValueWidth, scaleValueHeight, 25, 25));
             var RSLPATH = @"C:\RSL\";
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            InitializeComponent();
             rainbowBorder.Start();
             if (Directory.Exists(RSLPATH))
             {
@@ -76,6 +83,7 @@ namespace VRPE_Installer
                 }
             }
         }
+
         // Is needed to make the custom tab bar moveable
         private void onMouseDown(object sender, MouseEventArgs e)
         {
@@ -85,6 +93,7 @@ namespace VRPE_Installer
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
         }
+
         // Goes to the main part of the installer with all the download buttons etc
         private void nextButton_Click(object sender, EventArgs e)
         {
@@ -301,7 +310,7 @@ namespace VRPE_Installer
         // Minimized Rainbow Effect, minimized cuz like cmon we dont need to waste 15 lines for some rainbow effect lol.
         int r = 224, g = 0, b = 0, id;
         int rr = 224, gg = 0, bb = 0;
-        private void stopHoverEffect(object sender, EventArgs e) { r = 224; g = 0; b = 0; rainbow.Stop(); rookieButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); vrpguiButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); resilioButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); LaunchRookie.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); rookiePathOpen.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); backButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); nextButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); shortcutmakerButton.FlatAppearance.BorderColor = Color.FromArgb(34, 34, 34); }
+        private void stopHoverEffect(object sender, EventArgs e) { r = 224; g = 0; b = 0; rainbow.Stop(); rookieButton.StrokeColor = Color.FromArgb(34, 34, 34); vrpguiButton.StrokeColor = Color.FromArgb(34, 34, 34); resilioButton.StrokeColor = Color.FromArgb(34, 34, 34); LaunchRookie.StrokeColor = Color.FromArgb(34, 34, 34); rookiePathOpen.StrokeColor = Color.FromArgb(34, 34, 34); backButton.StrokeColor = Color.FromArgb(34, 34, 34); nextButton.StrokeColor = Color.FromArgb(34, 34, 34); shortcutmakerButton.StrokeColor = Color.FromArgb(34, 34, 34); }
         private void vrpguiButton_MouseHover(object sender, EventArgs e) { id = 1; rainbow.Start(); }
         private void resilioButton_MouseHover(object sender, EventArgs e) { id = 2; rainbow.Start(); }
         private void LaunchRookie_MouseHover(object sender, EventArgs e) { id = 3; rainbow.Start(); }
@@ -313,14 +322,14 @@ namespace VRPE_Installer
         private void rookieButton_MouseHover(object sender, EventArgs e) { id = 0; rainbow.Start(); }
         private void rainbow_Tick(object sender, EventArgs e)
         {
-            if (id == 0) { rookieButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
-            if (id == 1) { vrpguiButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
-            if (id == 2) { resilioButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
-            if (id == 3) { LaunchRookie.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
-            if (id == 4) { rookiePathOpen.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
-            if (id == 5) { backButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
-            if (id == 6) { nextButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }
-            if (id == 7) { shortcutmakerButton.FlatAppearance.BorderColor = Color.FromArgb(r, g, b); }; if (r > 0 && b == 0) { r--; g++; }
+            if (id == 0) { rookieButton.StrokeColor = Color.FromArgb(r, g, b); }
+            if (id == 1) { vrpguiButton.StrokeColor = Color.FromArgb(r, g, b); }
+            if (id == 2) { resilioButton.StrokeColor = Color.FromArgb(r, g, b); }
+            if (id == 3) { LaunchRookie.StrokeColor = Color.FromArgb(r, g, b); }
+            if (id == 4) { rookiePathOpen.StrokeColor = Color.FromArgb(r, g, b); }
+            if (id == 5) { backButton.StrokeColor = Color.FromArgb(r, g, b); }
+            if (id == 6) { nextButton.StrokeColor = Color.FromArgb(r, g, b); }
+            if (id == 7) { shortcutmakerButton.StrokeColor = Color.FromArgb(r, g, b); }; if (r > 0 && b == 0) { r--; g++; }
             if (g > 0 && r == 0) { g--; b++; }
             if (b > 0 && g == 0) { b--; r++; }
         }
