@@ -58,6 +58,7 @@ namespace VRPE_Installer
             {
                 VRPGUIPathExists = true;
             }
+            Updater.Update();
         }
 
         // Minimizes the program
