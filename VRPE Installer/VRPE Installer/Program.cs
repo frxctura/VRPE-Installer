@@ -36,9 +36,9 @@ namespace VRPE_Installer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             HttpClient = new HttpClient();
-            Application.ThreadException += new ThreadExceptionEventHandler(UnhandledUIException);
-            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
+// Application.ThreadException += new ThreadExceptionEventHandler(UnhandledUIException);
+   //         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+        //   AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
             Application.Run(new MainWindow());
         }
     }

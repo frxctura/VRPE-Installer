@@ -91,6 +91,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buttons.cs" />
+    <Compile Include="UpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateForm.Designer.cs">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Updater.cs" />
     <Compile Include="Transparenter.cs" />
     <Compile Include="RoundedRectangleF.cs" />
     <Compile Include="ExtensionMethods.cs" />
@@ -125,6 +132,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UpdateForm.resx">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\App.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -144,6 +154,7 @@
     <None Include="Resources\background.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\pattern_cubes-1_1_1_0-0_0_1__000000_212121.png" />
     <Content Include="Resources\vrpe.ico" />
   </ItemGroup>
   <ItemGroup>
