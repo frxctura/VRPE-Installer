@@ -29,7 +29,7 @@ namespace VRPE_Installer
         public MainWindow()
         {
             #if DEBUG 
-            // Print paths, device dpi, and internetstate to help with debugging
+            // Print paths, device dpi, and internetstate to help with debugging 
             bool IsInternetAvailable()
             {try{int description;return InternetGetConnectedState(out description, 0);}catch (Exception ex){return false;}}
             string INTERNETSTATE;

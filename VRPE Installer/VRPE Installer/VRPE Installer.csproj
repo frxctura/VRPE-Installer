@@ -146,6 +146,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="version" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -155,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pattern_cubes-1_1_1_0-0_0_1__000000_212121.png" />
+    <Content Include="changelog.txt" />
     <Content Include="Resources\vrpe.ico" />
   </ItemGroup>
   <ItemGroup>

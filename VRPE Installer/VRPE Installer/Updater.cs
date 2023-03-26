@@ -22,9 +22,7 @@ namespace VRPE_Installer
             try
             {
                 currentVersion = Program.HttpClient.GetStringAsync($"https://raw.githubusercontent.com/Chax1/VRPE-Installer/main/VRPE%20Installer/VRPE%20Installer/version").Result;
-                Console.WriteLine(currentVersion);
                 changelog = Program.HttpClient.GetStringAsync($"https://raw.githubusercontent.com/Chax1/VRPE-Installer/main/VRPE%20Installer/VRPE%20Installer/changelog.txt").Result;
-                Console.WriteLine(changelog);
                 client.Dispose();
                 currentVersion = currentVersion.Trim();
             }
