@@ -545,6 +545,7 @@
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VRPE Installer";
+            this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.titleBar.ResumeLayout(false);
             this.titleBar.PerformLayout();
             this.contentPanel.ResumeLayout(false);

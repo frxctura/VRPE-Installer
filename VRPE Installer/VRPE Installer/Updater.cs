@@ -11,7 +11,7 @@ namespace VRPE_Installer
     {
         public static string Repostory { get; set; }
 
-        public static readonly string LocalVersion = "1.8";
+        public static readonly string LocalVersion = "1.9";
         public static string currentVersion = string.Empty;
         public static string changelog = string.Empty;
 
@@ -53,20 +53,16 @@ namespace VRPE_Installer
         }
 
         //If the user wants to update
-        public static void doUpdate()
+        public static async void doUpdate()
         {
-            try
-            {
                 WebClient fileClient = new WebClient();
                 ServicePointManager.Expect100Continue = true;
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                fileClient.DownloadFile($"https://github.com/Chax1/VRPE-Installer/releases/download/v{currentVersion}/VRPE-Installer.exe", $"VRPE-Installer.exe");
+                fileClient.DownloadFile($"https://github.com/Chax1/VRPE-Installer/releases/download/v{currentVersion}/VRPE-Installer.exe", $"VRPE-Installer(v{currentVersion}).exe");
                 fileClient.Dispose();
                 Process.Start($"VRPE-Installer.exe");
                 //Delete current version
                 Melt();
-            }
-            catch { }
         }
     }
 }

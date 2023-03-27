@@ -1,7 +1,9 @@
-VRPE-Installer Version 1.8
+VRPE-Installer Version 1.9
 
-Design Changes
+Okay, I swear, I am an idiot.
 
-- Move download buttons into the center
-- Change Font for "Download and Install"
-- Remove ugly border on update prompt
+- Fix Updater
+From now on VRPE-Installer will have a version tag in the filename.
+
+For anyone that is UNABLE to Update via the Updater, please download a new version here.
+https://github.com/Chax1/VRPE-Installer/releases/tag/v1.9
