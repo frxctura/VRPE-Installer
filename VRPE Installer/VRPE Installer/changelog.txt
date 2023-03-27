@@ -1,2 +1,1 @@
-- Restore Exception Handling on Runtime Crashes
-- Remove Debugging for Updater
+- Sigh...forgetting to update local values isn't smart... (Fixed Bug with Updating)
