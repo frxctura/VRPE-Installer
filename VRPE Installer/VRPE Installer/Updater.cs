@@ -11,11 +11,11 @@ namespace VRPE_Installer
     {
         public static string Repostory { get; set; }
 
-        public static readonly string LocalVersion = "1.7";
+        public static readonly string LocalVersion = "1.8";
         public static string currentVersion = string.Empty;
         public static string changelog = string.Empty;
 
-        //Check if there is a new version of the sideloader
+        //Check if there is a new version of the VRPE
         private static bool IsUpdateAvailable()
         {
             HttpClient client = new HttpClient();

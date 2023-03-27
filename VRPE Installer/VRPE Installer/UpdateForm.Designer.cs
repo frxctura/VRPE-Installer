@@ -29,6 +29,7 @@ namespace VRPE_Installer
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.YesUpdate = new VRPE_Installer.CustomButton();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -153,7 +154,8 @@ namespace VRPE_Installer
             this.ClientSize = new System.Drawing.Size(462, 291);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UpdateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.UpdateForm_MouseDown);
