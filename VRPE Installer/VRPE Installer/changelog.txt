@@ -1,9 +1,3 @@
-VRPE-Installer Version 1.9
+VRPE-Installer Version 2.0
 
-Okay, I swear, I am an idiot.
-
-- Fix Updater
-From now on VRPE-Installer will have a version tag in the filename.
-
-For anyone that is UNABLE to Update via the Updater, please download a new version here.
-https://github.com/Chax1/VRPE-Installer/releases/tag/v1.9
+- Remove my Discord Tag from unhandled exceptions.
