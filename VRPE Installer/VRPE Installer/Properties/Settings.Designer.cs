@@ -22,5 +22,17 @@ namespace VRPE_Installer.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool lightModeEnabled {
+            get {
+                return ((bool)(this["lightModeEnabled"]));
+            }
+            set {
+                this["lightModeEnabled"] = value;
+            }
+        }
     }
 }

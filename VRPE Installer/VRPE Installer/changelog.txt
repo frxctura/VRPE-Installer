@@ -1,4 +1,3 @@
-VRPE-Installer Version 2.1
+VRPE-Installer Version 2.2
 
-- Design Changes.
 - Added a light mode.

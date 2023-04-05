@@ -35,6 +35,7 @@
             this.minimizeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.themeChangerButton = new VRPE_Installer.CustomButton();
             this.backButton = new VRPE_Installer.CustomButton();
             this.nextButton = new VRPE_Installer.CustomButton();
             this.rookiePathOpen = new VRPE_Installer.CustomButton();
@@ -139,6 +140,7 @@
             // 
             this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
             this.contentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.contentPanel.Controls.Add(this.themeChangerButton);
             this.contentPanel.Controls.Add(this.backButton);
             this.contentPanel.Controls.Add(this.nextButton);
             this.contentPanel.Controls.Add(this.rookiePathOpen);
@@ -155,6 +157,29 @@
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(844, 359);
             this.contentPanel.TabIndex = 2;
+            // 
+            // themeChangerButton
+            // 
+            this.themeChangerButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.themeChangerButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.themeChangerButton.BackColor = System.Drawing.Color.Transparent;
+            this.themeChangerButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.themeChangerButton.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.themeChangerButton.ForeColor = System.Drawing.Color.White;
+            this.themeChangerButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.themeChangerButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.themeChangerButton.Location = new System.Drawing.Point(3, 326);
+            this.themeChangerButton.Name = "themeChangerButton";
+            this.themeChangerButton.Radius = 5;
+            this.themeChangerButton.Size = new System.Drawing.Size(117, 28);
+            this.themeChangerButton.Stroke = true;
+            this.themeChangerButton.StrokeColor = System.Drawing.Color.Transparent;
+            this.themeChangerButton.TabIndex = 26;
+            this.themeChangerButton.Text = "LIGHT MODE";
+            this.themeChangerButton.Transparency = false;
+            this.themeChangerButton.Click += new System.EventHandler(this.themeChangerButton_Click);
+            this.themeChangerButton.MouseEnter += new System.EventHandler(this.themeChangerButton_MouseEnter);
+            this.themeChangerButton.MouseLeave += new System.EventHandler(this.stopHoverEffect);
             // 
             // backButton
             // 
@@ -245,6 +270,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Bahnschrift Condensed", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
@@ -369,6 +395,7 @@
             // 
             this.wikiLink.ActiveLinkColor = System.Drawing.Color.Gray;
             this.wikiLink.AutoSize = true;
+            this.wikiLink.BackColor = System.Drawing.Color.Transparent;
             this.wikiLink.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wikiLink.LinkColor = System.Drawing.Color.White;
             this.wikiLink.Location = new System.Drawing.Point(103, 218);
@@ -429,6 +456,7 @@
             // welcomeLabel
             // 
             this.welcomeLabel.AutoSize = true;
+            this.welcomeLabel.BackColor = System.Drawing.Color.Transparent;
             this.welcomeLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.welcomeLabel.ForeColor = System.Drawing.Color.White;
             this.welcomeLabel.Location = new System.Drawing.Point(100, 112);
@@ -607,5 +635,6 @@
         private CustomButton nextButton;
         private CustomButton backButton;
         private System.Windows.Forms.Panel panel1;
+        private CustomButton themeChangerButton;
     }
 }
