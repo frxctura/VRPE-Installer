@@ -1,3 +1,4 @@
-VRPE-Installer Version 2.2
+VRPE-Installer Version 2.3
 
-- Added a light mode.
+- Fixed a bug with changing the VRPE Theme on launch.
+- Fixed a bug within the Updater.
