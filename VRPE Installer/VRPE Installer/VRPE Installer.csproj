@@ -152,10 +152,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pattern_cubes-1_1_1_0-0_0_1__000000_212121.png" />
+    <None Include="Resources\backgrounddark.png" />
+    <None Include="Resources\backgroundlight.png" />
+    <Content Include="Resources\pattern_cubes-1_1_1_0-0_0_1__000000_212121.png" />
     <Content Include="changelog.txt" />
     <Content Include="Resources\vrpe.ico" />
   </ItemGroup>

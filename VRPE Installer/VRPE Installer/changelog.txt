@@ -1,3 +1,4 @@
-VRPE-Installer Version 2.0
+VRPE-Installer Version 2.1
 
-- Remove my Discord Tag from unhandled exceptions.
+- Design Changes.
+- Added a light mode.

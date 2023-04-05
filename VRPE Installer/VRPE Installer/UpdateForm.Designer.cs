@@ -66,8 +66,8 @@ namespace VRPE_Installer
             this.YesUpdate.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.YesUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.YesUpdate.ForeColor = System.Drawing.Color.White;
-            this.YesUpdate.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.YesUpdate.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.YesUpdate.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.YesUpdate.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.YesUpdate.Location = new System.Drawing.Point(339, 245);
             this.YesUpdate.Name = "YesUpdate";
             this.YesUpdate.Radius = 5;

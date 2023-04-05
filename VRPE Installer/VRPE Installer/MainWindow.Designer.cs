@@ -62,6 +62,7 @@
             this.launchRookietoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.rainbow = new System.Windows.Forms.Timer(this.components);
             this.rainbowBorderTop = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.rainbowBorderLeft = new System.Windows.Forms.Panel();
             this.rainbowBorderRight = new System.Windows.Forms.Panel();
             this.rainbowBorderBottom = new System.Windows.Forms.Panel();
@@ -88,7 +89,7 @@
             // 
             // titleBar
             // 
-            this.titleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.titleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
             this.titleBar.Controls.Add(this.minimizeButton);
             this.titleBar.Controls.Add(this.closeButton);
             this.titleBar.Controls.Add(this.topLabel);
@@ -102,7 +103,7 @@
             // 
             // minimizeButton
             // 
-            this.minimizeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.minimizeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.minimizeButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.minimizeButton.FlatAppearance.BorderSize = 0;
             this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -119,7 +120,7 @@
             // 
             // closeButton
             // 
-            this.closeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.closeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.closeButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closeButton.FlatAppearance.BorderSize = 0;
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -136,7 +137,7 @@
             // 
             // contentPanel
             // 
-            this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
             this.contentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.contentPanel.Controls.Add(this.backButton);
             this.contentPanel.Controls.Add(this.nextButton);
@@ -157,14 +158,14 @@
             // 
             // backButton
             // 
-            this.backButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.backButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.backButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.backButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.backButton.BackColor = System.Drawing.Color.Transparent;
             this.backButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.backButton.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.backButton.ForeColor = System.Drawing.Color.White;
-            this.backButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.backButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.backButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.backButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.backButton.Location = new System.Drawing.Point(767, 326);
             this.backButton.Name = "backButton";
             this.backButton.Radius = 5;
@@ -181,14 +182,14 @@
             // 
             // nextButton
             // 
-            this.nextButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.nextButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.nextButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.nextButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.nextButton.BackColor = System.Drawing.Color.Transparent;
             this.nextButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.nextButton.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.nextButton.ForeColor = System.Drawing.Color.White;
-            this.nextButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.nextButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.nextButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.nextButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.nextButton.Location = new System.Drawing.Point(767, 326);
             this.nextButton.Name = "nextButton";
             this.nextButton.Radius = 5;
@@ -204,14 +205,14 @@
             // 
             // rookiePathOpen
             // 
-            this.rookiePathOpen.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.rookiePathOpen.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.rookiePathOpen.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.rookiePathOpen.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.rookiePathOpen.BackColor = System.Drawing.Color.Transparent;
             this.rookiePathOpen.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.rookiePathOpen.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.rookiePathOpen.ForeColor = System.Drawing.Color.White;
-            this.rookiePathOpen.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.rookiePathOpen.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.rookiePathOpen.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.rookiePathOpen.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.rookiePathOpen.Location = new System.Drawing.Point(3, 292);
             this.rookiePathOpen.Name = "rookiePathOpen";
             this.rookiePathOpen.Radius = 5;
@@ -234,7 +235,7 @@
             this.flowPanel.Controls.Add(this.shortcutmakerButton);
             this.flowPanel.Controls.Add(this.resilioButton);
             this.flowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowPanel.Location = new System.Drawing.Point(284, 3);
+            this.flowPanel.Location = new System.Drawing.Point(284, 6);
             this.flowPanel.Name = "flowPanel";
             this.flowPanel.Size = new System.Drawing.Size(266, 252);
             this.flowPanel.TabIndex = 17;
@@ -257,14 +258,14 @@
             // 
             // rookieButton
             // 
-            this.rookieButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.rookieButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.rookieButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.rookieButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.rookieButton.BackColor = System.Drawing.Color.Transparent;
             this.rookieButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.rookieButton.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.rookieButton.ForeColor = System.Drawing.Color.White;
-            this.rookieButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.rookieButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.rookieButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.rookieButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.rookieButton.Location = new System.Drawing.Point(3, 38);
             this.rookieButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.rookieButton.Name = "rookieButton";
@@ -281,14 +282,14 @@
             // 
             // vrpguiButton
             // 
-            this.vrpguiButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.vrpguiButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.vrpguiButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.vrpguiButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.vrpguiButton.BackColor = System.Drawing.Color.Transparent;
             this.vrpguiButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.vrpguiButton.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.vrpguiButton.ForeColor = System.Drawing.Color.White;
-            this.vrpguiButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.vrpguiButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.vrpguiButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.vrpguiButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.vrpguiButton.Location = new System.Drawing.Point(3, 82);
             this.vrpguiButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.vrpguiButton.Name = "vrpguiButton";
@@ -305,14 +306,14 @@
             // 
             // shortcutmakerButton
             // 
-            this.shortcutmakerButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.shortcutmakerButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.shortcutmakerButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.shortcutmakerButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.shortcutmakerButton.BackColor = System.Drawing.Color.Transparent;
             this.shortcutmakerButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.shortcutmakerButton.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.shortcutmakerButton.ForeColor = System.Drawing.Color.White;
-            this.shortcutmakerButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.shortcutmakerButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.shortcutmakerButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.shortcutmakerButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.shortcutmakerButton.Location = new System.Drawing.Point(3, 126);
             this.shortcutmakerButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.shortcutmakerButton.Name = "shortcutmakerButton";
@@ -329,14 +330,14 @@
             // 
             // resilioButton
             // 
-            this.resilioButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.resilioButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.resilioButton.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.resilioButton.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.resilioButton.BackColor = System.Drawing.Color.Transparent;
             this.resilioButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.resilioButton.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.resilioButton.ForeColor = System.Drawing.Color.White;
-            this.resilioButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.resilioButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.resilioButton.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.resilioButton.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.resilioButton.Location = new System.Drawing.Point(3, 170);
             this.resilioButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.resilioButton.Name = "resilioButton";
@@ -380,14 +381,14 @@
             // 
             // LaunchRookie
             // 
-            this.LaunchRookie.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
-            this.LaunchRookie.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.LaunchRookie.Active1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.LaunchRookie.Active2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.LaunchRookie.BackColor = System.Drawing.Color.Transparent;
             this.LaunchRookie.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.LaunchRookie.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.LaunchRookie.ForeColor = System.Drawing.Color.White;
-            this.LaunchRookie.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.LaunchRookie.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.LaunchRookie.Inactive1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.LaunchRookie.Inactive2 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.LaunchRookie.Location = new System.Drawing.Point(3, 258);
             this.LaunchRookie.Name = "LaunchRookie";
             this.LaunchRookie.Radius = 5;
@@ -407,7 +408,7 @@
             this.resilioPathCheckbox.AutoSize = true;
             this.resilioPathCheckbox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resilioPathCheckbox.ForeColor = System.Drawing.Color.White;
-            this.resilioPathCheckbox.Location = new System.Drawing.Point(284, 178);
+            this.resilioPathCheckbox.Location = new System.Drawing.Point(556, 183);
             this.resilioPathCheckbox.Name = "resilioPathCheckbox";
             this.resilioPathCheckbox.Size = new System.Drawing.Size(266, 25);
             this.resilioPathCheckbox.TabIndex = 8;
@@ -488,6 +489,14 @@
             this.rainbowBorderTop.Size = new System.Drawing.Size(844, 1);
             this.rainbowBorderTop.TabIndex = 14;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(-1, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(896, 1);
+            this.panel1.TabIndex = 15;
+            // 
             // rainbowBorderLeft
             // 
             this.rainbowBorderLeft.BackColor = System.Drawing.Color.White;
@@ -531,8 +540,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-            this.BackgroundImage = global::VRPE_Installer.Properties.Resources.background;
+            this.BackgroundImage = global::VRPE_Installer.Properties.Resources.backgrounddark;
             this.ClientSize = new System.Drawing.Size(894, 502);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.rainbowBorderBottom);
             this.Controls.Add(this.rainbowBorderRight);
             this.Controls.Add(this.rainbowBorderLeft);
@@ -596,5 +606,6 @@
         private CustomButton rookiePathOpen;
         private CustomButton nextButton;
         private CustomButton backButton;
+        private System.Windows.Forms.Panel panel1;
     }
 }
