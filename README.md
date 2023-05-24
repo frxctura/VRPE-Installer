@@ -16,9 +16,8 @@ Grab the binary off the page here or compile yourself with Visual Studio.
 
     
 ## Screenshots
-![Screenshot](https://user-images.githubusercontent.com/69131569/206459291-e84ccb78-0d5a-474b-9d19-e5f6977a5980.png)
-
-![ScreenshotTwo](https://user-images.githubusercontent.com/69131569/207939562-af1e12b8-3621-4cdf-ac1b-831ace455668.png)
+![image](https://github.com/Chax1/VRPE-Installer/assets/69131569/9ca39b40-8edd-493f-ba26-35468fe13e97)
+![image](https://github.com/Chax1/VRPE-Installer/assets/69131569/adda5d88-0e5a-4160-8ce5-569a010317a8)
 
 ## Authors
 
