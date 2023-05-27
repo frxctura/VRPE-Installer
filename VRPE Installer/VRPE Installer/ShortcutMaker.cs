@@ -13,7 +13,7 @@ namespace VRPE_Installer
     {
         public static void CreateShortcutRookie(string selectedPath, string fixPath, string ver)
         {
-            var folderName = $"rookie_{ver}_portable";
+            var folderName = $"Rookie";
             var targetFolder = Path.Combine(selectedPath, folderName);
             var finishedPath = Path.Combine(targetFolder, $"Sideloader Launcher.exe");
             object shDesktop = (object)"Desktop";
