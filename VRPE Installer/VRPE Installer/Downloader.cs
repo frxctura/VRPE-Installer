@@ -87,13 +87,13 @@ namespace VRPE_Installer
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
                 }
-                return await Task.FromResult(true);
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
-                return await Task.FromResult(false);
+                return false;
             }
         }
 
@@ -111,13 +111,13 @@ namespace VRPE_Installer
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
                 }
-                return await Task.FromResult(true);
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
-                return await Task.FromResult(false);
+                return false;
             }
         }
 
@@ -131,13 +131,13 @@ namespace VRPE_Installer
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
                 }
-                return await Task.FromResult(true);
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
-                return await Task.FromResult(false);
+                return false;
             }
         }
 
@@ -156,13 +156,13 @@ namespace VRPE_Installer
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
                 }
-                return await Task.FromResult(true);
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
-                return await Task.FromResult(false);
+                return false;
             }
         }
 
@@ -177,13 +177,13 @@ namespace VRPE_Installer
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     await client.StartDownload();
                 }
-                return await Task.FromResult(true);
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.DownloadError();
-                return await Task.FromResult(false);
+                return false;
             }
         }
 
@@ -203,13 +203,13 @@ namespace VRPE_Installer
                         await client.StartDownload();
                         Process.Start($"{selectedPathResilio}{fixPath}Resilio-Sync.exe");
                     }
-                    return await Task.FromResult(true);
+                    return true;
                 }
                 catch (Exception ex)
                 {
                     MessageBoxes.exceptionMessage = ex.Message;
                     MessageBoxes.DownloadError();
-                    return await Task.FromResult(false);
+                    return false;
                 }
             }
             else
@@ -224,13 +224,13 @@ namespace VRPE_Installer
                         await client.StartDownload();
                         Process.Start($"{selectedPathResilio}{fixPath}Resilio-Sync_64.exe");
                     }
-                    return await Task.FromResult(true);
+                    return true;
                 }
                 catch (Exception ex)
                 {
                     MessageBoxes.exceptionMessage = ex.Message;
                     MessageBoxes.DownloadError();
-                    return await Task.FromResult(false);
+                    return false;
                 }
             }
         }

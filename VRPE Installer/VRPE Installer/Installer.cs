@@ -22,14 +22,14 @@ namespace VRPE_Installer
                 ZipFile.ExtractToDirectory(destinationFilePath, combinedFolder);
                 // Delete the RSL.zip file as it is no longer needed.
                 File.Delete(destinationFilePath);
-                return await Task.FromResult(true);
+                return true;
             }
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.InstallError();
-                return await Task.FromResult(false);
+                return false;
             }
         }
 
@@ -50,7 +50,7 @@ namespace VRPE_Installer
                 // Catch and show the user any exception that happens during the entire process
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.InstallError();
-                return await Task.FromResult(false);
+                return false;
             }
         }
 
@@ -68,14 +68,14 @@ namespace VRPE_Installer
                 ZipFile.ExtractToDirectory(destinationFilePathVRPGUI, createFolderPathVRPGUI);
                 // Lastly delete the VRPGUI.zip
                 File.Delete(destinationFilePathVRPGUI);
-                return await Task.FromResult(true);
+                return true;
             }
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.InstallError();
-                return await Task.FromResult(false);
+                return false;
             }
         }
 
@@ -92,14 +92,14 @@ namespace VRPE_Installer
                 ZipFile.ExtractToDirectory(destinationFilePath, combinedFolder);
                 // Delete the RSL.zip file as it is no longer needed.
                 File.Delete(destinationFilePath);
-                return await Task.FromResult(true);
+                return true;
             }
             catch (Exception ex)
             {
                 // Catch and show the user any exception that happens during the entire process
                 MessageBoxes.exceptionMessage = ex.Message;
                 MessageBoxes.InstallError();
-                return await Task.FromResult(false);
+                return false;
             }
         }
     }
