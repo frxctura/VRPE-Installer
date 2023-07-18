@@ -97,6 +97,30 @@ namespace VRPE_Installer
             }
         }
 
+        // Downloads Rookie-PCVR from a link that is defined in the github repo file (HTTP Client fetches the string)
+        public static async Task<bool> GetRookiePCVR(string selectedPath, string fixPath)
+        {
+            string rookiePCVRLink = "https://raw.githubusercontent.com/Chax1/VRPEDLLinks/main/RookiePCVRLink";
+            string rookiePCVRDL = Program.HttpClient.GetStringAsync($"{rookiePCVRLink}").Result;
+            var downloadFileUrl = $"{rookiePCVRDL}";
+            var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSLPCVR.zip");
+            try
+            {
+                using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePath))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    await client.StartDownload();
+                }
+                return await Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.DownloadError();
+                return await Task.FromResult(false);
+            }
+        }
+
         public static async Task<bool> GetIcons(string RSLPATH, string iconName, string neededIcon)
         {
             var iconPath = Path.GetFullPath($"{RSLPATH}{iconName}");

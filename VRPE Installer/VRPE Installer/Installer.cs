@@ -7,7 +7,7 @@ namespace VRPE_Installer
 {
     internal class Installer
     {
-        public static async Task<bool> InstallRookie(string selectedPath, string ver, string fixPath)
+        public static async Task<bool> InstallRookie(string selectedPath, string fixPath)
         {
             var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSL.zip");
             try
@@ -68,6 +68,30 @@ namespace VRPE_Installer
                 ZipFile.ExtractToDirectory(destinationFilePathVRPGUI, createFolderPathVRPGUI);
                 // Lastly delete the VRPGUI.zip
                 File.Delete(destinationFilePathVRPGUI);
+                return await Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                // Catch and show the user any exception that happens during the entire process
+                MessageBoxes.exceptionMessage = ex.Message;
+                MessageBoxes.InstallError();
+                return await Task.FromResult(false);
+            }
+        }
+
+        public static async Task<bool> InstallRookiePCVR(string selectedPath, string fixPath)
+        {
+            var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSLPCVR.zip");
+            try
+            {
+                // Create a directory for Rookie to be extracted into.
+                var combinedFolder = Path.Combine(selectedPath, "Rookie-PCVR");
+                Console.WriteLine(combinedFolder);
+                Directory.CreateDirectory(combinedFolder);
+                // Extract the RSL.zip into the selected path.
+                ZipFile.ExtractToDirectory(destinationFilePath, combinedFolder);
+                // Delete the RSL.zip file as it is no longer needed.
+                File.Delete(destinationFilePath);
                 return await Task.FromResult(true);
             }
             catch (Exception ex)
