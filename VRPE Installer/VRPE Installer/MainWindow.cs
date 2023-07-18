@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -28,16 +29,56 @@ namespace VRPE_Installer
         // On Program start, set the RSL Path, create an HTTP Client to fetch the version number of Rookie and set the string, set bools true if files exist.
         public MainWindow()
         {
-            #if DEBUG 
-            // Print paths, device dpi, and internetstate to help with debugging 
+            #if DEBUG
+            string osVersion = Environment.OSVersion.VersionString;
+            string processor = Environment.ProcessorCount.ToString();
+            string currentUser = WindowsIdentity.GetCurrent().Name;
+            // Print paths, device dpi, and internet state to help with debugging
             bool IsInternetAvailable()
-            {try{int description;return InternetGetConnectedState(out description, 0);}catch (Exception ex){return false;}}
+            {
+                try
+                {
+                    int description;
+                    return InternetGetConnectedState(out description, 0);
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+
             string INTERNETSTATE;
             Debug.WriteLine("---------------------------------\nDEBUG MODE ENABLED\nPRINTING VALUES\n---------------------------------");
-            Debug.WriteLine("PATHS\nRookie Path: " + File.ReadLines(@"C:/RSL/RookiePath.txt").First() + "\nVRPGUI Path: " + File.ReadLines(@"C:/RSL/VRPGUIPath.txt").First());
+
+            string rookiePath = "";
+            if (File.Exists("C:/RSL/RookiePath.txt"))
+            {
+                rookiePath = File.ReadLines("C:/RSL/RookiePath.txt").FirstOrDefault();
+            }
+
+            string vrpguiPath = "";
+            if (File.Exists("C:/RSL/VRPGUIPath.txt"))
+            {
+                vrpguiPath = File.ReadLines("C:/RSL/VRPGUIPath.txt").FirstOrDefault();
+            }
+
+            Debug.WriteLine("PATHS\nRookie Path: " + rookiePath + "\nVRPGUI Path: " + vrpguiPath);
+
             Debug.WriteLine("\nDEVICE DPI: " + this.DeviceDpi / 96.0);
-            if (IsInternetAvailable() ){INTERNETSTATE = " TRUE"; }else{INTERNETSTATE = " FALSE";}
-            Debug.WriteLine($"\nINTERNET CONNECTION:" + INTERNETSTATE);
+            Debug.WriteLine($"Operating System: {osVersion}");
+            Debug.WriteLine($"Processor Count: {processor}");
+            Debug.WriteLine($"Current User: {currentUser}");
+
+            if (IsInternetAvailable())
+            {
+                INTERNETSTATE = " TRUE";
+            }
+            else
+            {
+                INTERNETSTATE = " FALSE";
+            }
+
+            Debug.WriteLine("\nINTERNET CONNECTION:" + INTERNETSTATE);
             #endif
             InitializeComponent();
             int scaleValueWidth = 891 * (this.DeviceDpi / 96);
