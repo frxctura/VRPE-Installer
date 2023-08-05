@@ -11,7 +11,7 @@ namespace VRPE_Installer
     {
         public static string Repostory { get; set; }
 
-        public static readonly string LocalVersion = "2.3";
+        public static readonly string LocalVersion = "2.4";
         public static string currentVersion = string.Empty;
         public static string changelog = string.Empty;
 
@@ -21,8 +21,8 @@ namespace VRPE_Installer
             HttpClient client = new HttpClient();
             try
             {
-                currentVersion = Program.HttpClient.GetStringAsync($"https://raw.githubusercontent.com/Chax1/VRPE-Installer/main/VRPE%20Installer/VRPE%20Installer/version").Result;
-                changelog = Program.HttpClient.GetStringAsync($"https://raw.githubusercontent.com/Chax1/VRPE-Installer/main/VRPE%20Installer/VRPE%20Installer/changelog.txt").Result;
+                currentVersion = Program.HttpClient.GetStringAsync($"https://raw.githubusercontent.com/VRPirates/VRPE/main/VRPE%20Installer/VRPE%20Installer/version").Result;
+                changelog = Program.HttpClient.GetStringAsync($"https://raw.githubusercontent.com/VRPirates/VRPE/main/VRPE%20Installer/VRPE%20Installer/changelog.txt").Result;
                 client.Dispose();
                 currentVersion = currentVersion.Trim();
             }
@@ -58,7 +58,7 @@ namespace VRPE_Installer
                 WebClient fileClient = new WebClient();
                 ServicePointManager.Expect100Continue = true;
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                fileClient.DownloadFile($"https://github.com/Chax1/VRPE-Installer/releases/download/v{currentVersion}/VRPE-Installer.exe", $"VRPE-Installer(v{currentVersion}).exe");
+                fileClient.DownloadFile($"https://github.com/VRPirates/VRPE/releases/download/v{currentVersion}/VRPE-Installer.exe", $"VRPE-Installer(v{currentVersion}).exe");
                 fileClient.Dispose();
                 Process.Start($"VRPE-Installer(v{currentVersion}).exe");
                 //Delete current version

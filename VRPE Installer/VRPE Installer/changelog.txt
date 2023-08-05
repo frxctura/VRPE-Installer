@@ -1,4 +1,3 @@
-VRPE-Installer Version 2.3
+VRPE-Installer Version 2.4
 
-- Fixed a bug with changing the VRPE Theme on launch.
-- Fixed a bug within the Updater.
+- Point to new repository
