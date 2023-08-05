@@ -76,7 +76,7 @@ namespace VRPE_Installer
         // Downloads Rookie from a link that is defined in the github repo file (HTTP Client fetches the string)
         public static async Task<bool> GetRookie(string selectedPath, string fixPath)
         {
-            string rookieLink = "https://raw.githubusercontent.com/Chax1/VRPEDLLinks/main/RookieLink";
+            string rookieLink = "https://raw.githubusercontent.com/VRPirates/VRPE-Links/main/Rookie";
             string rookieDL = Program.HttpClient.GetStringAsync($"{rookieLink}").Result;
             var downloadFileUrl = $"{rookieDL}";
             var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSL.zip");
@@ -100,7 +100,7 @@ namespace VRPE_Installer
         // Downloads Rookie-PCVR from a link that is defined in the github repo file (HTTP Client fetches the string)
         public static async Task<bool> GetRookiePCVR(string selectedPath, string fixPath)
         {
-            string rookiePCVRLink = "https://raw.githubusercontent.com/Chax1/VRPEDLLinks/main/RookiePCVRLink";
+            string rookiePCVRLink = "https://raw.githubusercontent.com/VRPirates/VRPE-Links/main/Rookie-PCVR";
             string rookiePCVRDL = Program.HttpClient.GetStringAsync($"{rookiePCVRLink}").Result;
             var downloadFileUrl = $"{rookiePCVRDL}";
             var destinationFilePath = Path.GetFullPath($"{selectedPath}{fixPath}RSLPCVR.zip");
@@ -145,7 +145,7 @@ namespace VRPE_Installer
         // Downloads the VRP GUI from a link that is defined in the github repo file (HTTP Client fetches the string)
         public static async Task<bool> GetVRPGUI(string selectedPathVRPGUI, string fixPath)
         {
-            string VRPGUILink = "https://raw.githubusercontent.com/Chax1/VRPEDLLinks/main/VRPGUILink";
+            string VRPGUILink = "https://raw.githubusercontent.com/VRPirates/VRPE-Links/main/VRP-GUI";
             string VRPGUIDL = Program.HttpClient.GetStringAsync($"{VRPGUILink}").Result;
             var downloadFileUrl = $"{VRPGUIDL}";
             var destinationFilePathVRPGUI = Path.GetFullPath($"{selectedPathVRPGUI}{fixPath}VRPGUI.zip");
