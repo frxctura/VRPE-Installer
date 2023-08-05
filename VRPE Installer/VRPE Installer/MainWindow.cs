@@ -173,7 +173,7 @@ namespace VRPE_Installer
                     DialogResult dialogResult = MessageBox.Show("VRPE has detected a OneDrive Path!\nAs OneDrive breaks Rookie the VRPE will not continue downloading.", "OneDrive Path Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                var ver = Program.HttpClient.GetStringAsync("https://raw.githubusercontent.com/nerdunit/androidsideloader/master/version").Result;
+                var ver = Program.HttpClient.GetStringAsync("https://raw.githubusercontent.com/VRPirates/rookie/master/version").Result;
                 runningProcess = true;
                 EnableProcessbar(sender, e);
                 topLabel.Text = "Downloading Rookie...";
